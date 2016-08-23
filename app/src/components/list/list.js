@@ -1,8 +1,8 @@
 import template from './list.html';
 
-export default {
+export default{
   template,
-  controller() {
+  controller(){
     this.info = {
       title: 'Ernie',
       description: 'Visiting the vet',
