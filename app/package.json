@@ -1,0 +1,12 @@
+{
+  "name": "app for image gallery",
+  "version": "1.0.0",
+  "description": "source code for my image gallery",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --inline"
+  },
+  "author": "Danielle Heberling",
+  "license": "ISC"
+}
