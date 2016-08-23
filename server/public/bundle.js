@@ -54,7 +54,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(11);
+	__webpack_require__(21);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -17280,7 +17280,10 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./app/app.js": 9
+		"./app/app.js": 9,
+		"./gallery/gallery.js": 11,
+		"./list/list.js": 13,
+		"./thumbnail/thumbnail.js": 15
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -17320,26 +17323,126 @@
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = "<h1>This is my app</h1>\n";
+	module.exports = "<h1>Cute dog gallery</h1>\n  <list></list>\n  <thumbnail></thumbnail>\n  <gallery></gallery>\n";
 
 /***/ },
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _gallery = __webpack_require__(12);
+	
+	var _gallery2 = _interopRequireDefault(_gallery);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _gallery2.default,
+	  controller: function controller() {
+	    this.info = {
+	      title: 'Ernie',
+	      description: 'Visiting the vet',
+	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bcb321e4fcb567fdff2ee0/1471984444747/?format=1000w'
+	    };
+	  }
+	};
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n  <h3>Gallery View</h3>\n  <p>{{$ctrl.info.title}}</p>\n  <p>{{$ctrl.info.description}}</p>\n  <p><img ng-src=\"{{$ctrl.info.link}}\"></p>\n</div>\n<hr>\n";
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _list = __webpack_require__(14);
+	
+	var _list2 = _interopRequireDefault(_list);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _list2.default,
+	  controller: function controller() {
+	    this.info = {
+	      title: 'Ernie',
+	      description: 'Visiting the vet',
+	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bcb321e4fcb567fdff2ee0/1471984444747/?format=1000w'
+	    };
+	  }
+	};
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n  <h3>List View</h3>\n    <p>{{$ctrl.info.title}}</p>\n    <p>{{$ctrl.info.description}}</p>\n    <p><a ng-href=\"{{$ctrl.info.link}}\">View Image Here</a></p>\n    <hr>\n</div>\n";
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _thumbnail = __webpack_require__(16);
+	
+	var _thumbnail2 = _interopRequireDefault(_thumbnail);
+	
+	var _thumbnail3 = __webpack_require__(17);
+	
+	var _thumbnail4 = _interopRequireDefault(_thumbnail3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _thumbnail2.default,
+	  controller: function controller() {
+	    this.styles = _thumbnail4.default;
+	    this.link = 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bcb321e4fcb567fdff2ee0/1471984444747/?format=1000w';
+	  }
+	};
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	module.exports = "<div ng-class=\"$ctrl.styles.thumbnail\">\n  <h3>Thumbnail View</h3>\n  <img ng-src=\"{{$ctrl.link}}\">\n  <hr>\n</div>\n";
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(12);
+	var content = __webpack_require__(18);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(14)(content, {});
+	var update = __webpack_require__(20)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/sass-loader/index.js?sourceMap!./main.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/sass-loader/index.js?sourceMap!./main.scss");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./thumbnail.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./thumbnail.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -17349,21 +17452,23 @@
 	}
 
 /***/ },
-/* 12 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(13)();
+	exports = module.exports = __webpack_require__(19)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, "", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"main.scss","sourceRoot":"webpack://"}]);
+	exports.push([module.id, "._3wa1r0xCQ0ttb4fTM2WTxV img {\n  width: 80px;\n  height: 100px; }\n", "", {"version":3,"sources":["/./src/components/thumbnail/src/components/thumbnail/thumbnail.scss"],"names":[],"mappings":"AAAA;EAEM,YAAY;EACZ,cAAc,EACjB","file":"thumbnail.scss","sourcesContent":[":local(.thumbnail){\n  img {\n      width: 80px;\n      height: 100px;\n  }\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
-
+	exports.locals = {
+		"thumbnail": "_3wa1r0xCQ0ttb4fTM2WTxV"
+	};
 
 /***/ },
-/* 13 */
+/* 19 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -17418,7 +17523,7 @@
 	};
 
 /***/ },
-/* 14 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -17667,6 +17772,46 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
+
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(22);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(20)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/sass-loader/index.js?sourceMap!./main.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/sass-loader/index.js?sourceMap!./main.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(19)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "body {\n  color: #333;\n  background-color: #ededed; }\n", "", {"version":3,"sources":["/./src/scss/src/scss/main.scss"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,0BAAqB,EACtB","file":"main.scss","sourcesContent":["body {\n  color: #333;\n  background-color: rgb(237, 237, 237);\n}\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
 
 
 /***/ }
