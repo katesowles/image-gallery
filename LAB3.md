@@ -5,9 +5,12 @@ After the fantastic community reaction to your single Bunny Display Widget, you'
 to display an album (list) of cute bunny photos.
 
 Your enhancements:
+
 1. Make the display state (list, tile, thumb) dynamic and only show one display state at a time.
+
 2. Create an album component that lists from an array of images (can still be hard-coded in the app).
 The album should list appropriately based on the display state.
+
 3. Style your project using scss running via webpack loader. Styles should be well-organized (general things
 are general, component-specific things are component specific).
 
