@@ -1,8 +1,10 @@
 import template from './album.html';
+import styles from './album.scss';
 
 export default{
   template,
   controller(){
+    this.styles = styles;
     this.view = 'list';
     this.images = [
       {

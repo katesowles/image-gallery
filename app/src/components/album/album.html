@@ -1,11 +1,11 @@
-<div>
+<div ng-class="$ctrl.styles.album">
   <!-- Radio buttons -->
-  <section>
-    <label for="list">List: </label>
+  <section id="radioButtons">
+    <label for="list">List </label>
       <input ng-model="$ctrl.view" type="radio" name="view" id="list" value="list">
-    <label for="thumbnail">Thumbnail: </label>
+    <label for="thumbnail">Thumbnail </label>
       <input ng-model="$ctrl.view" type="radio" name="view" id="thumbnail" value="thumbnail">
-    <label for="gallery">Gallery: </label>
+    <label for="gallery">Gallery </label>
       <input ng-model="$ctrl.view" type="radio" name="view" id="gallery" value="gallery">
   </section>
 
