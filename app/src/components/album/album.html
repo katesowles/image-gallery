@@ -1,13 +1,18 @@
 <div>
-  List: <input ng-model="$ctrl.view" value="list" type="radio" name="view" >
-  Thumbnail: <input ng-model="$ctrl.view" value="thumbnail" type="radio" name="view">
-  Gallery: <input ng-model="$ctrl.view" value="gallery" type="radio" name="view">
+  <!-- Radio buttons -->
+  <section>
+    <label for="list">List: </label>
+      <input ng-model="$ctrl.view" type="radio" name="view" id="list" value="list">
+    <label for="thumbnail">Thumbnail: </label>
+      <input ng-model="$ctrl.view" type="radio" name="view" id="thumbnail" value="thumbnail">
+    <label for="gallery">Gallery: </label>
+      <input ng-model="$ctrl.view" type="radio" name="view" id="gallery" value="gallery">
+  </section>
 
-  <ul>
-    <li ng-repeat="image in $ctrl.images">
-      <list ng-if="$ctrl.view === 'list'" info="image"></list>
-      <thumbnail ng-if="$ctrl.view === 'thumbnail'" info="image"></thumbnail>
-      <gallery ng-if="$ctrl.view === 'gallery'" info="image"></gallery>
-    </li>
-  </ul>
+  <!-- Image and image info -->
+  <span ng-repeat="image in $ctrl.images">
+    <list ng-if="$ctrl.view === 'list'" info="image"></list>
+    <thumbnail ng-if="$ctrl.view === 'thumbnail'" info="image"></thumbnail>
+    <gallery ng-if="$ctrl.view === 'gallery'" info="image"></gallery>
+  </span>
 </div>
