@@ -54,7 +54,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(21);
+	__webpack_require__(23);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -17280,10 +17280,11 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./app/app.js": 9,
-		"./gallery/gallery.js": 11,
-		"./list/list.js": 13,
-		"./thumbnail/thumbnail.js": 15
+		"./album/album.js": 9,
+		"./app/app.js": 11,
+		"./gallery/gallery.js": 13,
+		"./list/list.js": 15,
+		"./thumbnail/thumbnail.js": 17
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -17309,21 +17310,43 @@
 	  value: true
 	});
 	
-	var _app = __webpack_require__(10);
+	var _album = __webpack_require__(10);
 	
-	var _app2 = _interopRequireDefault(_app);
+	var _album2 = _interopRequireDefault(_album);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
-	  template: _app2.default
+	  template: _album2.default,
+	  controller: function controller() {
+	    this.changeView = function () {
+	      console.log('This works');
+	    };
+	    this.images = [{
+	      title: 'Vet Visit',
+	      description: 'Ernie smiling while waiting for the doctor to come in.',
+	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bcb321e4fcb567fdff2ee0/1471984444747/?format=1000w'
+	    }, {
+	      title: 'Sandwich Cat',
+	      description: 'Ernie seems sleepy and is hanging out with sandwich cat.',
+	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bdeaad37c581748d11649b/1472064177550/IMG_2604.JPG?format=1000w'
+	    }, {
+	      title: 'Ready for a Walk',
+	      description: 'Ernie patiently waiting to go out for his evening walk.',
+	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bdeba9e6f2e187400cfefb/1472064434532/FullSizeRender.jpg?format=1000w'
+	    }, {
+	      title: 'Hanging out',
+	      description: 'Just sitting around the apartment being a dog.',
+	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bdea8537c581748d11629a/1472064140299/IMG_2451.JPG?format=1000w'
+	    }];
+	  }
 	};
 
 /***/ },
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = "<h1>Cute dog gallery</h1>\n  <list></list>\n  <thumbnail></thumbnail>\n  <gallery></gallery>\n";
+	module.exports = "<div>\n  List: <input ng-model=\"view\" ng-value=\"list\" ng-change=\"$ctrl.changeView()\" type=\"radio\" name=\"view\" >\n  Thumbnail: <input ng-model=\"view\" ng-value=\"thumbnail\" ng-change=\"$ctrl.changeView()\" type=\"radio\" name=\"view\">\n  Gallery: <input ng-model=\"view\" ng-value=\"gallery\" ng-change=\"$ctrl.changeView()\" type=\"radio\" name=\"view\">\n\n  <ul>\n    <li ng-repeat=\"image in $ctrl.images\">\n      <list info=\"image\"></list>\n      <thumbnail info=\"image\"></thumbnail>\n      <gallery info=\"image\"></gallery>\n    </li>\n  </ul>\n</div>\n";
 
 /***/ },
 /* 11 */
@@ -17335,28 +17358,21 @@
 	  value: true
 	});
 	
-	var _gallery = __webpack_require__(12);
+	var _app = __webpack_require__(12);
 	
-	var _gallery2 = _interopRequireDefault(_gallery);
+	var _app2 = _interopRequireDefault(_app);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
-	  template: _gallery2.default,
-	  controller: function controller() {
-	    this.info = {
-	      title: 'Ernie',
-	      description: 'Visiting the vet',
-	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bcb321e4fcb567fdff2ee0/1471984444747/?format=1000w'
-	    };
-	  }
+	  template: _app2.default
 	};
 
 /***/ },
 /* 12 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n  <h3>Gallery View</h3>\n  <p>{{$ctrl.info.title}}</p>\n  <p>{{$ctrl.info.description}}</p>\n  <p><img ng-src=\"{{$ctrl.info.link}}\"></p>\n</div>\n<hr>\n";
+	module.exports = "<h1>Cute dog gallery</h1>\n  <!-- <list></list>\n  <thumbnail></thumbnail>\n  <gallery></gallery> -->\n  <album></album>\n";
 
 /***/ },
 /* 13 */
@@ -17368,28 +17384,25 @@
 	  value: true
 	});
 	
-	var _list = __webpack_require__(14);
+	var _gallery = __webpack_require__(14);
 	
-	var _list2 = _interopRequireDefault(_list);
+	var _gallery2 = _interopRequireDefault(_gallery);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
-	  template: _list2.default,
-	  controller: function controller() {
-	    this.info = {
-	      title: 'Ernie',
-	      description: 'Visiting the vet',
-	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bcb321e4fcb567fdff2ee0/1471984444747/?format=1000w'
-	    };
-	  }
+	  template: _gallery2.default,
+	  bindings: {
+	    info: '<'
+	  },
+	  controller: function controller() {}
 	};
 
 /***/ },
 /* 14 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\n  <h3>List View</h3>\n    <p>{{$ctrl.info.title}}</p>\n    <p>{{$ctrl.info.description}}</p>\n    <p><a ng-href=\"{{$ctrl.info.link}}\">View Image Here</a></p>\n    <hr>\n</div>\n";
+	module.exports = "<div>\n  <h3>Gallery View</h3>\n  <p>{{$ctrl.info.title}}</p>\n  <p>{{$ctrl.info.description}}</p>\n  <p><img ng-src=\"{{$ctrl.info.link}}\"></p>\n</div>\n<hr>\n";
 
 /***/ },
 /* 15 */
@@ -17401,11 +17414,41 @@
 	  value: true
 	});
 	
-	var _thumbnail = __webpack_require__(16);
+	var _list = __webpack_require__(16);
+	
+	var _list2 = _interopRequireDefault(_list);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _list2.default,
+	  bindings: {
+	    info: '<'
+	  },
+	  controller: function controller() {}
+	};
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	module.exports = "<div>\n    <p>{{$ctrl.info.title}}</p>\n    <p>{{$ctrl.info.description}}</p>\n    <p><a ng-href=\"{{$ctrl.info.link}}\">View Image Here</a></p>\n    <hr>\n</div>\n";
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _thumbnail = __webpack_require__(18);
 	
 	var _thumbnail2 = _interopRequireDefault(_thumbnail);
 	
-	var _thumbnail3 = __webpack_require__(17);
+	var _thumbnail3 = __webpack_require__(19);
 	
 	var _thumbnail4 = _interopRequireDefault(_thumbnail3);
 	
@@ -17413,29 +17456,31 @@
 	
 	exports.default = {
 	  template: _thumbnail2.default,
+	  bindings: {
+	    info: '<'
+	  },
 	  controller: function controller() {
 	    this.styles = _thumbnail4.default;
-	    this.link = 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bcb321e4fcb567fdff2ee0/1471984444747/?format=1000w';
 	  }
 	};
 
 /***/ },
-/* 16 */
+/* 18 */
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-class=\"$ctrl.styles.thumbnail\">\n  <h3>Thumbnail View</h3>\n  <img ng-src=\"{{$ctrl.link}}\">\n  <hr>\n</div>\n";
+	module.exports = "<div ng-class=\"$ctrl.styles.thumbnail\">\n  <h3>Thumbnail View</h3>\n  <img ng-src=\"{{$ctrl.info.link}}\">\n  <hr>\n</div>\n";
 
 /***/ },
-/* 17 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(18);
+	var content = __webpack_require__(20);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(20)(content, {});
+	var update = __webpack_require__(22)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -17452,10 +17497,10 @@
 	}
 
 /***/ },
-/* 18 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(19)();
+	exports = module.exports = __webpack_require__(21)();
 	// imports
 	
 	
@@ -17468,7 +17513,7 @@
 	};
 
 /***/ },
-/* 19 */
+/* 21 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -17523,7 +17568,7 @@
 	};
 
 /***/ },
-/* 20 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -17775,16 +17820,16 @@
 
 
 /***/ },
-/* 21 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(22);
+	var content = __webpack_require__(24);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(20)(content, {});
+	var update = __webpack_require__(22)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -17801,10 +17846,10 @@
 	}
 
 /***/ },
-/* 22 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(19)();
+	exports = module.exports = __webpack_require__(21)();
 	// imports
 	
 	

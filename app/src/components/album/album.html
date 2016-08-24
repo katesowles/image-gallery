@@ -1,7 +1,11 @@
 <div>
-  List: <input type="radio" name="view">
-  Thumbnail: <input type="radio" name="view">
-  Gallery: <input type="radio" name="view">
+  List: <input ng-model="$ctrl.view" value="list" type="radio" name="view" >
+  Thumbnail: <input ng-model="$ctrl.view" value="thumbnail" type="radio" name="view">
+  Gallery: <input ng-model="$ctrl.view" value="gallery" type="radio" name="view">
+
+<div>
+  {{$ctrl.view}}
+</div>
 
   <ul>
     <li ng-repeat="image in $ctrl.images">

@@ -3,6 +3,7 @@ import template from './album.html';
 export default{
   template,
   controller(){
+    this.view = 'list';
     this.images = [
       {
         title: 'Vet Visit',
