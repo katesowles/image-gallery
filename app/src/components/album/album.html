@@ -1,0 +1,13 @@
+<div>
+  List: <input type="radio" name="view">
+  Thumbnail: <input type="radio" name="view">
+  Gallery: <input type="radio" name="view">
+
+  <ul>
+    <li ng-repeat="image in $ctrl.images">
+      <list info="image"></list>
+      <thumbnail info="image"></thumbnail>
+      <gallery info="image"></gallery>
+    </li>
+  </ul>
+</div>
