@@ -10,9 +10,17 @@
   </section>
 
   <!-- Image and image info -->
-  <span ng-repeat="image in $ctrl.images">
-    <list ng-if="$ctrl.view === 'list'" info="image"></list>
-    <thumbnail ng-if="$ctrl.view === 'thumbnail'" info="image"></thumbnail>
-    <gallery ng-if="$ctrl.view === 'gallery'" info="image"></gallery>
-  </span>
+  <section>
+    <span ng-repeat="image in $ctrl.images">
+      <list ng-if="$ctrl.view === 'list'" info="image"></list>
+      <thumbnail ng-if="$ctrl.view === 'thumbnail'" info="image"></thumbnail>
+      <gallery ng-if="$ctrl.view === 'gallery'" info="image"></gallery>
+    </span>
+  </section>
+
+  <!-- Form to add more images -->
+  <section>
+    <add-image></add-image>
+  </section>
+
 </div>
