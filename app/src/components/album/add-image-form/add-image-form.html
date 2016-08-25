@@ -5,4 +5,7 @@
     <input placeholder="Image URL" ng-model="$ctrl.image.link">
     <button type="submit">add image</button>
   </form>
+  <div id="error" ng-show="$ctrl.isInvalid">
+    <p>Please fill out all fields.</p>
+  </div>
 </section>

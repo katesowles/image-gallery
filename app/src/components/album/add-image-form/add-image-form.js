@@ -16,8 +16,18 @@ export default{
     resetImage();
 
     this.submit = ()=>{
-      this.add(this.image);
-      resetImage();
+      /*verify title/description/link aren't undefined or ''*/
+      if('title' && 'description' && 'link' in this.image){
+        if(this.image.title && this.image.description && this.image.link !== ''){
+          this.isInvalid = false;
+          this.add(this.image);
+          resetImage();
+        } else {
+          this.isInvalid = true;
+        }
+      } else {
+        this.isInvalid = true;
+      }
     };
   }
 };

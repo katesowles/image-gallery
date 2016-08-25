@@ -17338,8 +17338,18 @@
 	    resetImage();
 	
 	    this.submit = function () {
-	      _this.add(_this.image);
-	      resetImage();
+	      /*verify title/description/link aren't undefined or ''*/
+	      if ('title' && 'description' && 'link' in _this.image) {
+	        if (_this.image.title && _this.image.description && _this.image.link !== '') {
+	          _this.isInvalid = false;
+	          _this.add(_this.image);
+	          resetImage();
+	        } else {
+	          _this.isInvalid = true;
+	        }
+	      } else {
+	        _this.isInvalid = true;
+	      }
 	    };
 	  }
 	};
@@ -17348,7 +17358,7 @@
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.addImage\">\n  <form ng-submit=\"$ctrl.submit()\">\n    <input placeholder=\"Title\" ng-model=\"$ctrl.image.title\">\n    <input placeholder=\"Description\" ng-model=\"$ctrl.image.description\">\n    <input placeholder=\"Image URL\" ng-model=\"$ctrl.image.link\">\n    <button type=\"submit\">add image</button>\n  </form>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.addImage\">\n  <form ng-submit=\"$ctrl.submit()\">\n    <input placeholder=\"Title\" ng-model=\"$ctrl.image.title\">\n    <input placeholder=\"Description\" ng-model=\"$ctrl.image.description\">\n    <input placeholder=\"Image URL\" ng-model=\"$ctrl.image.link\">\n    <button type=\"submit\">add image</button>\n  </form>\n  <div id=\"error\" ng-show=\"$ctrl.isInvalid\">\n    <p>Please fill out all fields.</p>\n  </div>\n</section>\n";
 
 /***/ },
 /* 11 */
@@ -17385,7 +17395,7 @@
 	
 	
 	// module
-	exports.push([module.id, "._2L9XheS4VXiJ7I7f97ZKDH {\n  margin: 2%;\n  padding: 1%; }\n", "", {"version":3,"sources":["/./src/components/album/add-image-form/src/components/album/add-image-form/add-image-form.scss"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,YAAY,EACb","file":"add-image-form.scss","sourcesContent":[":local(.addImage){\n  margin: 2%;\n  padding: 1%;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "._2L9XheS4VXiJ7I7f97ZKDH {\n  margin: 2%;\n  padding: 1%; }\n  ._2L9XheS4VXiJ7I7f97ZKDH #error {\n    color: #FF3333; }\n", "", {"version":3,"sources":["/./src/components/album/add-image-form/src/components/album/add-image-form/add-image-form.scss"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,YAAY,EAIb;EAND;IAII,eAAe,EAChB","file":"add-image-form.scss","sourcesContent":[":local(.addImage){\n  margin: 2%;\n  padding: 1%;\n  #error{\n    color: #FF3333;\n  }\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
