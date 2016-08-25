@@ -8,5 +8,10 @@
 3. `npm start`
 4. Navigate to `localhost:8080` in a web browser
 
+Alt server instructions
+1. Follow step 1 and 2 above
+2. `cd ../server` and `npm start`
+3. Navigate to `localhost:3000` in a web browser
+
 ### Tests
 `cd app` and `npm run test`
