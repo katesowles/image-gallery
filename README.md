@@ -7,3 +7,6 @@
 2. `cd app` and `npm run build`
 3. `npm start`
 4. Navigate to `localhost:8080` in a web browser
+
+### Tests
+`cd app` and `npm run test`
