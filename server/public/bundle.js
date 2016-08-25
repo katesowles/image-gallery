@@ -17386,7 +17386,7 @@
 	
 	
 	// module
-	exports.push([module.id, "._29txRqz316H0zhZnrjR6Gb #radioButtons {\n  margin-bottom: 3%;\n  text-align: center; }\n  ._29txRqz316H0zhZnrjR6Gb #radioButtons label {\n    margin-left: 1%; }\n", "", {"version":3,"sources":["/./src/components/album/src/components/album/album.scss"],"names":[],"mappings":"AAAA;EAEI,kBAAkB;EAClB,mBAAmB,EAKpB;EARH;IAMM,gBAAgB,EACjB","file":"album.scss","sourcesContent":[":local(.album){\n  #radioButtons {\n    margin-bottom: 3%;\n    text-align: center;\n\n    label {\n      margin-left: 1%;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "._29txRqz316H0zhZnrjR6Gb #radioButtons {\n  margin-bottom: 3%; }\n  ._29txRqz316H0zhZnrjR6Gb #radioButtons label {\n    margin-left: 1%; }\n", "", {"version":3,"sources":["/./src/components/album/src/components/album/album.scss"],"names":[],"mappings":"AAAA;EAEI,kBAAkB,EAInB;EANH;IAIM,gBAAgB,EACjB","file":"album.scss","sourcesContent":[":local(.album){\n  #radioButtons {\n    margin-bottom: 3%;\n    label {\n      margin-left: 1%;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -17947,7 +17947,7 @@
 	
 	
 	// module
-	exports.push([module.id, "body {\n  color: #333;\n  background-color: #ededed;\n  font-family: Arial, Helvetica, sans-serif;\n  margin: 3%;\n  padding: 2%; }\n\n.title {\n  text-align: center; }\n", "", {"version":3,"sources":["/./src/scss/src/scss/main.scss"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,0BAAqB;EACrB,0CAA0C;EAC1C,WAAW;EACX,YAAY,EACb;;AAED;EACE,mBAAmB,EACpB","file":"main.scss","sourcesContent":["body {\n  color: #333;\n  background-color: rgb(237, 237, 237);\n  font-family: Arial, Helvetica, sans-serif;\n  margin: 3%;\n  padding: 2%;\n}\n\n.title {\n  text-align: center;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "body {\n  color: #333;\n  background-color: #ededed;\n  font-family: Arial, Helvetica, sans-serif;\n  width: 90%;\n  margin: 0 auto;\n  text-align: center; }\n", "", {"version":3,"sources":["/./src/scss/src/scss/main.scss"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,0BAAqB;EACrB,0CAA0C;EAC1C,WAAW;EACX,eAAe;EACf,mBAAmB,EACpB","file":"main.scss","sourcesContent":["body {\n  color: #333;\n  background-color: rgb(237, 237, 237);\n  font-family: Arial, Helvetica, sans-serif;\n  width: 90%;\n  margin: 0 auto;\n  text-align: center;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
