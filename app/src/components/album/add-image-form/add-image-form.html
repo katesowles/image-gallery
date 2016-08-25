@@ -1,8 +1,8 @@
 <section ng-class="$ctrl.styles.addImage">
   <form ng-submit="$ctrl.submit()">
-    <input placeholder="Title">
-    <input placeholder="Description">
-    <input placeholder="Image URL">
+    <input placeholder="Title" ng-model="$ctrl.image.title">
+    <input placeholder="Description" ng-model="$ctrl.image.description">
+    <input placeholder="Image URL" ng-model="$ctrl.image.link">
     <button type="submit">add image</button>
   </form>
 </section>

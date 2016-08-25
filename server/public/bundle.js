@@ -54,7 +54,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	__webpack_require__(27);
+	__webpack_require__(31);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -17280,11 +17280,12 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./album/album.js": 9,
-		"./app/app.js": 15,
-		"./gallery/gallery.js": 17,
-		"./list/list.js": 21,
-		"./thumbnail/thumbnail.js": 23
+		"./album/add-image-form/add-image-form.js": 9,
+		"./album/album.js": 15,
+		"./app/app.js": 19,
+		"./gallery/gallery.js": 21,
+		"./list/list.js": 25,
+		"./thumbnail/thumbnail.js": 27
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -17310,38 +17311,36 @@
 	  value: true
 	});
 	
-	var _album = __webpack_require__(10);
+	var _addImageForm = __webpack_require__(10);
 	
-	var _album2 = _interopRequireDefault(_album);
+	var _addImageForm2 = _interopRequireDefault(_addImageForm);
 	
-	var _album3 = __webpack_require__(11);
+	var _addImageForm3 = __webpack_require__(11);
 	
-	var _album4 = _interopRequireDefault(_album3);
+	var _addImageForm4 = _interopRequireDefault(_addImageForm3);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
-	  template: _album2.default,
+	  template: _addImageForm2.default,
+	  bindings: {
+	    add: '<'
+	  },
 	  controller: function controller() {
-	    this.styles = _album4.default;
-	    this.view = 'list';
-	    this.images = [{
-	      title: 'Vet Visit',
-	      description: 'Ernie smiling while waiting for the doctor to come in.',
-	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bcb321e4fcb567fdff2ee0/1471984444747/?format=1000w'
-	    }, {
-	      title: 'Sandwich Cat',
-	      description: 'Ernie seems sleepy and is hanging out with sandwich cat.',
-	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bdeaad37c581748d11649b/1472064177550/IMG_2604.JPG?format=1000w'
-	    }, {
-	      title: 'Ready for a Walk',
-	      description: 'Ernie patiently waiting to go out for his evening walk.',
-	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bdeba9e6f2e187400cfefb/1472064434532/FullSizeRender.jpg?format=1000w'
-	    }, {
-	      title: 'Hanging out',
-	      description: 'Just sitting around the apartment being a dog.',
-	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bdea8537c581748d11629a/1472064140299/IMG_2451.JPG?format=1000w'
-	    }];
+	    var _this = this;
+	
+	    this.styles = _addImageForm4.default;
+	
+	    var resetImage = function resetImage() {
+	      _this.image = {};
+	    };
+	
+	    resetImage();
+	
+	    this.submit = function () {
+	      _this.add(_this.image);
+	      resetImage();
+	    };
 	  }
 	};
 
@@ -17349,7 +17348,7 @@
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <!-- Radio buttons -->\n  <section id=\"radioButtons\">\n    <label for=\"list\">List </label>\n      <input ng-model=\"$ctrl.view\" type=\"radio\" name=\"view\" id=\"list\" value=\"list\">\n    <label for=\"thumbnail\">Thumbnail </label>\n      <input ng-model=\"$ctrl.view\" type=\"radio\" name=\"view\" id=\"thumbnail\" value=\"thumbnail\">\n    <label for=\"gallery\">Gallery </label>\n      <input ng-model=\"$ctrl.view\" type=\"radio\" name=\"view\" id=\"gallery\" value=\"gallery\">\n  </section>\n\n  <!-- Image and image info -->\n  <span ng-repeat=\"image in $ctrl.images\">\n    <list ng-if=\"$ctrl.view === 'list'\" info=\"image\"></list>\n    <thumbnail ng-if=\"$ctrl.view === 'thumbnail'\" info=\"image\"></thumbnail>\n    <gallery ng-if=\"$ctrl.view === 'gallery'\" info=\"image\"></gallery>\n  </span>\n</div>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.addImage\">\n  <form ng-submit=\"$ctrl.submit()\">\n    <input placeholder=\"Title\" ng-model=\"$ctrl.image.title\">\n    <input placeholder=\"Description\" ng-model=\"$ctrl.image.description\">\n    <input placeholder=\"Image URL\" ng-model=\"$ctrl.image.link\">\n    <button type=\"submit\">add image</button>\n  </form>\n</section>\n";
 
 /***/ },
 /* 11 */
@@ -17367,8 +17366,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./album.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./album.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./add-image-form.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./add-image-form.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -17386,11 +17385,11 @@
 	
 	
 	// module
-	exports.push([module.id, "._29txRqz316H0zhZnrjR6Gb #radioButtons {\n  margin-bottom: 3%; }\n  ._29txRqz316H0zhZnrjR6Gb #radioButtons label {\n    margin-left: 1%; }\n", "", {"version":3,"sources":["/./src/components/album/src/components/album/album.scss"],"names":[],"mappings":"AAAA;EAEI,kBAAkB,EAInB;EANH;IAIM,gBAAgB,EACjB","file":"album.scss","sourcesContent":[":local(.album){\n  #radioButtons {\n    margin-bottom: 3%;\n    label {\n      margin-left: 1%;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "._2L9XheS4VXiJ7I7f97ZKDH {\n  margin: 2%;\n  padding: 1%; }\n", "", {"version":3,"sources":["/./src/components/album/add-image-form/src/components/album/add-image-form/add-image-form.scss"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,YAAY,EACb","file":"add-image-form.scss","sourcesContent":[":local(.addImage){\n  margin: 2%;\n  padding: 1%;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
-		"album": "_29txRqz316H0zhZnrjR6Gb"
+		"addImage": "_2L9XheS4VXiJ7I7f97ZKDH"
 	};
 
 /***/ },
@@ -17710,7 +17709,105 @@
 	  value: true
 	});
 	
-	var _app = __webpack_require__(16);
+	var _album = __webpack_require__(16);
+	
+	var _album2 = _interopRequireDefault(_album);
+	
+	var _album3 = __webpack_require__(17);
+	
+	var _album4 = _interopRequireDefault(_album3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _album2.default,
+	  controller: function controller() {
+	    var _this = this;
+	
+	    this.styles = _album4.default;
+	    this.view = 'list';
+	    this.add = function (imageToAdd) {
+	      _this.images.push(imageToAdd);
+	    };
+	    this.images = [{
+	      title: 'Vet Visit',
+	      description: 'Ernie smiling while waiting for the doctor to come in.',
+	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bcb321e4fcb567fdff2ee0/1471984444747/?format=1000w'
+	    }, {
+	      title: 'Sandwich Cat',
+	      description: 'Ernie seems sleepy and is hanging out with sandwich cat.',
+	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bdeaad37c581748d11649b/1472064177550/IMG_2604.JPG?format=1000w'
+	    }, {
+	      title: 'Ready for a Walk',
+	      description: 'Ernie patiently waiting to go out for his evening walk.',
+	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bdeba9e6f2e187400cfefb/1472064434532/FullSizeRender.jpg?format=1000w'
+	    }, {
+	      title: 'Hanging out',
+	      description: 'Just sitting around the apartment being a dog.',
+	      link: 'https://static1.squarespace.com/static/51911780e4b00c72ce749dc2/t/57bdea8537c581748d11629a/1472064140299/IMG_2451.JPG?format=1000w'
+	    }];
+	  }
+	};
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <!-- Radio buttons -->\n  <section id=\"radioButtons\">\n    <label for=\"list\">List </label>\n      <input ng-model=\"$ctrl.view\" type=\"radio\" name=\"view\" id=\"list\" value=\"list\">\n    <label for=\"thumbnail\">Thumbnail </label>\n      <input ng-model=\"$ctrl.view\" type=\"radio\" name=\"view\" id=\"thumbnail\" value=\"thumbnail\">\n    <label for=\"gallery\">Gallery </label>\n      <input ng-model=\"$ctrl.view\" type=\"radio\" name=\"view\" id=\"gallery\" value=\"gallery\">\n  </section>\n\n  <!-- Image and image info -->\n  <section>\n    <span ng-repeat=\"image in $ctrl.images\">\n      <list ng-if=\"$ctrl.view === 'list'\" info=\"image\"></list>\n      <thumbnail ng-if=\"$ctrl.view === 'thumbnail'\" info=\"image\"></thumbnail>\n      <gallery ng-if=\"$ctrl.view === 'gallery'\" info=\"image\"></gallery>\n    </span>\n  </section>\n\n  <!-- Form to add more images -->\n  <section>\n    <add-image-form add=\"$ctrl.add\"></add-image-form>\n  </section>\n\n</div>\n";
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(18);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(14)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./album.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./album.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(13)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "._29txRqz316H0zhZnrjR6Gb #radioButtons {\n  margin-bottom: 3%; }\n  ._29txRqz316H0zhZnrjR6Gb #radioButtons label {\n    margin-left: 1%; }\n", "", {"version":3,"sources":["/./src/components/album/src/components/album/album.scss"],"names":[],"mappings":"AAAA;EAEI,kBAAkB,EAInB;EANH;IAIM,gBAAgB,EACjB","file":"album.scss","sourcesContent":[":local(.album){\n  #radioButtons {\n    margin-bottom: 3%;\n    label {\n      margin-left: 1%;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+	exports.locals = {
+		"album": "_29txRqz316H0zhZnrjR6Gb"
+	};
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _app = __webpack_require__(20);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -17721,13 +17818,13 @@
 	};
 
 /***/ },
-/* 16 */
+/* 20 */
 /***/ function(module, exports) {
 
 	module.exports = "<h1 class=\"title\">Cute Dog Gallery</h1>\n<album></album>\n";
 
 /***/ },
-/* 17 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17736,11 +17833,11 @@
 	  value: true
 	});
 	
-	var _gallery = __webpack_require__(18);
+	var _gallery = __webpack_require__(22);
 	
 	var _gallery2 = _interopRequireDefault(_gallery);
 	
-	var _gallery3 = __webpack_require__(19);
+	var _gallery3 = __webpack_require__(23);
 	
 	var _gallery4 = _interopRequireDefault(_gallery3);
 	
@@ -17757,19 +17854,19 @@
 	};
 
 /***/ },
-/* 18 */
+/* 22 */
 /***/ function(module, exports) {
 
 	module.exports = "<section ng-class=\"$ctrl.styles.gallery\">\n  <img ng-src=\"{{$ctrl.info.link}}\">\n  <h2>{{$ctrl.info.title}}</h2>\n  <p>{{$ctrl.info.description}}</p>\n</section>\n";
 
 /***/ },
-/* 19 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(20);
+	var content = __webpack_require__(24);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(14)(content, {});
@@ -17789,7 +17886,7 @@
 	}
 
 /***/ },
-/* 20 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(13)();
@@ -17805,7 +17902,7 @@
 	};
 
 /***/ },
-/* 21 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17814,7 +17911,7 @@
 	  value: true
 	});
 	
-	var _list = __webpack_require__(22);
+	var _list = __webpack_require__(26);
 	
 	var _list2 = _interopRequireDefault(_list);
 	
@@ -17829,13 +17926,13 @@
 	};
 
 /***/ },
-/* 22 */
+/* 26 */
 /***/ function(module, exports) {
 
 	module.exports = "<section>\n    <h2>{{$ctrl.info.title}}</h2>\n    <p>{{$ctrl.info.description}}</p>\n    <p><a ng-href=\"{{$ctrl.info.link}}\">View Image Here</a></p>\n</section>\n";
 
 /***/ },
-/* 23 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17844,11 +17941,11 @@
 	  value: true
 	});
 	
-	var _thumbnail = __webpack_require__(24);
+	var _thumbnail = __webpack_require__(28);
 	
 	var _thumbnail2 = _interopRequireDefault(_thumbnail);
 	
-	var _thumbnail3 = __webpack_require__(25);
+	var _thumbnail3 = __webpack_require__(29);
 	
 	var _thumbnail4 = _interopRequireDefault(_thumbnail3);
 	
@@ -17865,19 +17962,19 @@
 	};
 
 /***/ },
-/* 24 */
+/* 28 */
 /***/ function(module, exports) {
 
 	module.exports = "<span ng-class=\"$ctrl.styles.thumbnail\">\n  <img ng-src=\"{{$ctrl.info.link}}\">\n</span>\n";
 
 /***/ },
-/* 25 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(26);
+	var content = __webpack_require__(30);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(14)(content, {});
@@ -17897,7 +17994,7 @@
 	}
 
 /***/ },
-/* 26 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(13)();
@@ -17913,13 +18010,13 @@
 	};
 
 /***/ },
-/* 27 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(28);
+	var content = __webpack_require__(32);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(14)(content, {});
@@ -17939,7 +18036,7 @@
 	}
 
 /***/ },
-/* 28 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(13)();
@@ -17947,7 +18044,7 @@
 	
 	
 	// module
-	exports.push([module.id, "body {\n  color: #333;\n  background-color: #ededed;\n  font-family: Arial, Helvetica, sans-serif;\n  width: 90%;\n  margin: 0 auto;\n  text-align: center; }\n", "", {"version":3,"sources":["/./src/scss/src/scss/main.scss"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,0BAAqB;EACrB,0CAA0C;EAC1C,WAAW;EACX,eAAe;EACf,mBAAmB,EACpB","file":"main.scss","sourcesContent":["body {\n  color: #333;\n  background-color: rgb(237, 237, 237);\n  font-family: Arial, Helvetica, sans-serif;\n  width: 90%;\n  margin: 0 auto;\n  text-align: center;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "body {\n  color: #333;\n  background-color: #ededed;\n  font-family: Arial, Helvetica, sans-serif;\n  margin: 0 auto;\n  width: 90%;\n  text-align: center; }\n", "", {"version":3,"sources":["/./src/scss/src/scss/main.scss"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,0BAAqB;EACrB,0CAA0C;EAC1C,eAAe;EACf,WAAW;EACX,mBAAmB,EACpB","file":"main.scss","sourcesContent":["body {\n  color: #333;\n  background-color: rgb(237, 237, 237);\n  font-family: Arial, Helvetica, sans-serif;\n  margin: 0 auto;\n  width: 90%;\n  text-align: center;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 

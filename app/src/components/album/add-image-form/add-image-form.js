@@ -3,10 +3,21 @@ import styles from './add-image-form.scss';
 
 export default{
   template,
+  bindings: {
+    add: '<'
+  },
   controller(){
     this.styles = styles;
+
+    const resetImage = ()=>{
+      this.image = {};
+    };
+
+    resetImage();
+
     this.submit = ()=>{
-      console.log('submitted');
+      this.add(this.image);
+      resetImage();
     };
   }
 };
