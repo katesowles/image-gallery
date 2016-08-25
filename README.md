@@ -2,6 +2,8 @@
 
 ### This is an image gallery built using AngularJS and Webpack.
 
+### View live [here](https://deeheber.github.io/image-gallery/)
+
 ### Directions to run locally
 1. Download the files and `npm install`
 2. `cd app` and `npm run build`
