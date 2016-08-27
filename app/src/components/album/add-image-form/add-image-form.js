@@ -17,6 +17,7 @@ export default{
 
     this.submit = ()=>{
       /*verify title/description/link aren't undefined or ''*/
+      /*chose this instead of required form attribute for cross browser compatibility*/
       if('title' && 'description' && 'link' in this.image){
         if(this.image.title && this.image.description && this.image.link !== ''){
           this.isInvalid = false;

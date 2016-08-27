@@ -17339,6 +17339,7 @@
 	
 	    this.submit = function () {
 	      /*verify title/description/link aren't undefined or ''*/
+	      /*chose this instead of required form attribute for cross browser compatibility*/
 	      if ('title' && 'description' && 'link' in _this.image) {
 	        if (_this.image.title && _this.image.description && _this.image.link !== '') {
 	          _this.isInvalid = false;
