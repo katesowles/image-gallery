@@ -35,7 +35,7 @@ describe('add image form', ()=>{
     const component = $component('addImageForm');
     //description and link fields are blank
     component.image.title = 'test1';
-
+    
     component.submit();
     assert.equal(component.isInvalid, true);
   });
