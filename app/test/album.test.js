@@ -2,7 +2,7 @@
 
 const {assert} = chai;
 
-describe('album component', ()=>{
+describe('album', ()=>{
 
   beforeEach(angular.mock.module('components'));
 
