@@ -11,7 +11,7 @@ describe('images', () => {
     $component = $componentController;
   }));
 
-  it ('view', () => {
+  it ('picker.view default state', () => {
     const component = $component('picker');
     const view = component.view;
     assert.equal(view, 'text', 'the default view should be "text"');
