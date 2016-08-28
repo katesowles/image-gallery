@@ -10,6 +10,6 @@ export default {
   },
   controller() {
     this.styles = styles;
-    this.view = 'full';
+    this.view = 'text';
   }
 };

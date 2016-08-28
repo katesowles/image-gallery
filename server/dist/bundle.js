@@ -31905,7 +31905,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var components = _angular2.default.module('components', []).component('app', _app2.default).component('picker', _picker2.default).component('text', _text2.default).component('thumb', _thumb2.default).component('full', _full2.default).component('new-item', _newItem2.default);
+	var components = _angular2.default.module('components', []).component('app', _app2.default).component('picker', _picker2.default).component('text', _text2.default).component('thumb', _thumb2.default).component('full', _full2.default).component('newItem', _newItem2.default);
 	
 	exports.default = components.name;
 
@@ -31955,7 +31955,7 @@
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<h1>Image Gallery</h1>\n<h4>Choose your view below</h4>\n<main>\n  <picker collection=\"app.collection\" view=\"app.view\"></picker>\n  <new-item collection=\"app.collection\"></new-item>\n</main>\n";
+	module.exports = "<h1>Image Gallery</h1>\n<h4>Choose your view below</h4>\n<main>\n  <picker collection=\"app.collection\" view=\"app.view\"></picker>\n  <new-item></new-item>\n</main>\n";
 
 /***/ },
 /* 7 */
@@ -31992,7 +31992,7 @@
 	
 	
 	// module
-	exports.push([module.id, "main {\n  width: 60%;\n  margin: 0 auto;\n  min-width: 400px;\n  max-width: 1200px; }\n\nmain > * {\n  display: inline-block;\n  margin: 30px 30px 0 30px; }\n\nmain > *:nth-child(2) {\n  width: 142px; }\n\nsection {\n  padding: 20px;\n  border: 1px solid #ddd; }\n\nh1 {\n  font-size: 4em;\n  font-weight: 200;\n  margin-bottom: 10px;\n  text-align: center; }\n\nh2 {\n  font-size: 3em;\n  font-weight: 200;\n  margin-bottom: 10px;\n  text-align: center; }\n\nh4 {\n  font-size: 1.65em;\n  font-weight: 200;\n  margin-bottom: 10px;\n  text-align: center;\n  text-transform: uppercase;\n  letter-spacing: 2px; }\n", "", {"version":3,"sources":["/./app/components/app/app/components/app/app.scss"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,eAAe;EACf,iBAAiB;EACjB,kBAAkB,EACnB;;AAED;EACE,sBAAsB;EACtB,yBAAyB,EAC1B;;AAED;EACE,aAAa,EACd;;AAED;EACE,cAAc;EACd,uBAAuB,EACxB;;AAED;EACE,eAAe;EACf,iBAAiB;EACjB,oBAAoB;EACpB,mBAAmB,EACpB;;AAED;EACE,eAAe;EACf,iBAAiB;EACjB,oBAAoB;EACpB,mBAAmB,EACpB;;AAED;EACE,kBAAkB;EAClB,iBAAiB;EACjB,oBAAoB;EACpB,mBAAmB;EACnB,0BAA0B;EAC1B,oBAAoB,EACrB","file":"app.scss","sourcesContent":["main {\n  width: 60%;\n  margin: 0 auto;\n  min-width: 400px;\n  max-width: 1200px;\n}\n\nmain > * {\n  display: inline-block;\n  margin: 30px 30px 0 30px;\n}\n\nmain > *:nth-child(2) {\n  width: 142px;\n}\n\nsection {\n  padding: 20px;\n  border: 1px solid #ddd;\n}\n\nh1 {\n  font-size: 4em;\n  font-weight: 200;\n  margin-bottom: 10px;\n  text-align: center;\n}\n\nh2 {\n  font-size: 3em;\n  font-weight: 200;\n  margin-bottom: 10px;\n  text-align: center;\n}\n\nh4 {\n  font-size: 1.65em;\n  font-weight: 200;\n  margin-bottom: 10px;\n  text-align: center;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "main {\n  width: 60%;\n  margin: 0 auto;\n  min-width: 400px;\n  max-width: 1200px; }\n\nsection {\n  padding: 20px;\n  border: 1px solid #ddd;\n  margin-bottom: 30px; }\n\nh1 {\n  font-size: 4em;\n  font-weight: 200;\n  margin-bottom: 10px;\n  text-align: center; }\n\nh2 {\n  font-size: 3em;\n  font-weight: 200;\n  margin-bottom: 10px;\n  text-align: center; }\n\nh3 {\n  font-size: 2em;\n  font-weight: 200;\n  text-align: left;\n  margin-bottom: 10px; }\n\nh4 {\n  font-size: 1.65em;\n  font-weight: 200;\n  margin-bottom: 10px;\n  text-align: center;\n  text-transform: uppercase;\n  letter-spacing: 2px; }\n\np {\n  text-align: justify;\n  font-size: 1.25em;\n  font-weight: 300; }\n", "", {"version":3,"sources":["/./app/components/app/app/components/app/app.scss"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,eAAe;EACf,iBAAiB;EACjB,kBAAkB,EACnB;;AAED;EACE,cAAc;EACd,uBAAuB;EACvB,oBAAoB,EACrB;;AAED;EACE,eAAe;EACf,iBAAiB;EACjB,oBAAoB;EACpB,mBAAmB,EACpB;;AAED;EACE,eAAe;EACf,iBAAiB;EACjB,oBAAoB;EACpB,mBAAmB,EACpB;;AAED;EACE,eAAe;EACf,iBAAiB;EACjB,iBAAiB;EACjB,oBAAoB,EACrB;;AAED;EACE,kBAAkB;EAClB,iBAAiB;EACjB,oBAAoB;EACpB,mBAAmB;EACnB,0BAA0B;EAC1B,oBAAoB,EACrB;;AAED;EACE,oBAAoB;EACpB,kBAAkB;EAClB,iBAAiB,EAClB","file":"app.scss","sourcesContent":["main {\n  width: 60%;\n  margin: 0 auto;\n  min-width: 400px;\n  max-width: 1200px;\n}\n\nsection {\n  padding: 20px;\n  border: 1px solid #ddd;\n  margin-bottom: 30px;\n}\n\nh1 {\n  font-size: 4em;\n  font-weight: 200;\n  margin-bottom: 10px;\n  text-align: center;\n}\n\nh2 {\n  font-size: 3em;\n  font-weight: 200;\n  margin-bottom: 10px;\n  text-align: center;\n}\n\nh3 {\n  font-size: 2em;\n  font-weight: 200;\n  text-align: left;\n  margin-bottom: 10px;\n}\n\nh4 {\n  font-size: 1.65em;\n  font-weight: 200;\n  margin-bottom: 10px;\n  text-align: center;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n}\n\np {\n  text-align: justify;\n  font-size: 1.25em;\n  font-weight: 300;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -32379,7 +32379,7 @@
 	
 	
 	// module
-	exports.push([module.id, "picker {\n  width: 100%; }\n\nlabel {\n  width: 33%;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n  margin: 5px 20px;\n  text-align: center; }\n\ninput[type=\"radio\"] {\n  margin-right: 10px; }\n\n.pickerInner {\n  display: inline-block;\n  width: 336px;\n  position: relative;\n  top: 0;\n  left: calc(50% - 200px);\n  margin-bottom: 30px; }\n", "", {"version":3,"sources":["/./app/components/app/picker/app/components/app/picker/picker.scss"],"names":[],"mappings":"AAAA;EACE,YAAY,EACb;;AAED;EACE,WAAW;EACX,0BAA0B;EAC1B,oBAAoB;EACpB,iBAAiB;EACjB,mBAAmB,EACpB;;AAED;EACE,mBAAmB,EACpB;;AAED;EACE,sBAAsB;EACtB,aAAa;EACb,mBAAmB;EACnB,OAAO;EACP,wBAAU;EACV,oBAAoB,EACrB","file":"picker.scss","sourcesContent":["picker {\n  width: 100%;\n}\n\nlabel {\n  width: 33%;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n  margin: 5px 20px;\n  text-align: center;\n}\n\ninput[type=\"radio\"] {\n  margin-right: 10px;\n}\n\n.pickerInner {\n  display: inline-block;\n  width: 336px;\n  position: relative;\n  top: 0;\n  left: calc(50% - 200px);\n  margin-bottom: 30px;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "picker {\n  width: 100%; }\n\nsection {\n  background-color: white; }\n\nlabel {\n  width: 33%;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n  margin: 5px 20px;\n  text-align: center; }\n\ninput[type=\"radio\"] {\n  margin-right: 10px; }\n\n.pickerInner {\n  display: inline-block;\n  width: 336px;\n  position: relative;\n  top: 0;\n  left: calc(50% - 168px);\n  margin-bottom: 30px; }\n", "", {"version":3,"sources":["/./app/components/app/picker/app/components/app/picker/picker.scss"],"names":[],"mappings":"AAAA;EACE,YAAY,EACb;;AAED;EACE,wBAAwB,EACzB;;AAED;EACE,WAAW;EACX,0BAA0B;EAC1B,oBAAoB;EACpB,iBAAiB;EACjB,mBAAmB,EACpB;;AAED;EACE,mBAAmB,EACpB;;AAED;EACE,sBAAsB;EACtB,aAAa;EACb,mBAAmB;EACnB,OAAO;EACP,wBAAU;EACV,oBAAoB,EACrB","file":"picker.scss","sourcesContent":["picker {\n  width: 100%;\n}\n\nsection {\n  background-color: white;\n}\n\nlabel {\n  width: 33%;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n  margin: 5px 20px;\n  text-align: center;\n}\n\ninput[type=\"radio\"] {\n  margin-right: 10px;\n}\n\n.pickerInner {\n  display: inline-block;\n  width: 336px;\n  position: relative;\n  top: 0;\n  left: calc(50% - 168px);\n  margin-bottom: 30px;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -32419,7 +32419,7 @@
 /* 16 */
 /***/ function(module, exports) {
 
-	module.exports = "<section>\n  <h2>Text Only</h2>\n  <div ng-repeat=\"image in text.collection\">\n    <h3>{{image.title}}</h3>\n    <p>{{image.caption}}</p>\n    <a href=\"{{text.image.link}}\"><h6>Go See Image</h6></a>\n  </div>\n</section>\n";
+	module.exports = "<section>\n  <h2>Text Only</h2>\n  <div class=\"indivImg\" ng-repeat=\"image in text.collection\">\n    <a href=\"{{text.image.link}}\"><h3>{{image.title}}</h3></a>\n    <p>{{image.caption}}</p>\n  </div>\n</section>\n";
 
 /***/ },
 /* 17 */
@@ -32456,7 +32456,7 @@
 	
 	
 	// module
-	exports.push([module.id, "", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"text.scss","sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".indivImg {\n  padding: 30px 0;\n  border-bottom: 1px solid #ddd; }\n\n.indivImg:last-child {\n  border-bottom: none; }\n\na, a:link, a:visited {\n  color: #000;\n  text-decoration: none; }\n\na:hover, a:active {\n  color: #666;\n  text-decoration: none; }\n", "", {"version":3,"sources":["/./app/components/app/picker/text/app/components/app/picker/text/text.scss"],"names":[],"mappings":"AAAA;EACE,gBAAgB;EAChB,8BAA+B,EAChC;;AAED;EACE,oBAAoB,EACrB;;AAED;EACE,YAAY;EACZ,sBAAsB,EACvB;;AAED;EACE,YAAY;EACZ,sBAAsB,EACvB","file":"text.scss","sourcesContent":[".indivImg {\n  padding: 30px 0;\n  border-bottom : 1px solid #ddd;\n}\n\n.indivImg:last-child{\n  border-bottom: none;\n}\n\na, a:link, a:visited {\n  color: #000;\n  text-decoration: none;\n}\n\na:hover, a:active {\n  color: #666;\n  text-decoration: none;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -32497,7 +32497,7 @@
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = "<section>\n  <h2>Small Preview</h2>\n  <div ng-repeat=\"image in thumb.collection\">\n    <img class=\"thumb\" src=\"{{image.link}}\" alt=\"{{image.title}}\" />\n  </div>\n</section>\n";
+	module.exports = "<section>\n  <h2>Thumbnails Only</h2>\n  <span ng-repeat=\"image in thumb.collection\">\n    <img class=\"thumb\" src=\"{{image.link}}\" alt=\"{{image.title}}\" />\n  </span>\n</section>\n";
 
 /***/ },
 /* 21 */
@@ -32534,7 +32534,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".thumb {\n  width: 100px;\n  height: 100px; }\n", "", {"version":3,"sources":["/./app/components/app/picker/thumb/app/components/app/picker/thumb/thumb.scss"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,cAAc,EACf","file":"thumb.scss","sourcesContent":[".thumb {\n  width: 100px;\n  height: 100px;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".thumb {\n  display: inline;\n  margin: 2px;\n  width: 100px;\n  height: 100px; }\n", "", {"version":3,"sources":["/./app/components/app/picker/thumb/app/components/app/picker/thumb/thumb.scss"],"names":[],"mappings":"AAAA;EACE,gBAAgB;EAChB,YAAY;EACZ,aAAa;EACb,cAAc,EACf","file":"thumb.scss","sourcesContent":[".thumb {\n  display: inline;\n  margin: 2px;\n  width: 100px;\n  height: 100px;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -32588,7 +32588,7 @@
 /* 24 */
 /***/ function(module, exports) {
 
-	module.exports = "<section>\n  <h2>Full Preview</h2>\n  <h3>{{full.collection[full.index].title}}</h3>\n  <p>{{full.collection[full.index].caption}}</p>\n  <img class=\"full\" src=\"{{full.collection[full.index].link}}\" alt=\"{{full.collection[full.index].title}}\" />\n\n  <button ng-click=\"full.showPrev()\">Previous</button>\n  <button ng-click=\"full.showNext()\">Next</button>\n</section>\n";
+	module.exports = "<section>\n  <h2>Full Preview</h2>\n  <div class=\"browseCtrls\">\n    <button ng-click=\"full.showPrev()\">Previous</button>\n    <button ng-click=\"full.showNext()\">Next</button>\n  </div>\n\n  <img class=\"full\" src=\"{{full.collection[full.index].link}}\" alt=\"{{full.collection[full.index].title}}\" />\n  <h3>{{full.collection[full.index].title}}</h3>\n  <p>{{full.collection[full.index].caption}}</p>\n</section>\n";
 
 /***/ },
 /* 25 */
@@ -32625,7 +32625,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".full {\n  width: 100%;\n  height: auto; }\n", "", {"version":3,"sources":["/./app/components/app/picker/full/app/components/app/picker/full/full.scss"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,aAAa,EACd","file":"full.scss","sourcesContent":[".full {\n  width: 100%;\n  height: auto;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".browseCtrls {\n  width: 304px;\n  margin: 20px auto; }\n\nbutton {\n  padding: 5px 20px;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n  background-color: transparent;\n  border: 1px #666 solid;\n  outline: none;\n  margin: 0 10px;\n  width: 130px; }\n\n.full {\n  width: 100%;\n  height: auto; }\n", "", {"version":3,"sources":["/./app/components/app/picker/full/app/components/app/picker/full/full.scss"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,kBAAkB,EACnB;;AAED;EACE,kBAAkB;EAClB,0BAA0B;EAC1B,oBAAoB;EACpB,8BAA8B;EAC9B,uBAAuB;EACvB,cAAc;EACd,eAAe;EACf,aAAa,EACd;;AAED;EACE,YAAY;EACZ,aAAa,EACd","file":"full.scss","sourcesContent":[".browseCtrls {\n  width: 304px;\n  margin: 20px auto;\n}\n\nbutton {\n  padding: 5px 20px;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n  background-color: transparent;\n  border: 1px #666 solid;\n  outline: none;\n  margin: 0 10px;\n  width: 130px;\n}\n\n.full {\n  width: 100%;\n  height: auto;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -32652,14 +32652,13 @@
 	
 	exports.default = {
 	  template: _newItem2.default,
-	  controllerAs: 'new-item',
+	  controllerAs: 'newItem',
 	  bindings: {
 	    collection: '='
 	  },
 	  controller: function controller() {
 	    var _this = this;
 	
-	    console.log('new', this.collection);
 	    this.styles = _newItem4.default;
 	
 	    this.reset = function () {
@@ -32675,6 +32674,7 @@
 	        link: _this.link
 	      };
 	      _this.collection.push(image);
+	      console.log('collection after push', _this.collection);
 	      _this.reset();
 	    };
 	  }
@@ -32684,7 +32684,7 @@
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = "<section>\n  <h1>New Image</h1>\n  <form name=\"new\" ng-submit=\"newItem.addNew()\">\n    <input ng-model=\"newItem.title\" placeholder=\"put your image title here\">\n    <input ng-model=\"newItem.caption\" placeholder=\"put your image caption here\">\n    <input ng-model=\"newItem.link\" placeholder=\"put your image link here\">\n    <button type=\"submit\">Add New Image</button>\n  </form>\n</section>\n";
+	module.exports = "<section>\n  <h1>New Image</h1>\n  <form name=\"new\" ng-submit=\"newItem.addNew()\">\n    <input type=\"text\" ng-model=\"newItem.title\" placeholder=\"image title\">\n    <input type=\"text\" ng-model=\"newItem.caption\" placeholder=\"image caption\">\n    <input type=\"text\" ng-model=\"newItem.link\" placeholder=\"image link\">\n    <button type=\"submit\">Add</button>\n  </form>\n</section>\n";
 
 /***/ },
 /* 29 */
@@ -32721,7 +32721,7 @@
 	
 	
 	// module
-	exports.push([module.id, "", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"newItem.scss","sourceRoot":"webpack://"}]);
+	exports.push([module.id, "input[type=\"text\"] {\n  width: calc(100%);\n  margin-bottom: 10px;\n  border: none;\n  border-bottom: 1px solid #ddd;\n  outline: none;\n  display: block;\n  font-size: 2em;\n  font-weight: 200; }\n", "", {"version":3,"sources":["/./app/components/app/newItem/app/components/app/newItem/newItem.scss"],"names":[],"mappings":"AAAA;EACE,kBAAW;EACX,oBAAoB;EACpB,aAAa;EACb,8BAA8B;EAC9B,cAAc;EACd,eAAe;EACf,eAAe;EACf,iBAAiB,EAClB","file":"newItem.scss","sourcesContent":["input[type=\"text\"] {\n  width: calc(100%);\n  margin-bottom: 10px;\n  border: none;\n  border-bottom: 1px solid #ddd;\n  outline: none;\n  display: block;\n  font-size: 2em;\n  font-weight: 200;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -32742,8 +32742,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/sass-loader/index.js?sourceMap!./reset.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/sass-loader/index.js?sourceMap!./reset.scss");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/sass-loader/index.js?sourceMap!./main.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?sourceMap!./../../node_modules/sass-loader/index.js?sourceMap!./main.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -32761,7 +32761,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i);", ""]);
 	
 	// module
-	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  font-family: 'Source Sans Pro', helvetica, arial, sans-serif;\n  word-wrap: break-word; }\n\n.ng-isolated-scope {\n  margin: 0;\n  padding: 0; }\n", "", {"version":3,"sources":["/./app/scss/app/scss/reset.scss"],"names":[],"mappings":"AAEA;EACE,UAAU;EACV,WAAW;EACX,uBAAuB;EACvB,6DAA6D;EAC7D,sBAAsB,EACvB;;AAED;EACE,UAAU;EACV,WAAW,EACZ","file":"reset.scss","sourcesContent":["@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i');\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  font-family: 'Source Sans Pro', helvetica, arial, sans-serif;\n  word-wrap: break-word;\n}\n\n.ng-isolated-scope {\n  margin: 0;\n  padding: 0;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  font-family: 'Source Sans Pro', helvetica, arial, sans-serif;\n  word-wrap: break-word; }\n\n.ng-isolated-scope {\n  margin: 0;\n  padding: 0; }\n\nbody {\n  padding: 50px 0;\n  height: 100%;\n  min-height: 100vh; }\n\n.gradient {\n  background: #fff;\n  background: -webkit-linear-gradient(#fff, #fff, #fff, #ddd);\n  background: -o-linear-gradient(#fff, #fff, #fff, #ddd);\n  background: -moz-linear-gradient(#fff, #fff, #fff, #ddd);\n  background: linear-gradient(#fff, #fff, #fff, #ddd); }\n", "", {"version":3,"sources":["/./app/scss/app/scss/main.scss"],"names":[],"mappings":"AAUA;EACE,UAAU;EACV,WAAW;EACX,uBAAuB;EACvB,6DAA6D;EAC7D,sBAAsB,EACvB;;AAED;EACE,UAAU;EACV,WAAW,EACZ;;AAED;EACE,gBAAgB;EAChB,aAAa;EACb,kBAAkB,EACnB;;AAED;EA1BE,iBA2B6B;EA1B7B,4DAAmC;EACnC,uDAA8B;EAC9B,yDAAgC;EAChC,oDAA2B,EAwB5B","file":"main.scss","sourcesContent":["@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i');\n\n@mixin linear-gradient($light, $dark) {\n  background: $light;\n  background: -webkit-linear-gradient($light,$light,$light,$dark);\n  background: -o-linear-gradient($light,$light,$light,$dark);\n  background: -moz-linear-gradient($light,$light,$light,$dark);\n  background: linear-gradient($light,$light,$light,$dark);\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  font-family: 'Source Sans Pro', helvetica, arial, sans-serif;\n  word-wrap: break-word;\n}\n\n.ng-isolated-scope {\n  margin: 0;\n  padding: 0;\n}\n\nbody {\n  padding: 50px 0;\n  height: 100%;\n  min-height: 100vh;\n}\n\n.gradient {\n  @include linear-gradient(#fff, #ddd);\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 

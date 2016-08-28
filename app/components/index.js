@@ -12,6 +12,6 @@ const components = angular.module('components', [])
   .component('text', text)
   .component('thumb', thumb)
   .component('full', full)
-  .component('new-item', newItem);
+  .component('newItem', newItem);
 
 export default components.name;

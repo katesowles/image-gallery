@@ -1,9 +1,9 @@
 <section>
   <h1>New Image</h1>
-  <form name="new" ng-submit="newItem.addNew()">
-    <input ng-model="newItem.title" placeholder="put your image title here">
-    <input ng-model="newItem.caption" placeholder="put your image caption here">
-    <input ng-model="newItem.link" placeholder="put your image link here">
-    <button type="submit">Add New Image</button>
+  <form name="new" ng-submit="newItem.addNew(newItem)">
+    <input type="text" ng-model="newItem.title" placeholder="image title">
+    <input type="text" ng-model="newItem.caption" placeholder="image caption">
+    <input type="text" ng-model="newItem.link" placeholder="image link">
+    <button type="submit">Add</button>
   </form>
 </section>
