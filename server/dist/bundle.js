@@ -54,9 +54,9 @@
 	
 	var _gallery2 = _interopRequireDefault(_gallery);
 	
-	__webpack_require__(29);
+	__webpack_require__(25);
 	
-	__webpack_require__(31);
+	__webpack_require__(27);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -31901,13 +31901,12 @@
 	
 	var _full2 = _interopRequireDefault(_full);
 	
-	var _newItem = __webpack_require__(25);
-	
-	var _newItem2 = _interopRequireDefault(_newItem);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var components = _angular2.default.module('components', []).component('app', _app2.default).component('picker', _picker2.default).component('text', _text2.default).component('thumb', _thumb2.default).component('full', _full2.default).component('new-item', _newItem2.default);
+	// import newItem from './app/newItem/newItem';
+	
+	var components = _angular2.default.module('components', []).component('app', _app2.default).component('picker', _picker2.default).component('text', _text2.default).component('thumb', _thumb2.default).component('full', _full2.default);
+	// .component('new-item', newItem);
 	
 	exports.default = components.name;
 
@@ -31930,12 +31929,8 @@
 	exports.default = {
 	  template: _app2.default,
 	  controllerAs: 'app',
-	  // bindings: {
-	  //   collection: '=',
-	  //   view: '='
-	  // },
 	  controller: function controller() {
-	    this.view = 'text', this.collection = [{
+	    this.collection = [{
 	      title: 'Blue-burries!',
 	      caption: 'I got a call from our sweet neighbors last week asking how our build was progressing and if we knew there were men with big trucks on our property. I told her we were having the well installed and she was relieved that she wouldn\'t have to go scare the off with her shotgun. After resolving the case of the "intruders" she told us she missed us and that we should come over and take some of her blueberries this weekend. We visited for over an hour on Saturday night, drank beer, and ate the most delicious blueberries until my tummy ached. Now I can\'t get the idea of a weekly card/domino game night with them out of my head.',
 	      link: 'https://scontent.xx.fbcdn.net/t31.0-8/13692933_10208598285026313_4964730177215303654_o.jpg'
@@ -31956,7 +31951,7 @@
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<main>\n  <picker view=\"app.view\" image=\"app.collection[app.index]\"></picker>\n\n  <!-- <button ng-click=\"app.showPrev()\">Previous</button>\n  <button ng-click=\"app.showNext()\">Next</button> -->\n\n  <new-item collection=\"app.collection\"></new-item>\n</main>\n";
+	module.exports = "<main>\n  <picker collection=\"app.collection\" view=\"app.view\"></picker>\n\n  <!-- <new-item collection=\"app.collection\"></new-item> -->\n</main>\n";
 
 /***/ },
 /* 7 */
@@ -31985,8 +31980,8 @@
 	    collection: '='
 	  },
 	  controller: function controller() {
-	    console.log('picker', this.collection);
 	    this.styles = _picker4.default;
+	    this.view = 'text';
 	  }
 	};
 
@@ -32548,7 +32543,7 @@
 /* 22 */
 /***/ function(module, exports) {
 
-	module.exports = "<section>\n  <h1>Full Preview</h1>\n  <h3>{{full.collection[full.index].title}}</h3>\n  <p>{{full.collection[full.index].caption}}</p>\n  <img class=\"full\" src=\"{{full.collection[full.index].link}}\" alt=\"{{full.collection[full.index].title}}\" />\n</section>\n";
+	module.exports = "<section>\n  <h1>Full Preview</h1>\n  <h3>{{full.collection[full.index].title}}</h3>\n  <p>{{full.collection[full.index].caption}}</p>\n  <img class=\"full\" src=\"{{full.collection[full.index].link}}\" alt=\"{{full.collection[full.index].title}}\" />\n\n  <button ng-click=\"full.showPrev()\">Previous</button>\n  <button ng-click=\"full.showNext()\">Next</button>\n</section>\n";
 
 /***/ },
 /* 23 */
@@ -32594,106 +32589,10 @@
 /* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _newItem = __webpack_require__(26);
-	
-	var _newItem2 = _interopRequireDefault(_newItem);
-	
-	var _newItem3 = __webpack_require__(27);
-	
-	var _newItem4 = _interopRequireDefault(_newItem3);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-	  template: _newItem2.default,
-	  controllerAs: 'new-item',
-	  bindings: {
-	    collection: '='
-	  },
-	  controller: function controller() {
-	    var _this = this;
-	
-	    console.log('new', this.collection);
-	    this.styles = _newItem4.default;
-	
-	    this.reset = function () {
-	      _this.title = '';
-	      _this.caption = '';
-	      _this.link = '';
-	    };
-	
-	    this.addNew = function () {
-	      var image = {
-	        title: _this.title,
-	        caption: _this.caption,
-	        link: _this.link
-	      };
-	      _this.collection.push(image);
-	      _this.reset();
-	    };
-	  }
-	};
-
-/***/ },
-/* 26 */
-/***/ function(module, exports) {
-
-	module.exports = "<section>\n  <h1>New Image</h1>\n  <form name=\"new\" ng-submit=\"newItem.addNew()\">\n    <input ng-model=\"newItem.title\" placeholder=\"put your image title here\">\n    <input ng-model=\"newItem.caption\" placeholder=\"put your image caption here\">\n    <input ng-model=\"newItem.link\" placeholder=\"put your image link here\">\n    <button type=\"submit\">Add New Image</button>\n  </form>\n</section>\n";
-
-/***/ },
-/* 27 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(28);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(12)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./newItem.scss", function() {
-				var newContent = require("!!./../../../../node_modules/css-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./newItem.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 28 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(11)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"newItem.scss","sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 29 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(30);
+	var content = __webpack_require__(26);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(12)(content, {});
@@ -32713,7 +32612,7 @@
 	}
 
 /***/ },
-/* 30 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(11)();
@@ -32727,13 +32626,13 @@
 
 
 /***/ },
-/* 31 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(32);
+	var content = __webpack_require__(28);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(12)(content, {});
@@ -32753,7 +32652,7 @@
 	}
 
 /***/ },
-/* 32 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(11)();

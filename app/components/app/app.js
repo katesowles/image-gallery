@@ -3,12 +3,7 @@ import template from './app.html';
 export default {
   template,
   controllerAs: 'app',
-  // bindings: {
-  //   collection: '=',
-  //   view: '='
-  // },
   controller() {
-    this.view = 'text',
     this.collection = [
       {
         title : 'Blue-burries!',

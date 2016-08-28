@@ -6,9 +6,10 @@ export default {
   controllerAs: 'picker',
   bindings: {
     collection: '=',
+    view: '=',
   },
   controller() {
-    console.log('picker', this.collection);
     this.styles = styles;
+    this.view = 'text';
   }
 };
