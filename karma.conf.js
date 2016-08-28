@@ -4,6 +4,9 @@ const webpackConfig = require('./webpack.config');
 // over writes the entry parameter from the webpack config file, SUPER IMPORTANT
 webpackConfig.entry = {};
 
+// entry point for testing
+const entryPoint = './app/gallery.js';
+
 module.exports = function(config) {
   config.set({
     // basepath will resolve all patterns (eg. files, excludes)
@@ -13,17 +16,17 @@ module.exports = function(config) {
     frameworks : ['mocha', 'chai'],
     // list of files and patterns to load in the browser
     files : [
-      './app.js', /* once app is split from main!!! */
+      entryPoint,
       './node_modules/angular-mocks/angular-mocks.js',
-      './test/**/*.js'
+      './app/test/**.js'
     ],
     // points to the webpack config settings so that karma is aware of how it's set up for each individual app
     webpack : webpackConfig,
     // preprocess matching files with defined preprocessor before sending to browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors : {
-      './app.js' : ['webpack'], /*  */
-      './test/**/*.js' : ['babel']
+      [entryPoint] : ['webpack'], /*  */
+      './app/test/**.js' : ['babel']
     },
     // which browsers are we going to test the app in? Must be on your computer so no Edge or IE on a Mac...
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher

@@ -8,7 +8,7 @@ export default {
     collection: '='
   },
   controller() {
-    console.log('full', this.collection);
+    // console.log('this', this);
     this.styles = styles;
     this.index = 0;
 

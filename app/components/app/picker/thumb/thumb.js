@@ -8,7 +8,6 @@ export default {
     collection: '='
   },
   controller() {
-    console.log('thumb coll', this.collection);
     this.styles = styles;
   }
 };

@@ -8,9 +8,7 @@ export default {
     collection: '=',
   },
   controller() {
-    console.log('this', this);
     this.styles = styles;
-    // let collection = this.collection;
 
     this.reset = () => {
       this.title = '';
@@ -24,11 +22,8 @@ export default {
         caption: this.caption,
         link: this.link
       };
-      // console.log('collection before push', this.collection);
       this.collection.push(image);
-      // console.log('collection after push', this.collection);
       this.reset();
     };
-    // this.addNew = this.addNew.bind(this);
   }
 };
