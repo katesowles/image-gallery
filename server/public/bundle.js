@@ -16793,6 +16793,10 @@
 	
 	var app = _angular2.default.module('myApp', [_components2.default, _angularMaterial2.default]);
 	
+	app.config(['$mdThemingProvider', function ($mdThemingProvider) {
+	  $mdThemingProvider.theme('default').dark();
+	}]);
+	
 	exports.default = app.name;
 
 /***/ },
@@ -17365,7 +17369,7 @@
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.addImage\">\n  <form ng-submit=\"$ctrl.submit()\">\n    <input placeholder=\"Title\" ng-model=\"$ctrl.image.title\">\n    <input placeholder=\"Description\" ng-model=\"$ctrl.image.description\">\n    <input placeholder=\"Image URL\" ng-model=\"$ctrl.image.link\">\n    <button type=\"submit\">add image</button>\n  </form>\n  <div id=\"error\" ng-show=\"$ctrl.isInvalid\">\n    <p>Please fill out all fields.</p>\n  </div>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.addImage\">\n  <!-- Error Message -->\n  <div id=\"error\" ng-show=\"$ctrl.isInvalid\">\n    <p>Please fill out all fields.</p>\n  </div>\n  <!-- Form -->\n  <form ng-submit=\"$ctrl.submit()\">\n    <md-input-container>\n      <input placeholder=\"Title\" ng-model=\"$ctrl.image.title\">\n    </md-input-container>\n    <md-input-container>\n      <input placeholder=\"Description\" ng-model=\"$ctrl.image.description\">\n    </md-input-container>\n    <md-input-container>\n      <input placeholder=\"Image URL\" ng-model=\"$ctrl.image.link\">\n    </md-input-container>\n    <md-button type=\"submit\">ADD</md-button>\n  </form>\n</section>\n";
 
 /***/ },
 /* 11 */
@@ -17402,7 +17406,7 @@
 	
 	
 	// module
-	exports.push([module.id, "._2L9XheS4VXiJ7I7f97ZKDH {\n  margin: 2%;\n  padding: 1%; }\n  ._2L9XheS4VXiJ7I7f97ZKDH #error {\n    color: #FF3333; }\n", "", {"version":3,"sources":["/./src/components/album/add-image-form/src/components/album/add-image-form/add-image-form.scss"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,YAAY,EAIb;EAND;IAII,eAAe,EAChB","file":"add-image-form.scss","sourcesContent":[":local(.addImage){\n  margin: 2%;\n  padding: 1%;\n  #error{\n    color: #FF3333;\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "._2L9XheS4VXiJ7I7f97ZKDH {\n  margin: 3% auto; }\n  ._2L9XheS4VXiJ7I7f97ZKDH #error {\n    color: #ff4d4d; }\n", "", {"version":3,"sources":["/./src/components/album/add-image-form/src/components/album/add-image-form/add-image-form.scss"],"names":[],"mappings":"AAAA;EAIE,gBAAgB,EACjB;EALD;IAEI,eAAe,EAChB","file":"add-image-form.scss","sourcesContent":[":local(.addImage){\n  #error {\n    color: #ff4d4d;\n  }\n  margin: 3% auto;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -17770,7 +17774,7 @@
 /* 16 */
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <!-- Radio buttons -->\n  <section id=\"radioButtons\">\n    <label for=\"list\">List </label>\n      <input ng-model=\"$ctrl.view\" type=\"radio\" name=\"view\" id=\"list\" value=\"list\">\n    <label for=\"thumbnail\">Thumbnail </label>\n      <input ng-model=\"$ctrl.view\" type=\"radio\" name=\"view\" id=\"thumbnail\" value=\"thumbnail\">\n    <label for=\"gallery\">Gallery </label>\n      <input ng-model=\"$ctrl.view\" type=\"radio\" name=\"view\" id=\"gallery\" value=\"gallery\">\n  </section>\n\n  <!-- Image and image info -->\n  <section>\n    <span ng-repeat=\"image in $ctrl.images\">\n      <list ng-if=\"$ctrl.view === 'list'\" info=\"image\"></list>\n      <thumbnail ng-if=\"$ctrl.view === 'thumbnail'\" info=\"image\"></thumbnail>\n      <gallery ng-if=\"$ctrl.view === 'gallery'\" info=\"image\"></gallery>\n    </span>\n  </section>\n\n  <!-- Form to add more images -->\n  <section>\n    <add-image-form add=\"$ctrl.add\"></add-image-form>\n  </section>\n\n</div>\n";
+	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <h1>Cute Dog Gallery</h1>\n  \n  <!-- Radio buttons -->\n  <md-radio-group ng-model=\"$ctrl.view\" layout=\"row\" layout-align=\"center center\">\n    <md-radio-button class=\"md-primary\" value=\"list\" aria-label=\"list\">\n      List\n    </md-radio-button>\n    <md-radio-button class=\"md-primary\" value=\"thumbnail\" aria-label=\"thumbnail\">\n      Thumbnail\n    </md-radio-button>\n    <md-radio-button class=\"md-primary\" value=\"gallery\" aria-label=\"gallery\">\n      Gallery\n    </md-radio-button>\n  </md-radio-group>\n\n  <!-- Image and image info -->\n  <section>\n    <span ng-repeat=\"image in $ctrl.images\">\n      <list ng-if=\"$ctrl.view === 'list'\" info=\"image\"></list>\n      <thumbnail ng-if=\"$ctrl.view === 'thumbnail'\" info=\"image\"></thumbnail>\n      <gallery ng-if=\"$ctrl.view === 'gallery'\" info=\"image\"></gallery>\n    </span>\n  </section>\n\n  <!-- Form to add more images -->\n  <section>\n    <add-image-form add=\"$ctrl.add\"></add-image-form>\n  </section>\n\n</div>\n";
 
 /***/ },
 /* 17 */
@@ -17807,7 +17811,7 @@
 	
 	
 	// module
-	exports.push([module.id, "._29txRqz316H0zhZnrjR6Gb #radioButtons {\n  margin-bottom: 3%; }\n  ._29txRqz316H0zhZnrjR6Gb #radioButtons label {\n    margin-left: 1%; }\n", "", {"version":3,"sources":["/./src/components/album/src/components/album/album.scss"],"names":[],"mappings":"AAAA;EAEI,kBAAkB,EAInB;EANH;IAIM,gBAAgB,EACjB","file":"album.scss","sourcesContent":[":local(.album){\n  #radioButtons {\n    margin-bottom: 3%;\n    label {\n      margin-left: 1%;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "._29txRqz316H0zhZnrjR6Gb section {\n  max-width: 650px; }\n\n._29txRqz316H0zhZnrjR6Gb md-radio-group {\n  margin-bottom: 3%; }\n", "", {"version":3,"sources":["/./src/components/album/src/components/album/album.scss"],"names":[],"mappings":"AAAA;EAEI,iBAAiB,EAClB;;AAHH;EAMI,kBAAkB,EACnB","file":"album.scss","sourcesContent":[":local(.album){\n  section {\n    max-width: 650px;\n  }\n\n  md-radio-group {\n    margin-bottom: 3%;\n  }\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -17838,7 +17842,7 @@
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = "<h1 class=\"title\">Cute Dog Gallery</h1>\n<album></album>\n";
+	module.exports = "<div layout=\"column\" layout-align=\"center center\" max-width=\"20%\">\n  <album></album>\n</div>\n";
 
 /***/ },
 /* 21 */
@@ -17911,7 +17915,7 @@
 	
 	
 	// module
-	exports.push([module.id, "._1NFW6-AZTrSqEPOdtHcVo5 img {\n  height: 50%;\n  width: 50%; }\n", "", {"version":3,"sources":["/./src/components/gallery/src/components/gallery/gallery.scss"],"names":[],"mappings":"AAAA;EAEI,YAAY;EACZ,WAAW,EACZ","file":"gallery.scss","sourcesContent":[":local(.gallery){\n  img {\n    height: 50%;\n    width: 50%;\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "._1NFW6-AZTrSqEPOdtHcVo5 img {\n  height: 40%;\n  width: 40%; }\n", "", {"version":3,"sources":["/./src/components/gallery/src/components/gallery/gallery.scss"],"names":[],"mappings":"AAAA;EAEI,YAAY;EACZ,WAAW,EACZ","file":"gallery.scss","sourcesContent":[":local(.gallery){\n  img {\n    height: 40%;\n    width: 40%;\n  }\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
@@ -17946,7 +17950,7 @@
 /* 26 */
 /***/ function(module, exports) {
 
-	module.exports = "<section>\n    <h2>{{$ctrl.info.title}}</h2>\n    <p>{{$ctrl.info.description}}</p>\n    <p><a ng-href=\"{{$ctrl.info.link}}\">View Image Here</a></p>\n</section>\n";
+	module.exports = "<section>\n    <h2>{{$ctrl.info.title}}</h2>\n    <p>{{$ctrl.info.description}}</p>\n    <p><a ng-href=\"{{$ctrl.info.link}}\">View Image</a></p>\n</section>\n";
 
 /***/ },
 /* 27 */
@@ -30190,7 +30194,7 @@
 	
 	
 	// module
-	exports.push([module.id, "body {\n  color: #333;\n  background-color: #ededed;\n  font-family: Arial, Helvetica, sans-serif;\n  margin: 0 auto;\n  width: 90%;\n  text-align: center; }\n", "", {"version":3,"sources":["/./src/scss/src/scss/main.scss"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,0BAAqB;EACrB,0CAA0C;EAC1C,eAAe;EACf,WAAW;EACX,mBAAmB,EACpB","file":"main.scss","sourcesContent":["body {\n  color: #333;\n  background-color: rgb(237, 237, 237);\n  font-family: Arial, Helvetica, sans-serif;\n  margin: 0 auto;\n  width: 90%;\n  text-align: center;\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "md-content {\n  text-align: center; }\n  md-content a {\n    color: rgba(63, 81, 181, 0.87); }\n", "", {"version":3,"sources":["/./src/scss/src/scss/main.scss"],"names":[],"mappings":"AAAC;EACE,mBAAmB,EAIpB;EALD;IAGI,+BAAW,EACZ","file":"main.scss","sourcesContent":[" md-content {\n   text-align: center;\n   a {\n     color: rgba(63,81,181,0.87);\n   }\n }\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
