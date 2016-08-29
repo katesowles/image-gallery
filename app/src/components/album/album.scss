@@ -1,8 +1,5 @@
-// :local(.album){
-//   #radioButtons {
-//     margin-bottom: 3%;
-//     label {
-//       margin-left: 1%;
-//     }
-//   }
-// }
+:local(.album){
+  section {
+    max-width: 650px;
+  }
+}
