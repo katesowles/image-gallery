@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/galleries';
+const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/albums';
 
 mongoose.Promise = Promise;
 mongoose.connect(dbURI);

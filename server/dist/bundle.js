@@ -32475,7 +32475,7 @@
 	
 	
 	// module
-	exports.push([module.id, "", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"album.scss","sourceRoot":"webpack://"}]);
+	exports.push([module.id, "picker {\n  width: 100%; }\n\n.picker {\n  width: 336px;\n  margin: 20px auto; }\n\nsection {\n  background-color: white; }\n\nlabel {\n  width: 33%;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n  margin: 5px 20px;\n  text-align: center; }\n\ninput[type=\"radio\"] {\n  margin-right: 10px; }\n\n.pickerInner {\n  display: inline-block;\n  width: 336px;\n  position: relative;\n  top: 0;\n  left: calc(50% - 168px);\n  margin-bottom: 30px; }\n", "", {"version":3,"sources":["/./app/src/components/album/app/src/components/album/album.scss"],"names":[],"mappings":"AAAA;EACE,YAAY,EACb;;AAED;EACE,aAAa;EACb,kBAAkB,EACnB;;AAED;EACE,wBAAwB,EACzB;;AAED;EACE,WAAW;EACX,0BAA0B;EAC1B,oBAAoB;EACpB,iBAAiB;EACjB,mBAAmB,EACpB;;AAED;EACE,mBAAmB,EACpB;;AAED;EACE,sBAAsB;EACtB,aAAa;EACb,mBAAmB;EACnB,OAAO;EACP,wBAAU;EACV,oBAAoB,EACrB","file":"album.scss","sourcesContent":["picker {\n  width: 100%;\n}\n\n.picker {\n  width: 336px;\n  margin: 20px auto;\n}\n\nsection {\n  background-color: white;\n}\n\nlabel {\n  width: 33%;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n  margin: 5px 20px;\n  text-align: center;\n}\n\ninput[type=\"radio\"] {\n  margin-right: 10px;\n}\n\n.pickerInner {\n  display: inline-block;\n  width: 336px;\n  position: relative;\n  top: 0;\n  left: calc(50% - 168px);\n  margin-bottom: 30px;\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
