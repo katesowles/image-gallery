@@ -3,6 +3,9 @@ import app from './app';
 import './scss/main.scss';
 import 'angular-material/angular-material.css';
 
-angular.module(app);
+const module = angular.module(app);
+
+//TODO update the fallback value later
+module.value('apiUrl', process.env.API_URL || 'http://localhost:3000/api');
 
 angular.bootstrap(document, [app]);
