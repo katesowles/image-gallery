@@ -1,7 +1,11 @@
 const app = require('./app');
+const http = require('http');
 const portNum = process.env.PORT || 3000;
+require('./mongooseSetup');
 
-app.listen(portNum, err => {
+const server = http.createServer(app);
+
+server.listen(portNum, err => {
   if (err) console.error('there was a problem: ', err);
   else console.log(`the server is running at 'localhost:${portNum}'`);
 });

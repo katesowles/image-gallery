@@ -1,0 +1,15 @@
+<div ng-class="$ctrl.styles.album">
+  <div class="picker">
+    <label><input type="radio" ng-model="$ctrl.view" value="text">Text</label>
+    <label><input type="radio" ng-model="$ctrl.view" value="thumb">Thumb</label>
+    <label><input type="radio" ng-model="$ctrl.view" value="full">Full</label>
+  </div>
+
+  <div class="display">
+    <text ng-if="$ctrl.view === 'text'" collection="$ctrl.collection"></text>
+    <thumb ng-if="$ctrl.view === 'thumb'" collection="$ctrl.collection"></thumb>
+    <full ng-if="$ctrl.view === 'full'" collection="$ctrl.collection"></full>
+  </div>
+
+  <new-item add="$ctrl.add"></new-item>
+</div>

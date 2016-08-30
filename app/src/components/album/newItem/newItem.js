@@ -3,9 +3,9 @@ import styles from './newItem.scss';
 
 export default {
   template,
-  controllerAs: 'newItem',
   bindings: {
-    collection: '=',
+    // collection: '=',
+    add: '<',
   },
   controller() {
     this.styles = styles;
@@ -17,15 +17,19 @@ export default {
       this.link = '';
     };
 
-    this.addNew = () => {
-      let image = {
-        title: this.title,
-        caption: this.caption,
-        link: this.link
-      };
-      console.log('image', image);
-      this.collection.push(image);
+    this.submit = () => {
+      this.add(this.image);
       this.reset();
     };
+
+    // this.addNew = () => {
+    //   // image = {
+    //   //   title: this.title,
+    //   //   caption: this.caption,
+    //   //   link: this.link
+    //   // };
+    //   this.add(this.image);
+    //   this.reset();
+    // };
   }
 };

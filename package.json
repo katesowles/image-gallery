@@ -38,6 +38,7 @@
     "karma-webpack": "^1.8.0",
     "mocha": "^3.0.2",
     "node-sass": "^3.8.0",
+    "nodemon": "^1.10.2",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
@@ -45,8 +46,11 @@
   },
   "dependencies": {
     "angular": "^1.5.8",
+    "body-parser": "^1.15.2",
     "camelcase": "^3.0.0",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "mongoose": "^4.5.10",
+    "morgan": "^1.7.0"
   },
   "babel": {
     "presets": [

@@ -1,11 +1,14 @@
-import template from './app.html';
-import styles from './app.scss';
+import template from './album.html';
+import styles from './album.scss';
 
 export default {
   template,
-  controllerAs: 'app',
   controller() {
     this.styles = styles;
+    this.view = 'text';
+    this.add = imgAdd => {
+      this.collection.push(imgAdd);
+    };
     this.collection = [
       {
         title : 'Blue-burries!',
@@ -23,6 +26,5 @@ export default {
         link: 'https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/12986962_10207904697407056_610953020186499048_n.jpg?oh=cb505a36030203999ed9147d94cd19a5&oe=5858BECC'
       }
     ];
-    console.log('app', this.collection);
   }
 };
