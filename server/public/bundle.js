@@ -17292,10 +17292,10 @@
 	var map = {
 		"./album/add-image-form/add-image-form.js": 9,
 		"./album/album.js": 15,
-		"./app/app.js": 19,
-		"./gallery/gallery.js": 21,
-		"./list/list.js": 25,
-		"./thumbnail/thumbnail.js": 27
+		"./album/gallery/gallery.js": 19,
+		"./album/list/list.js": 23,
+		"./album/thumbnail/thumbnail.js": 25,
+		"./app/app.js": 29
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -17828,37 +17828,11 @@
 	  value: true
 	});
 	
-	var _app = __webpack_require__(20);
-	
-	var _app2 = _interopRequireDefault(_app);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-	  template: _app2.default
-	};
-
-/***/ },
-/* 20 */
-/***/ function(module, exports) {
-
-	module.exports = "<div layout=\"column\" layout-align=\"center center\" max-width=\"20%\">\n  <album></album>\n</div>\n";
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _gallery = __webpack_require__(22);
+	var _gallery = __webpack_require__(20);
 	
 	var _gallery2 = _interopRequireDefault(_gallery);
 	
-	var _gallery3 = __webpack_require__(23);
+	var _gallery3 = __webpack_require__(21);
 	
 	var _gallery4 = _interopRequireDefault(_gallery3);
 	
@@ -17875,19 +17849,19 @@
 	};
 
 /***/ },
-/* 22 */
+/* 20 */
 /***/ function(module, exports) {
 
 	module.exports = "<section ng-class=\"$ctrl.styles.gallery\">\n  <img ng-src=\"{{$ctrl.info.link}}\">\n  <h2>{{$ctrl.info.title}}</h2>\n  <p>{{$ctrl.info.description}}</p>\n</section>\n";
 
 /***/ },
-/* 23 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(24);
+	var content = __webpack_require__(22);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(14)(content, {});
@@ -17896,8 +17870,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./gallery.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./gallery.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./gallery.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./gallery.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -17907,7 +17881,7 @@
 	}
 
 /***/ },
-/* 24 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(13)();
@@ -17915,15 +17889,15 @@
 	
 	
 	// module
-	exports.push([module.id, "._1NFW6-AZTrSqEPOdtHcVo5 img {\n  height: 40%;\n  width: 40%; }\n", "", {"version":3,"sources":["/./src/components/gallery/src/components/gallery/gallery.scss"],"names":[],"mappings":"AAAA;EAEI,YAAY;EACZ,WAAW,EACZ","file":"gallery.scss","sourcesContent":[":local(.gallery){\n  img {\n    height: 40%;\n    width: 40%;\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "._1t2g1fkcoNeTsLKlcL7UQ- img {\n  height: 40%;\n  width: 40%; }\n", "", {"version":3,"sources":["/./src/components/album/gallery/src/components/album/gallery/gallery.scss"],"names":[],"mappings":"AAAA;EAEI,YAAY;EACZ,WAAW,EACZ","file":"gallery.scss","sourcesContent":[":local(.gallery){\n  img {\n    height: 40%;\n    width: 40%;\n  }\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
-		"gallery": "_1NFW6-AZTrSqEPOdtHcVo5"
+		"gallery": "_1t2g1fkcoNeTsLKlcL7UQ-"
 	};
 
 /***/ },
-/* 25 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17932,7 +17906,7 @@
 	  value: true
 	});
 	
-	var _list = __webpack_require__(26);
+	var _list = __webpack_require__(24);
 	
 	var _list2 = _interopRequireDefault(_list);
 	
@@ -17947,13 +17921,13 @@
 	};
 
 /***/ },
-/* 26 */
+/* 24 */
 /***/ function(module, exports) {
 
 	module.exports = "<section>\n    <h2>{{$ctrl.info.title}}</h2>\n    <p>{{$ctrl.info.description}}</p>\n    <p><a ng-href=\"{{$ctrl.info.link}}\">View Image</a></p>\n</section>\n";
 
 /***/ },
-/* 27 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17962,11 +17936,11 @@
 	  value: true
 	});
 	
-	var _thumbnail = __webpack_require__(28);
+	var _thumbnail = __webpack_require__(26);
 	
 	var _thumbnail2 = _interopRequireDefault(_thumbnail);
 	
-	var _thumbnail3 = __webpack_require__(29);
+	var _thumbnail3 = __webpack_require__(27);
 	
 	var _thumbnail4 = _interopRequireDefault(_thumbnail3);
 	
@@ -17983,19 +17957,19 @@
 	};
 
 /***/ },
-/* 28 */
+/* 26 */
 /***/ function(module, exports) {
 
 	module.exports = "<span ng-class=\"$ctrl.styles.thumbnail\">\n  <img ng-src=\"{{$ctrl.info.link}}\">\n</span>\n";
 
 /***/ },
-/* 29 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(30);
+	var content = __webpack_require__(28);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(14)(content, {});
@@ -18004,8 +17978,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./thumbnail.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap!./../../../node_modules/sass-loader/index.js?sourceMap!./thumbnail.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./thumbnail.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js?sourceMap!./../../../../node_modules/sass-loader/index.js?sourceMap!./thumbnail.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -18015,7 +17989,7 @@
 	}
 
 /***/ },
-/* 30 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(13)();
@@ -18023,12 +17997,38 @@
 	
 	
 	// module
-	exports.push([module.id, "._3wa1r0xCQ0ttb4fTM2WTxV img {\n  width: 80px;\n  height: 100px; }\n", "", {"version":3,"sources":["/./src/components/thumbnail/src/components/thumbnail/thumbnail.scss"],"names":[],"mappings":"AAAA;EAEM,YAAY;EACZ,cAAc,EACjB","file":"thumbnail.scss","sourcesContent":[":local(.thumbnail){\n  img {\n      width: 80px;\n      height: 100px;\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "._3Em0oDAUzAWdRfSUcIoE1V img {\n  width: 80px;\n  height: 100px; }\n", "", {"version":3,"sources":["/./src/components/album/thumbnail/src/components/album/thumbnail/thumbnail.scss"],"names":[],"mappings":"AAAA;EAEM,YAAY;EACZ,cAAc,EACjB","file":"thumbnail.scss","sourcesContent":[":local(.thumbnail){\n  img {\n      width: 80px;\n      height: 100px;\n  }\n}\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 	exports.locals = {
-		"thumbnail": "_3wa1r0xCQ0ttb4fTM2WTxV"
+		"thumbnail": "_3Em0oDAUzAWdRfSUcIoE1V"
 	};
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _app = __webpack_require__(30);
+	
+	var _app2 = _interopRequireDefault(_app);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _app2.default
+	};
+
+/***/ },
+/* 30 */
+/***/ function(module, exports) {
+
+	module.exports = "<div layout=\"column\" layout-align=\"center center\" max-width=\"20%\">\n  <album></album>\n</div>\n";
 
 /***/ },
 /* 31 */
