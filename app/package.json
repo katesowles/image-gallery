@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --inline",
+    "start": "API_URL=http://localhost:3000/api webpack-dev-server --inline",
     "test": "karma start"
   },
   "author": "Danielle Heberling",
