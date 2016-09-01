@@ -11,6 +11,7 @@ module.exports = router
       .catch(next);
   })
 
+  //TODO rewrite or add a method to add a photo with an album id
   .get('/:id', (req, res, next)=>{
     Image.findById(req.params.id)
       .then(image=>res.send(image))

@@ -1,8 +1,10 @@
 <div ng-class=$ctrl.styles.listAlbums>
   <h1>Select Album</h1>
   <section>
-    <p ng-repeat="album in $ctrl.albums">
-      {{album.title}}
-    </p>
+    <!-- TODO: figure out how to make these links that pass the album -->
+      <p ng-repeat="album in $ctrl.albums">
+        <a ng-href="{{album._id}}">{{album.title}}--{{album._id}}</a>
+      </p>
+      <!-- {{$ctrl.albums}} -->
   </section>
 </div>
