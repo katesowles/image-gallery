@@ -12,17 +12,16 @@ module.exports = router
       .catch(next);
   })
 
-  // GET single album by id
-  // .get('/:id', (req, res, next)=>{
-  //   Album.findById(req.params.id)
-  //     .then(album=>res.send(album))
-  //     .catch(next);
-  // })
+  // GET single album object by id
+  .get('/:id', (req, res, next)=>{
+    Album.findById(req.params.id)
+      .then(album=>res.send(album))
+      .catch(next);
+  })
 
   // GET all images with a specific album id
   //TODO add function to verify the album exists
-  //Populate the album title in the response
-  .get('/:id', (req, res, next)=>{
+  .get('/:id/content', (req, res, next)=>{
     Image.find({album: req.params.id})
       .populate({path: 'album', select: 'title'})
       .then(albumContents=>res.send(albumContents))
