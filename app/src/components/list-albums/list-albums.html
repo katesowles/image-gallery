@@ -3,8 +3,7 @@
   <section>
     <!-- TODO: figure out how to make these links that pass the album -->
       <p ng-repeat="album in $ctrl.albums">
-        <a ng-href="{{album._id}}">{{album.title}}--{{album._id}}</a>
+        <a ui-sref="view-album({albumId: album._id})">{{album.title}}--{{album._id}}</a>
       </p>
-      <!-- {{$ctrl.albums}} -->
   </section>
 </div>

@@ -3,7 +3,7 @@ configRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
 export default function configRoutes($stateProvider, $urlRouterProvider){
 
   $stateProvider
-    .state( 'welcome', {
+    .state('welcome', {
       url: '/',
       views: {
         header: {
@@ -15,7 +15,7 @@ export default function configRoutes($stateProvider, $urlRouterProvider){
       }
     })
 
-    .state( 'list-albums', {
+    .state('list-albums', {
       url: '/albums',
       views: {
         header: {
@@ -23,6 +23,21 @@ export default function configRoutes($stateProvider, $urlRouterProvider){
         },
         main: {
           component: 'listAlbums'
+        }
+      }
+    })
+
+    .state('view-album', {
+      url: '/album/:albumId',
+      resolve: {
+        albumId: ['$stateParams', (params)=>params.albumId],
+      },
+      views: {
+        header: {
+          component: 'appNav'
+        },
+        main: {
+          component: 'album'
         }
       }
     });
