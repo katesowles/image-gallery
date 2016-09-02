@@ -31,7 +31,6 @@ describe('add image form', ()=>{
     component.image.album = '123';
 
     component.submit();
-    console.log(imageAdded);
     assert.deepEqual(imageAdded, {title: 'test1', description: 'test2', link: 'test3', album: '123'});
   });
 
