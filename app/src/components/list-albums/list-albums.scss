@@ -1,3 +1,10 @@
 :local(.listAlbums){
-  
+  a {
+    font-size: 2em;
+    text-decoration: none;
+  }
+  a:hover {
+    background: white;
+    color: #333;
+  }
 }
