@@ -26,9 +26,7 @@ function controller(imageService){
       })
       .catch(err=>console.log(err));
 
-  //TODO refactor so it adds the image to a specific album
   this.add = imageToAdd=>{
-    //imageToAdd.album = this.albumId;
     imageService.add(imageToAdd)
       .then(addedImage=>this.images.push(addedImage))
       .catch(err=>console.log(err));

@@ -21,8 +21,21 @@
 ._20NNA1WcEHt78El7mXAFvh a.active {
   background: white;
   color: #333; }
+.l9fPrf9kpAtHYjvzvx25c {
+  margin: 3% auto; }
+  .l9fPrf9kpAtHYjvzvx25c #error {
+    color: #ff4d4d; }
+._37FOYshd97XLxVXjHo_ZRG a {
+  font-size: 2em;
+  text-decoration: none; }
+
+._37FOYshd97XLxVXjHo_ZRG a:hover {
+  background: white;
+  color: #333; }
 md-content {
-  text-align: center; }
+  text-align: center;
+  margin: 2%;
+  padding: 1%; }
   md-content a {
     color: rgba(63, 81, 181, 0.87); }
 /*!

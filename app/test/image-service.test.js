@@ -19,14 +19,33 @@ describe('image service', ()=>{
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  it('GETs all images', done=>{
+  //TODO remove if getAll() ends up not being used
+  // it('GETs all images', done=>{
+  //   const images = ['test', 'test1', 'test2'];
+  //
+  //   $httpBackend
+  //     .expectGET( '/api/images' )
+  //     .respond(images);
+  //
+  //   imageService.getAll()
+  //     .then(allImages=>{
+  //       assert.deepEqual(allImages, images);
+  //       done();
+  //     })
+  //     .catch(done);
+  //
+  //   $httpBackend.flush();
+  // });
+
+  it('GETs all images with a specific album id', done=>{
     const images = ['test', 'test1', 'test2'];
+    const albumId = '123';
 
     $httpBackend
-      .expectGET( '/api/images' )
+      .expectGET('/api/albums/123/content')
       .respond(images);
 
-    imageService.getAll()
+    imageService.getAlbumContent(albumId)
       .then(allImages=>{
         assert.deepEqual(allImages, images);
         done();
@@ -53,6 +72,4 @@ describe('image service', ()=>{
 
     $httpBackend.flush();
   });
-
-  //TODO test getAlbumContent(albumId) function
 });
