@@ -13,6 +13,14 @@
 ._3Em0oDAUzAWdRfSUcIoE1V img {
   width: 80px;
   height: 100px; }
+._20NNA1WcEHt78El7mXAFvh a {
+  font-size: 1.5em;
+  margin-right: 0.5em;
+  text-decoration: none; }
+
+._20NNA1WcEHt78El7mXAFvh a.active {
+  background: white;
+  color: #333; }
 md-content {
   text-align: center; }
   md-content a {
