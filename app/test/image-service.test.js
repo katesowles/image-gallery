@@ -53,4 +53,6 @@ describe('image service', ()=>{
 
     $httpBackend.flush();
   });
+
+  //TODO test getAlbumContent(albumId) function
 });
