@@ -19,6 +19,7 @@ describe('image service', ()=>{
     $httpBackend.verifyNoOutstandingRequest();
   });
 
+  //TODO remove if getAll() ends up not being used
   it('GETs all images', done=>{
     const images = ['test', 'test1', 'test2'];
 

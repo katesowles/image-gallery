@@ -20387,6 +20387,7 @@
 	    resetImage();
 	
 	    this.submit = function () {
+	      //TODO see about refactoring this later
 	      if ('title' && 'description' && 'link' in _this.image) {
 	        if (_this.image.title && _this.image.description && _this.image.link !== '') {
 	          _this.isInvalid = false;
@@ -20467,9 +20468,7 @@
 	    return console.log(err);
 	  });
 	
-	  //TODO refactor so it adds the image to a specific album
 	  this.add = function (imageToAdd) {
-	    //imageToAdd.album = this.albumId;
 	    imageService.add(imageToAdd).then(function (addedImage) {
 	      return _this.images.push(addedImage);
 	    }).catch(function (err) {
@@ -20721,13 +20720,14 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+	module.exports = {"listAlbums":"_37FOYshd97XLxVXjHo_ZRG"};
 
 /***/ },
 /* 39 */,
 /* 40 */
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-class=$ctrl.styles.listAlbums>\n  <h1>Select Album</h1>\n  <section>\n    <!-- TODO: figure out how to make these links that pass the album -->\n      <p ng-repeat=\"album in $ctrl.albums\">\n        <a ui-sref=\"view-album({albumId: album._id})\">{{album.title}}--{{album._id}}</a>\n      </p>\n  </section>\n</div>\n";
+	module.exports = "<div ng-class=$ctrl.styles.listAlbums>\n  <h1>Select Album</h1>\n  <section>\n      <p ng-repeat=\"album in $ctrl.albums\">\n        <a ui-sref=\"view-album({albumId: album._id})\">{{album.title}}</a>\n      </p>\n  </section>\n</div>\n";
 
 /***/ },
 /* 41 */
@@ -20852,6 +20852,7 @@
 	
 	function imageService($http, apiUrl) {
 	  return {
+	    //TODO remove getAll if this isn't used
 	    getAll: function getAll() {
 	      return $http.get(apiUrl + '/images').then(function (response) {
 	        return response.data;
