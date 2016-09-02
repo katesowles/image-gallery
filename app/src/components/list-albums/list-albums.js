@@ -13,4 +13,10 @@ function controller(albumService){
   albumService.getAll()
     .then(albums=>this.albums=albums)
     .catch(err=>console.log(err));
+
+  this.add = albumToAdd=>{
+    albumService.add(albumToAdd)
+      .then(addedAlbum=>this.albums.push(addedAlbum))
+      .catch(err=>console.log(err));
+  };
 }
