@@ -2,7 +2,7 @@
   <h1>Select Album</h1>
   <section>
       <p ng-repeat="album in $ctrl.albums">
-        <a ui-sref="view-album({albumId: album._id})">{{album.title}}</a>
+        <a ui-sref="view-album({albumId: album._id, display: 'list'})">{{album.title}}</a>
       </p>
   </section>
   <section>

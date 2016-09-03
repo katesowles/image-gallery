@@ -2,7 +2,7 @@
   <h1>{{$ctrl.title}}</h1>
 
   <!-- Radio buttons -->
-  <md-radio-group ng-model="$ctrl.view" layout="row" layout-align="center center">
+  <md-radio-group ng-model="$ctrl.display" layout="row" layout-align="center center">
     <md-radio-button class="md-primary" value="list" aria-label="list">
       List
     </md-radio-button>
@@ -17,9 +17,9 @@
   <!-- Image and image info -->
   <section>
     <span ng-repeat="image in $ctrl.images">
-      <list ng-if="$ctrl.view === 'list'" info="image"></list>
-      <thumbnail ng-if="$ctrl.view === 'thumbnail'" info="image"></thumbnail>
-      <gallery ng-if="$ctrl.view === 'gallery'" info="image"></gallery>
+      <list ng-if="$ctrl.display === 'list'" info="image"></list>
+      <thumbnail ng-if="$ctrl.display === 'thumbnail'" info="image"></thumbnail>
+      <gallery ng-if="$ctrl.display === 'gallery'" info="image"></gallery>
     </span>
   </section>
 

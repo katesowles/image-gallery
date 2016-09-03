@@ -5,7 +5,8 @@ export default{
   template,
   controller,
   bindings: {
-    albumId: '<'
+    albumId: '<',
+    display: '<'
   }
 };
 
@@ -13,7 +14,7 @@ controller.$inject = ['imageService'];
 
 function controller(imageService){
   this.styles = styles;
-  this.view = 'list';
+  //this.view = 'list';
 
   imageService.getAlbumContent(this.albumId)
       .then(data=>{
