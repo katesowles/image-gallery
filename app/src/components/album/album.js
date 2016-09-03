@@ -44,4 +44,15 @@ function controller(imageService, $state){
       .then(addedImage=>this.images.push(addedImage))
       .catch(err=>console.log(err));
   };
+
+  this.remove = imageToDelete=>{
+    imageService.remove(imageToDelete)
+      .then(deleted=>{
+        const index = this.images.findIndex(image=>image._id === deleted._id);
+        if(index !== -1){
+          this.images.splice(index, 1);
+        } 
+      })
+      .catch(err=>console.log(err));
+  };
 }

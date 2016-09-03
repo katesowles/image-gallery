@@ -1,5 +1,8 @@
 <section>
     <h2>{{$ctrl.info.title}}</h2>
     <p>{{$ctrl.info.description}}</p>
-    <p><a ng-href="{{$ctrl.info.link}}">View Image</a></p>
+    <p>
+      <a ng-href="{{$ctrl.info.link}}">View Image</a>
+      <md-button ng-click="$ctrl.remove($ctrl.info)">Remove</md-button>
+    </p>
 </section>
