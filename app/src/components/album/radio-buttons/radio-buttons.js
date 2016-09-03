@@ -11,4 +11,7 @@ export default{
 
 function controller(){
   this.styles = styles;
+  this.viewChange = ()=>{
+    console.log('changed');
+  };
 }
