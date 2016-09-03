@@ -5,15 +5,28 @@ export default{
   template,
   controller,
   bindings: {
-    albumId: '<'
+    albumId: '<',
+    display: '<'
   }
 };
 
-controller.$inject = ['imageService'];
+controller.$inject = ['imageService', '$state'];
 
-function controller(imageService){
+function controller(imageService, $state){
   this.styles = styles;
-  this.view = 'list';
+
+  this.uiOnParamsChanged = (params)=>{
+    //TODO find a way to check for invaliad params
+    //i.e. not thumbnail, gallery, or list
+    this.display = params.display;
+  };
+
+  this.changeDisplay = (selectedDisplay)=>{
+    //TODO refactor this, so it takes a dynamic value
+    //vs a hardcoded string passed in as the selectedDisplay
+    this.display = selectedDisplay;
+    $state.go($state.current.name, {display: this.display});
+  };
 
   imageService.getAlbumContent(this.albumId)
       .then(data=>{

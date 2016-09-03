@@ -28,9 +28,11 @@ export default function configRoutes($stateProvider, $urlRouterProvider){
     })
 
     .state('view-album', {
-      url: '/album/:albumId',
+      url: '/album/:albumId?display',
+      params: {display: {dynamic: true}},
       resolve: {
         albumId: ['$stateParams', (params)=>params.albumId],
+        display: ['$stateParams', (params)=>params.display || 'list']
       },
       views: {
         header: {
