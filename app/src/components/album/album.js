@@ -10,11 +10,19 @@ export default{
   }
 };
 
-controller.$inject = ['imageService'];
+controller.$inject = ['imageService', '$state'];
 
-function controller(imageService){
+function controller(imageService, $state){
   this.styles = styles;
-  //this.view = 'list';
+
+  this.uiOnParamsChanged = (params)=>{
+    this.display = params.display;
+  };
+
+  this.changeView = (selectedDisplay)=>{
+    this.display = selectedDisplay;
+    $state.go($state.current.name, {display: this.display});
+  };
 
   imageService.getAlbumContent(this.albumId)
       .then(data=>{

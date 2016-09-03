@@ -2,4 +2,12 @@
   section {
     max-width: 650px;
   }
+  md-radio-group {
+    margin-bottom: 5%;
+  }
+
+  md-radio-button {
+    outline-color: rgb(48,48,48);
+    padding-right: 1%;
+  }
 }

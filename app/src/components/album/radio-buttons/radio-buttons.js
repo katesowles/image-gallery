@@ -9,9 +9,10 @@ export default{
   }
 };
 
-function controller(){
+function controller($state){
   this.styles = styles;
-  this.viewChange = ()=>{
-    console.log('changed');
+  this.viewChange = (viewState)=>{
+    console.log(viewState);
+    $state.go($state.current.name, {display: viewState});
   };
 }
