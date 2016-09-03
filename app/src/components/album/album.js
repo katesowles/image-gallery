@@ -16,10 +16,14 @@ function controller(imageService, $state){
   this.styles = styles;
 
   this.uiOnParamsChanged = (params)=>{
+    //TODO find a way to check for invaliad params
+    //i.e. not thumbnail, gallery, or list
     this.display = params.display;
   };
 
-  this.changeView = (selectedDisplay)=>{
+  this.changeDisplay = (selectedDisplay)=>{
+    //TODO refactor this, so it takes a dynamic value
+    //vs a hardcoded string passed in as the selectedDisplay
     this.display = selectedDisplay;
     $state.go($state.current.name, {display: this.display});
   };
