@@ -54,4 +54,22 @@ describe('image service', ()=>{
 
     $httpBackend.flush();
   });
+
+  it('removes an image', done=>{
+    const imageToDelete = {_id: '123', title: 'Title', description: 'Description', link: 'bomb.com'};
+    const mockResponse = {__v: 0, title: 'Title', description: 'Description', link: 'bomb.com'};
+
+    $httpBackend
+      .expectDELETE(`/api/images/${imageToDelete._id}`)
+      .respond(mockResponse);
+
+    imageService.remove(imageToDelete)
+      .then(deletedImage=>{
+        assert.deepEqual(deletedImage, mockResponse);
+        done();
+      })
+      .catch(done);
+
+    $httpBackend.flush();
+  });
 });
