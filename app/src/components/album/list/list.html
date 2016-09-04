@@ -1,9 +1,15 @@
-<section>
+<section ng-class="$ctrl.styles.list">
     <h2>{{$ctrl.info.title}}</h2>
     <p>{{$ctrl.info.description}}</p>
-    <p>
-<!-- TODO: Add delete confirmation dialog for better user experience -->
-      <a ng-href="{{$ctrl.info.link}}">View Image</a>
-      <md-button ng-click="$ctrl.remove($ctrl.info)">Delete</md-button>
-    </p>
+    <div>
+      <a ng-href="{{$ctrl.info.link}}">View</a>
+      <md-button ng-click="showWarning=!showWarning">Delete</md-button>
+    </div>
+    <!-- Warning message when deleting an image -->
+    <div ng-show="showWarning">
+      <p class="confirmMessage">Are you sure you want to delete this photo?</p>
+        <md-button ng-click="$ctrl.remove($ctrl.info)">Confirm Delete</md-button>
+        <md-button ng-click="showWarning=false">Keep Photo</md-button>
+    </div>
+    <md-divider></md-divider>
 </section>

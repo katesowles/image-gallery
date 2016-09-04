@@ -16,10 +16,8 @@ function controller(imageService, $state){
   this.styles = styles;
 
   this.uiOnParamsChanged = (params)=>{
-    //TODO find a way to check for invaliad params
-    //i.e. not thumbnail, gallery, or list
-    console.log(params.display);
-
+    // checking for valid params
+    // if invalid, kick to list view
     if(params.display){
       if(params.display === 'gallery'){
         this.display = params.display;
