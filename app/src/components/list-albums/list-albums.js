@@ -31,4 +31,13 @@ function controller(albumService){
       })
       .catch(err=>console.log(err));
   };
+
+  this.update = album=>{
+    albumService.update(album)
+      .then(updated=>{
+        console.log(updated);
+        //add stuff here to swap out in this.images
+      })
+      .catch(err=>console.log(err));
+  };
 }
