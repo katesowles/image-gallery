@@ -18,7 +18,19 @@ function controller(imageService, $state){
   this.uiOnParamsChanged = (params)=>{
     //TODO find a way to check for invaliad params
     //i.e. not thumbnail, gallery, or list
-    this.display = params.display || 'list';
+    console.log(params.display);
+
+    if(params.display){
+      if(params.display === 'gallery'){
+        this.display = params.display;
+      } else if(params.display === 'thumbnail'){
+        this.display = params.display;
+      } else {
+        this.display = 'list';
+      }
+    } else {
+      this.display = params.display || 'list';
+    }
   };
 
   this.changeDisplay = (selectedDisplay)=>{
