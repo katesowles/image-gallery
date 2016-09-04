@@ -21,7 +21,7 @@ function controller(albumService){
       .catch(err=>console.log(err));
   };
 
-  this.remove = ()=>{
-    console.log('remove func fired');
+  this.remove = album=>{
+    console.log('remove func fired ', album);
   };
 }
