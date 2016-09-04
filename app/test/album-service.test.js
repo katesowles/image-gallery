@@ -54,4 +54,22 @@ describe('album service', ()=>{
     $httpBackend.flush();
   });
 
+  it('DELETEs an album', done=>{
+    const album = {_id: '123', title: 'Title'};
+    const mockResponse = {__v: 0, title: 'Title'};
+
+    $httpBackend
+      .expectDELETE(`/api/albums/${album._id}`)
+      .respond(mockResponse);
+
+    albumService.remove(album._id)
+      .then(removedAlbum=>{
+        assert.deepEqual(removedAlbum, mockResponse);
+        done();
+      })
+      .catch(done);
+
+    $httpBackend.flush();
+  });
+
 });
