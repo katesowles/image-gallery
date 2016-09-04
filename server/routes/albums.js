@@ -20,7 +20,6 @@ module.exports = router
   })
 
   // GET all images with a specific album id
-  //TODO add function to verify the album exists
   .get('/:id/content', (req, res, next)=>{
     Image.find({album: req.params.id})
       .populate({path: 'album', select: 'title'})

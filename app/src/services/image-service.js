@@ -1,6 +1,6 @@
 imageService.$inject = ['$http', 'apiUrl'/*, '$cacheFactory'*/];
 
-//TODO: revisit caching
+//TODO: revisit caching on GETs
 
 export default function imageService($http, apiUrl/*, $cacheFactory*/){
   //const cache = $cacheFactory.get('$http');

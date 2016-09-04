@@ -15,10 +15,11 @@
   - `npm install` and `npm run build`
   - Navigate to `localhost:8080` in a web browser
 
-### Defaults
-- Server runs on `localhost:3000`
-- Frontend runs on `localhost:8080`
-- All form fields are required
+### Misc Info
+- Server runs on `localhost:3000` by default
+- Frontend runs on `localhost:8080` by default
+- All form fields are required to add and item
+- Can delete images from the individual album list view only
 
 ### Tests
 `cd app` and `npm run test`

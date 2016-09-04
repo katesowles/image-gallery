@@ -42,6 +42,12 @@
 ._37FOYshd97XLxVXjHo_ZRG a:hover {
   background: white;
   color: #333; }
+
+._37FOYshd97XLxVXjHo_ZRG #list, ._37FOYshd97XLxVXjHo_ZRG .confirmMessage {
+  text-align: right; }
+
+._37FOYshd97XLxVXjHo_ZRG .confirmMessage {
+  color: #ff4d4d; }
 md-content {
   text-align: center;
   margin: 2%;

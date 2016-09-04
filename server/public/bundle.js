@@ -20477,7 +20477,9 @@
 	    if (data.length) {
 	      _this.title = data[0].album.title;
 	    } else {
-	      _this.title = 'Album with no pictures in it';
+	      //TODO: Find a more elegant way to pass the album title
+	      //when the album does not have images in it
+	      _this.title = '';
 	    }
 	  }).catch(function (err) {
 	    return console.log(err);
@@ -20490,13 +20492,26 @@
 	      return console.log(err);
 	    });
 	  };
+	
+	  this.remove = function (imageToDelete) {
+	    imageService.remove(imageToDelete).then(function (deleted) {
+	      var index = _this.images.findIndex(function (image) {
+	        return image._id === deleted._id;
+	      });
+	      if (index !== -1) {
+	        _this.images.splice(index, 1);
+	      }
+	    }).catch(function (err) {
+	      return console.log(err);
+	    });
+	  };
 	}
 
 /***/ },
 /* 18 */
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <h1>{{$ctrl.title}}</h1>\n\n  <!-- Radio buttons -->\n  <div ng-class=$ctrl.styles.radioButtons>\n    <md-radio-group ng-model=\"$ctrl.display\" layout=\"row\" layout-align=\"center center\">\n      <md-radio-button class=\"md-primary\" value=\"list\" aria-label=\"list\" ng-click=\"$ctrl.changeDisplay('list')\">\n        List\n      </md-radio-button>\n      <md-radio-button class=\"md-primary\" value=\"thumbnail\" aria-label=\"thumbnail\" ng-click=\"$ctrl.changeDisplay('thumbnail')\">\n        Thumbnail\n      </md-radio-button>\n      <md-radio-button class=\"md-primary\" value=\"gallery\" aria-label=\"gallery\" ng-click=\"$ctrl.changeDisplay('gallery')\">\n        Gallery\n      </md-radio-button>\n    </md-radio-group>\n  </div>\n\n  <!-- Image and image info -->\n  <section>\n    <span ng-repeat=\"image in $ctrl.images\">\n      <list ng-if=\"$ctrl.display === 'list'\" info=\"image\"></list>\n      <thumbnail ng-if=\"$ctrl.display === 'thumbnail'\" info=\"image\"></thumbnail>\n      <gallery ng-if=\"$ctrl.display === 'gallery'\" info=\"image\"></gallery>\n    </span>\n  </section>\n\n  <!-- Form to add more images -->\n  <section>\n    <add-image-form add=\"$ctrl.add\" id=\"$ctrl.albumId\"></add-image-form>\n  </section>\n\n</div>\n";
+	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <h1>{{$ctrl.title}}</h1>\n\n  <!-- Radio buttons -->\n  <div ng-class=$ctrl.styles.radioButtons>\n    <md-radio-group ng-model=\"$ctrl.display\" layout=\"row\" layout-align=\"center center\">\n      <md-radio-button class=\"md-primary\" value=\"list\" aria-label=\"list\" ng-click=\"$ctrl.changeDisplay('list')\">\n        List\n      </md-radio-button>\n      <md-radio-button class=\"md-primary\" value=\"thumbnail\" aria-label=\"thumbnail\" ng-click=\"$ctrl.changeDisplay('thumbnail')\">\n        Thumbnail\n      </md-radio-button>\n      <md-radio-button class=\"md-primary\" value=\"gallery\" aria-label=\"gallery\" ng-click=\"$ctrl.changeDisplay('gallery')\">\n        Gallery\n      </md-radio-button>\n    </md-radio-group>\n  </div>\n\n  <!-- Image and image info -->\n  <section>\n    <span ng-repeat=\"image in $ctrl.images\">\n      <list ng-if=\"$ctrl.display === 'list'\" info=\"image\" remove=$ctrl.remove></list>\n      <thumbnail ng-if=\"$ctrl.display === 'thumbnail'\" info=\"image\"></thumbnail>\n      <gallery ng-if=\"$ctrl.display === 'gallery'\" info=\"image\"></gallery>\n    </span>\n  </section>\n\n  <!-- Form to add more images -->\n  <section>\n    <add-image-form add=\"$ctrl.add\" id=\"$ctrl.albumId\"></add-image-form>\n  </section>\n\n</div>\n";
 
 /***/ },
 /* 19 */
@@ -20569,7 +20584,8 @@
 	exports.default = {
 	  template: _list2.default,
 	  bindings: {
-	    info: '<'
+	    info: '<',
+	    remove: '<'
 	  },
 	  controller: function controller() {}
 	};
@@ -20578,7 +20594,7 @@
 /* 26 */
 /***/ function(module, exports) {
 
-	module.exports = "<section>\n    <h2>{{$ctrl.info.title}}</h2>\n    <p>{{$ctrl.info.description}}</p>\n    <p><a ng-href=\"{{$ctrl.info.link}}\">View Image</a></p>\n</section>\n";
+	module.exports = "<section>\n    <h2>{{$ctrl.info.title}}</h2>\n    <p>{{$ctrl.info.description}}</p>\n    <p>\n<!-- TODO: Add delete confirmation dialog for better user experience -->\n      <a ng-href=\"{{$ctrl.info.link}}\">View Image</a>\n      <md-button ng-click=\"$ctrl.remove($ctrl.info)\">Delete</md-button>\n    </p>\n</section>\n";
 
 /***/ },
 /* 27 */
@@ -20841,6 +20857,7 @@
 	  var _this = this;
 	
 	  this.styles = _listAlbums2.default;
+	
 	  albumService.getAll().then(function (albums) {
 	    return _this.albums = albums;
 	  }).catch(function (err) {
@@ -20850,6 +20867,19 @@
 	  this.add = function (albumToAdd) {
 	    albumService.add(albumToAdd).then(function (addedAlbum) {
 	      return _this.albums.push(addedAlbum);
+	    }).catch(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	
+	  this.remove = function (albumId) {
+	    albumService.remove(albumId).then(function (deleted) {
+	      var index = _this.albums.findIndex(function (album) {
+	        return album._id === deleted._id;
+	      });
+	      if (index !== -1) {
+	        _this.albums.splice(index, 1);
+	      }
 	    }).catch(function (err) {
 	      return console.log(err);
 	    });
@@ -20868,7 +20898,7 @@
 /* 48 */
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-class=$ctrl.styles.listAlbums>\n  <h1>Select Album</h1>\n  <section>\n      <p ng-repeat=\"album in $ctrl.albums\">\n        <a ui-sref=\"view-album({albumId: album._id, display: 'list'})\">{{album.title}}</a>\n      </p>\n  </section>\n  <section>\n    <add-album-form add=$ctrl.add></add-album-form>\n  </section>\n</div>\n";
+	module.exports = "<div ng-class=$ctrl.styles.listAlbums>\n  <h1>Select Album</h1>\n<!-- List of albums -->\n  <section id=\"list\">\n      <div ng-repeat=\"album in $ctrl.albums\">\n        <a ui-sref=\"view-album({albumId: album._id, display: 'list'})\">{{album.title}}</a>\n          <md-button ng-click=\"showWarning=!showWarning\">Delete</md-button>\n\n          <!-- Warning message when deleting an album -->\n          <div ng-show=\"showWarning\">\n            <p class=\"confirmMessage\">Are you sure you want to delete this album?</p>\n              <md-button ng-click=\"$ctrl.remove(album._id)\">Confirm Delete</md-button>\n              <md-button ng-click=\"showWarning=false\">Keep Album</md-button>\n          </div>\n      </div>\n  </section>\n\n<!-- Add album form -->\n  <section>\n    <add-album-form add=$ctrl.add></add-album-form>\n  </section>\n</div>\n";
 
 /***/ },
 /* 49 */
@@ -20965,23 +20995,32 @@
 	  value: true
 	});
 	exports.default = albumService;
-	albumService.$inject = ['$http', 'apiUrl', '$cacheFactory'];
+	albumService.$inject = ['$http', 'apiUrl' /*, '$cacheFactory'*/];
 	
-	function albumService($http, apiUrl, $cacheFactory) {
-	  var cache = $cacheFactory.get('$http');
+	//TODO: revisit caching on GETs
+	
+	function albumService($http, apiUrl /*, $cacheFactory*/) {
+	  //const cache = $cacheFactory.get('$http');
 	
 	  return {
 	    getAll: function getAll() {
-	      return $http.get(apiUrl + '/albums', { cache: true }).then(function (response) {
+	      return $http.get(apiUrl + '/albums' /*, {cache: true}*/).then(function (response) {
 	        return response.data;
 	      }).catch(function (err) {
 	        return console.log(err);
 	      });
 	    },
 	    add: function add(album) {
-	      cache.remove(apiUrl + '/albums');
+	      //cache.remove(`${apiUrl}/albums`);
 	
 	      return $http.post(apiUrl + '/albums', album).then(function (response) {
+	        return response.data;
+	      }).catch(function (err) {
+	        return console.log(err);
+	      });
+	    },
+	    remove: function remove(albumId) {
+	      return $http.delete(apiUrl + '/albums/' + albumId).then(function (response) {
 	        return response.data;
 	      }).catch(function (err) {
 	        return console.log(err);
@@ -21000,30 +21039,37 @@
 	  value: true
 	});
 	exports.default = imageService;
-	imageService.$inject = ['$http', 'apiUrl', '$cacheFactory'];
+	imageService.$inject = ['$http', 'apiUrl' /*, '$cacheFactory'*/];
 	
-	function imageService($http, apiUrl, $cacheFactory) {
-	  var cache = $cacheFactory.get('$http');
+	//TODO: revisit caching
+	
+	function imageService($http, apiUrl /*, $cacheFactory*/) {
+	  //const cache = $cacheFactory.get('$http');
 	
 	  return {
-	    //TODO remove getAll if this isn't used
-	    // getAll(){
-	    //   return $http.get(`${apiUrl}/images`)
-	    //     .then(response=>response.data)
-	    //     .catch(err=>console.log(err));
-	    // },
 	    getAlbumContent: function getAlbumContent(albumId) {
-	      return $http.get(apiUrl + '/albums/' + albumId + '/content', { cache: true }).then(function (response) {
+	      return $http.get(apiUrl + '/albums/' + albumId + '/content' /*, {cache: true}*/).then(function (response) {
 	        return response.data;
 	      }).catch(function (err) {
 	        return console.log(err);
 	      });
 	    },
 	    add: function add(image) {
-	      var albumId = image.album;
-	      cache.remove(apiUrl + '/albums/' + albumId + '/content');
+	      //const albumId = image.album;
+	      //cache.remove(`${apiUrl}/albums/${albumId}/content`);
 	
 	      return $http.post(apiUrl + '/images', image).then(function (response) {
+	        return response.data;
+	      }).catch(function (err) {
+	        return console.log(err);
+	      });
+	    },
+	    remove: function remove(image) {
+	      var imageId = image._id;
+	      //const albumId = image.album;
+	      //cache.remove(`${apiUrl}/albums/${albumId}/content`);
+	
+	      return $http.delete(apiUrl + '/images/' + imageId).then(function (response) {
 	        return response.data;
 	      }).catch(function (err) {
 	        return console.log(err);

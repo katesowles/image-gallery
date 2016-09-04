@@ -19,6 +19,8 @@ export default function albumService($http, apiUrl/*, $cacheFactory*/){
         .catch(err=>console.log(err));
     },
     remove(albumId){
+      //cache.remove(`${apiUrl}/albums`);
+  
       return $http.delete(`${apiUrl}/albums/${albumId}`)
         .then(response=>response.data)
         .catch(err=>console.log(err));
