@@ -1,17 +1,19 @@
-albumService.$inject = ['$http', 'apiUrl', '$cacheFactory'];
+albumService.$inject = ['$http', 'apiUrl'/*, '$cacheFactory'*/];
 
-export default function albumService($http, apiUrl, $cacheFactory){
-  const cache = $cacheFactory.get('$http');
+//TODO: revisit caching on GETs
+
+export default function albumService($http, apiUrl/*, $cacheFactory*/){
+  //const cache = $cacheFactory.get('$http');
 
   return {
     getAll(){
-      return $http.get(`${apiUrl}/albums`, {cache: true})
+      return $http.get(`${apiUrl}/albums`/*, {cache: true}*/)
         .then(response=>response.data)
         .catch(err=>console.log(err));
     },
     add(album){
-      cache.remove(`${apiUrl}/albums`);
-      
+      //cache.remove(`${apiUrl}/albums`);
+
       return $http.post(`${apiUrl}/albums`, album)
         .then(response=>response.data)
         .catch(err=>console.log(err));

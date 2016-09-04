@@ -34,7 +34,9 @@ function controller(imageService, $state){
         if(data.length){
           this.title = data[0].album.title;
         } else {
-          this.title = 'Album with no pictures in it';
+          //TODO: Find a more elegant way to pass the album title
+          //when the album does not have images in it
+          this.title = '';
         }
       })
       .catch(err=>console.log(err));
@@ -51,7 +53,7 @@ function controller(imageService, $state){
         const index = this.images.findIndex(image=>image._id === deleted._id);
         if(index !== -1){
           this.images.splice(index, 1);
-        } 
+        }
       })
       .catch(err=>console.log(err));
   };
