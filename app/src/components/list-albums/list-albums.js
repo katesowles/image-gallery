@@ -10,6 +10,7 @@ controller.$inject = ['albumService'];
 
 function controller(albumService){
   this.styles = styles;
+
   albumService.getAll()
     .then(albums=>this.albums=albums)
     .catch(err=>console.log(err));
@@ -18,5 +19,9 @@ function controller(albumService){
     albumService.add(albumToAdd)
       .then(addedAlbum=>this.albums.push(addedAlbum))
       .catch(err=>console.log(err));
+  };
+
+  this.remove = ()=>{
+    console.log('remove func fired');
   };
 }
