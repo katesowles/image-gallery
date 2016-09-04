@@ -2,6 +2,7 @@
     <h2>{{$ctrl.info.title}}</h2>
     <p>{{$ctrl.info.description}}</p>
     <p>
+<!-- TODO: Add delete confirmation dialog for better user experience -->
       <a ng-href="{{$ctrl.info.link}}">View Image</a>
       <md-button ng-click="$ctrl.remove($ctrl.info)">Delete</md-button>
     </p>
