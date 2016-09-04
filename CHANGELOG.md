@@ -1,6 +1,11 @@
 # Change log
 All notable changes to this project will be documented in this file
 
+## 1.4.0 - 2016-09-03
+Added
+- User interface and functionality to add/delete a photo album
+- Can now delete individual images from the album's list view
+
 ## 1.3.0 - 2016-08-31
 Added
 - Adding image is now persistent and connected to a DB

@@ -19,7 +19,7 @@
   <!-- Image and image info -->
   <section>
     <span ng-repeat="image in $ctrl.images">
-      <list ng-if="$ctrl.display === 'list'" info="image"></list>
+      <list ng-if="$ctrl.display === 'list'" info="image" remove=$ctrl.remove></list>
       <thumbnail ng-if="$ctrl.display === 'thumbnail'" info="image"></thumbnail>
       <gallery ng-if="$ctrl.display === 'gallery'" info="image"></gallery>
     </span>

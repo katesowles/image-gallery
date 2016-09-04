@@ -6,10 +6,20 @@
   max-width: 650px; }
 
 ._29txRqz316H0zhZnrjR6Gb md-radio-group {
-  margin-bottom: 3%; }
+  margin-bottom: 5%; }
+
+._29txRqz316H0zhZnrjR6Gb md-radio-button {
+  outline-color: #303030;
+  padding-right: 1%;
+  margin-right: 2%; }
 ._1t2g1fkcoNeTsLKlcL7UQ- img {
   height: 40%;
   width: 40%; }
+.z2FNsF9wbpmZHvLN_Tv9k md-radio-group {
+  margin-bottom: 3%; }
+
+.z2FNsF9wbpmZHvLN_Tv9k md-radio-button {
+  outline-color: #303030; }
 ._3Em0oDAUzAWdRfSUcIoE1V img {
   width: 80px;
   height: 100px; }
@@ -32,6 +42,12 @@
 ._37FOYshd97XLxVXjHo_ZRG a:hover {
   background: white;
   color: #333; }
+
+._37FOYshd97XLxVXjHo_ZRG #list, ._37FOYshd97XLxVXjHo_ZRG .confirmMessage {
+  text-align: right; }
+
+._37FOYshd97XLxVXjHo_ZRG .confirmMessage {
+  color: #ff4d4d; }
 md-content {
   text-align: center;
   margin: 2%;

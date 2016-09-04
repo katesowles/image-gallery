@@ -18,7 +18,7 @@ function controller(imageService, $state){
   this.uiOnParamsChanged = (params)=>{
     //TODO find a way to check for invaliad params
     //i.e. not thumbnail, gallery, or list
-    this.display = params.display;
+    this.display = params.display || 'list';
   };
 
   this.changeDisplay = (selectedDisplay)=>{
@@ -34,7 +34,9 @@ function controller(imageService, $state){
         if(data.length){
           this.title = data[0].album.title;
         } else {
-          this.title = 'Album with no pictures in it';
+          //TODO: Find a more elegant way to pass the album title
+          //when the album does not have images in it
+          this.title = '';
         }
       })
       .catch(err=>console.log(err));
@@ -42,6 +44,17 @@ function controller(imageService, $state){
   this.add = imageToAdd=>{
     imageService.add(imageToAdd)
       .then(addedImage=>this.images.push(addedImage))
+      .catch(err=>console.log(err));
+  };
+
+  this.remove = imageToDelete=>{
+    imageService.remove(imageToDelete)
+      .then(deleted=>{
+        const index = this.images.findIndex(image=>image._id === deleted._id);
+        if(index !== -1){
+          this.images.splice(index, 1);
+        }
+      })
       .catch(err=>console.log(err));
   };
 }

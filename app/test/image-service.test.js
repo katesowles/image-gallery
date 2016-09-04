@@ -19,24 +19,6 @@ describe('image service', ()=>{
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  //TODO remove if getAll() ends up not being used
-  // it('GETs all images', done=>{
-  //   const images = ['test', 'test1', 'test2'];
-  //
-  //   $httpBackend
-  //     .expectGET( '/api/images' )
-  //     .respond(images);
-  //
-  //   imageService.getAll()
-  //     .then(allImages=>{
-  //       assert.deepEqual(allImages, images);
-  //       done();
-  //     })
-  //     .catch(done);
-  //
-  //   $httpBackend.flush();
-  // });
-
   it('GETs all images with a specific album id', done=>{
     const images = ['test', 'test1', 'test2'];
     const albumId = '123';
@@ -66,6 +48,24 @@ describe('image service', ()=>{
     imageService.add(newImage)
       .then(addedImage=>{
         assert.deepEqual(addedImage, mockResponse);
+        done();
+      })
+      .catch(done);
+
+    $httpBackend.flush();
+  });
+
+  it('removes an image', done=>{
+    const imageToDelete = {_id: '123', title: 'Title', description: 'Description', link: 'bomb.com'};
+    const mockResponse = {__v: 0, title: 'Title', description: 'Description', link: 'bomb.com'};
+
+    $httpBackend
+      .expectDELETE(`/api/images/${imageToDelete._id}`)
+      .respond(mockResponse);
+
+    imageService.remove(imageToDelete)
+      .then(deletedImage=>{
+        assert.deepEqual(deletedImage, mockResponse);
         done();
       })
       .catch(done);

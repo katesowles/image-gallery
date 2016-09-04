@@ -20,7 +20,6 @@ module.exports = router
   })
 
   // GET all images with a specific album id
-  //TODO add function to verify the album exists
   .get('/:id/content', (req, res, next)=>{
     Image.find({album: req.params.id})
       .populate({path: 'album', select: 'title'})
@@ -40,8 +39,14 @@ module.exports = router
       .catch(next);
   })
 
+  //TODO: function to make sure the album exists
   .delete('/:id', (req, res, next)=>{
-    Album.findByIdAndRemove(req.params.id)
+    //remove all images in the album
+    Image.find({album: req.params.id}).remove()
+      .then(()=>{
+        //delete the album
+        return Album.findByIdAndRemove(req.params.id);
+      })
       .then(deleted=>res.send(deleted))
       .catch(next);
   });
