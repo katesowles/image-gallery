@@ -21,7 +21,14 @@ function controller(albumService){
       .catch(err=>console.log(err));
   };
 
-  this.remove = album=>{
-    console.log('remove func fired ', album);
+  this.remove = albumId=>{
+    albumService.remove(albumId)
+      .then(deleted=>{
+        const index = this.albums.findIndex(album=>album._id === deleted._id);
+        if(index !== -1){
+          this.albums.splice(index, 1);
+        }
+      })
+      .catch(err=>console.log(err));
   };
 }

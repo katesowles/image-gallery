@@ -17,6 +17,11 @@ export default function albumService($http, apiUrl/*, $cacheFactory*/){
       return $http.post(`${apiUrl}/albums`, album)
         .then(response=>response.data)
         .catch(err=>console.log(err));
+    },
+    remove(albumId){
+      return $http.delete(`${apiUrl}/albums/${albumId}`)
+        .then(response=>response.data)
+        .catch(err=>console.log(err));
     }
   };
 }
