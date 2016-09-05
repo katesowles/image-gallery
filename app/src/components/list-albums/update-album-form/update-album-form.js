@@ -12,11 +12,16 @@ export default{
 
     this.submit = ()=>{
       //TODO see about refactoring this later
-      //add checks to make sure the updated title !== title
       if(this.album){
         const id = this.info._id;
+        const originalTitle = this.info.title;
         this.album._id = id;
-        
+
+        if(this.album.title === originalTitle){
+          this.isInvalid = true;
+          return;
+        }
+
         if(this.album.title !== ''){
           this.isInvalid = false;
           this.update(this.album);
