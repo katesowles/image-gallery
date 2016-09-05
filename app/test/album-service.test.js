@@ -72,4 +72,23 @@ describe('album service', ()=>{
     $httpBackend.flush();
   });
 
+  it('Updates an album', done=>{
+    const albumToUpdate = {_id: '123', title: 'Updated'};
+    const mockResponse = {__v: 0, title: 'Updated'};
+    const albumId = albumToUpdate._id;
+
+    $httpBackend
+      .expectPUT(`/api/albums/${albumId}`, albumToUpdate)
+      .respond(mockResponse);
+
+    albumService.update(albumToUpdate)
+      .then(updatedAlbum=>{
+        assert.deepEqual(updatedAlbum, mockResponse);
+        done();
+      })
+      .catch(done);
+
+    $httpBackend.flush();
+  });
+
 });
