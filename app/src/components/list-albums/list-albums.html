@@ -1,17 +1,25 @@
 <div ng-class=$ctrl.styles.listAlbums>
-  <h1>Select Album</h1>
+  <h1>Albums</h1>
+  <p>Click on the album name to see the pictures</p>
 <!-- List of albums -->
   <section id="list">
       <div ng-repeat="album in $ctrl.albums">
-        <a ui-sref="view-album({albumId: album._id, display: 'list'})">{{album.title}}</a>
+        <p>
+          <a ui-sref="view-album({albumId: album._id, display: 'list'})">{{album.title}}</a>
+        </p>
           <md-button ng-click="showWarning=!showWarning">Delete</md-button>
-
+          <md-button ng-click="showUpdate=!showUpdate">Edit</md-button>
           <!-- Warning message when deleting an album -->
           <div ng-show="showWarning">
             <p class="confirmMessage">Are you sure you want to delete this album?</p>
               <md-button ng-click="$ctrl.remove(album._id)">Confirm Delete</md-button>
               <md-button ng-click="showWarning=false">Keep Album</md-button>
           </div>
+          <!-- Update album form -->
+          <div ng-show="showUpdate">
+            <update-album-form update="$ctrl.update" info="album"></update-album-form>
+          </div>
+
       </div>
   </section>
 
