@@ -1,4 +1,5 @@
-<section ng-class="$ctrl.styles.list">
+<span ng-class="$ctrl.styles.list">
+  <div class="item">
     <h2>{{$ctrl.info.title}}</h2>
     <p>{{$ctrl.info.description}}</p>
     <div>
@@ -7,9 +8,9 @@
     </div>
     <!-- Warning message when deleting an image -->
     <div ng-show="showWarning">
-      <p class="confirmMessage">Are you sure you want to delete this photo?</p>
+      <p class="confirmMessage">Are you sure?</p>
         <md-button ng-click="$ctrl.remove($ctrl.info)">Confirm Delete</md-button>
         <md-button ng-click="showWarning=false">Keep Photo</md-button>
     </div>
-    <md-divider></md-divider>
-</section>
+  </div>
+</span>
