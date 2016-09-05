@@ -1,0 +1,20 @@
+<section ng-class=$ctrl.styles.showAlbums>
+  <h2>Your Albums</h2>
+  <h5>Select the album to view</h5>
+
+  <div ng-repeat="album in $ctrl.albums">
+    <a ui-sref="show-album({albumId: album._id, display: 'text'})"><h4>{{album.title}}</h4></a>
+
+    <button ng-click="$ctrl.remove(album._id)">Delete Album</button>
+    <button ng-click="showUpdate=!showUpdate">Edit Album</button>
+
+    <div ng-show="showUpdate">
+      <update-album update="$ctrl.update" collection="album"> <!-- form will go here --> </update-album>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <add-album add="$ctrl.add"></add-album>
+</section>

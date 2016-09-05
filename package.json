@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --inline",
+    "start": "API_URL=http://localhost:3000/api webpack-dev-server --inline",
     "test": "karma start"
   },
   "repository": {
@@ -27,6 +27,7 @@
     "css-loader": "^0.23.1",
     "eslint": "^3.3.1",
     "eslint-loader": "^1.5.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.22.0",
     "karma": "^1.2.0",
@@ -46,6 +47,7 @@
   },
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
     "body-parser": "^1.15.2",
     "camelcase": "^3.0.0",
     "express": "^4.14.0",

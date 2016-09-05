@@ -2,6 +2,7 @@
 
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const EnvironmentPlugin = require('webpack').EnvironmentPlugin;
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: './app/src/main.js',
@@ -14,7 +15,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './app/src/index.html'
     }),
-    new EnvironmentPlugin(['API_URL'])
+    new EnvironmentPlugin(['API_URL']),
+    new ExtractTextPlugin('/styles/bundle.css')
   ],
   module: {
     preLoaders: [{
@@ -31,12 +33,14 @@ module.exports = {
       }
     },
     {
-      test: /\.css$/,
-      loader: 'style!css?sourceMap'
+      test: /\.scss$/,
+      loader: ExtractTextPlugin.extract('style!', 'css?sourceMap!sass?sourceMap')
+      // loader: 'style!css?sourceMap!sass?sourceMap'
     },
     {
-      test: /\.scss$/,
-      loader: 'style!css?sourceMap!sass?sourceMap'
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract('style!', 'css?sourceMap!')
+      // loader: 'style!css?sourceMap'
     },
     {
       test: /\.html$/,
