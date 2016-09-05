@@ -17,33 +17,27 @@ export default{
     resetImage();
 
     this.submit = ()=>{
-      console.log(this.info);
-      //const originalTitle = this.info.title;
-      //const originalDescription = this.info.description;
-      //const originalLink = this.info.link;
-
-      //console.log(originalTitle);
-      //console.log(originalDescription);
-      //console.log(originalLink);
-
-      const id = this.info._id;
-      this.image._id = id;
-      console.log(this.image);
-      this.update(this.image);
-      resetImage();
       //TODO see about refactoring this later
-      // if('title' && 'description' && 'link' in this.image){
-      //   if(this.image.title && this.image.description && this.image.link !== ''){
-      //     this.isInvalid = false;
-      //     this.image.album = this.id;
-      //     this.add(this.image);
-      //     resetImage();
-      //   } else {
-      //     this.isInvalid = true;
-      //   }
-      // } else {
-      //   this.isInvalid = true;
-      // }
+      const imageId = this.info._id;
+      this.image._id = imageId;
+      console.log(this.image);
+
+      const originalTitle = this.info.title;
+      const originalDescription = this.info.description;
+      const originalLink = this.info.link;
+
+      //not blank
+      if(this.image.title || this.image.description || this.image.link){
+        //doesn't match original object
+        if((this.image.title !== originalTitle) && (this.image.description !== originalDescription) && (this.image.link !== originalLink)){
+          this.update(this.image);
+          resetImage();
+        } else {
+          this.isInvalid = true;
+        }
+      } else {
+        this.isInvalid = true;
+      }
     };
   }
 };
