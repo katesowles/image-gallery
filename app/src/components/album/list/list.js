@@ -5,7 +5,8 @@ export default{
   template,
   bindings: {
     info: '<',
-    remove: '<'
+    remove: '<',
+    update: '<'
   },
   controller(){
     this.styles = styles;

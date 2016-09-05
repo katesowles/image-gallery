@@ -4,19 +4,33 @@ import styles from './update-image-form.scss';
 export default{
   template,
   bindings: {
-    //add: '<',
-    //id: '<'
+    update: '<',
+    info: '<'
   },
   controller(){
     this.styles = styles;
 
-    // const resetImage = ()=>{
-    //   this.image = {};
-    // };
-    //
-    // resetImage();
+    const resetImage = ()=>{
+      this.image = {};
+    };
+
+    resetImage();
 
     this.submit = ()=>{
+      console.log(this.info);
+      //const originalTitle = this.info.title;
+      //const originalDescription = this.info.description;
+      //const originalLink = this.info.link;
+
+      //console.log(originalTitle);
+      //console.log(originalDescription);
+      //console.log(originalLink);
+
+      const id = this.info._id;
+      this.image._id = id;
+      console.log(this.image);
+      this.update(this.image);
+      resetImage();
       //TODO see about refactoring this later
       // if('title' && 'description' && 'link' in this.image){
       //   if(this.image.title && this.image.description && this.image.link !== ''){

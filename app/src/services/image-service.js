@@ -33,7 +33,7 @@ export default function imageService($http, apiUrl/*, $cacheFactory*/){
       //const albumId = image.album;
       //cache.remove(`${apiUrl}/albums/${albumId}/content`);
 
-      return $http.put(`${apiUrl}/images/${imageId}`)
+      return $http.put(`${apiUrl}/images/${imageId}`, image)
         .then(response=>response.data)
         .catch(err=>console.log(err));
     }

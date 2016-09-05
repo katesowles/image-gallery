@@ -67,4 +67,15 @@ function controller(imageService, $state){
       })
       .catch(err=>console.log(err));
   };
+
+  this.update = imageToUpdate=>{
+    imageService.update(imageToUpdate)
+      .then(updated=>{
+        const index = this.images.findIndex(image=>image._id === updated._id);
+        if(index !== -1){
+          this.images.splice(index, 1, updated);
+        }
+      })
+      .catch(err=>console.log(err));
+  };
 }
