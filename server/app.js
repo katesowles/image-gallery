@@ -2,6 +2,7 @@ const express = require('express');
 const app = module.exports = express();
 const morgan = require('morgan');
 const images = require('./routes/images');
+const albums = require('./routes/albums');
 
 app.use(morgan('dev'));
 
@@ -17,6 +18,7 @@ app.use((request, response, next) => {
 });
 
 app.use('/api/images', images);
+app.use('/api/albums', albums);
 
 // eslint-disable-next-line
 app.use((err, request, response, next) => {
