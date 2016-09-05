@@ -72,4 +72,23 @@ describe('image service', ()=>{
 
     $httpBackend.flush();
   });
+
+  it('Updates an image', done=>{
+    const imageToUpdate = {_id: '123', title: 'Updated'};
+    const mockResponse = {__v: 0, title: 'Updated'};
+    const imageId = imageToUpdate._id;
+
+    $httpBackend
+      .expectPUT(`/api/images/${imageId}`, imageToUpdate)
+      .respond(mockResponse);
+
+    imageService.update(imageToUpdate)
+      .then(updatedImage=>{
+        assert.deepEqual(updatedImage, mockResponse);
+        done();
+      })
+      .catch(done);
+
+    $httpBackend.flush();
+  });
 });
