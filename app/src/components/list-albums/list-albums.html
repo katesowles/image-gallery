@@ -8,7 +8,8 @@
           <a ui-sref="view-album({albumId: album._id, display: 'list'})">{{album.title}}</a>
         </p>
           <md-button ng-click="showWarning=!showWarning">Delete</md-button>
-          <md-button ng-click="showUpdate=!showUpdate">Edit</md-button>
+          <md-button ng-hide="showUpdate" ng-click="showUpdate=!showUpdate">Edit</md-button>
+          <md-button ng-show="showUpdate" ng-click="showUpdate=false">Cancel Edit</md-button>
           <!-- Warning message when deleting an album -->
           <div ng-show="showWarning">
             <p class="confirmMessage">Are you sure?</p>
