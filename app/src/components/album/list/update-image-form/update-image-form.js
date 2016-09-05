@@ -20,12 +20,12 @@ export default{
       //TODO see about refactoring this later
       const imageId = this.info._id;
       this.image._id = imageId;
-      console.log(this.image);
 
       const originalTitle = this.info.title;
       const originalDescription = this.info.description;
       const originalLink = this.info.link;
 
+      //form validation
       //not blank
       if(this.image.title || this.image.description || this.image.link){
         //doesn't match original object
