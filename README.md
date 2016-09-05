@@ -1,6 +1,8 @@
 # Image Gallery App
 
-### This is an image gallery app that uses MongoDB, Express, AngularJS, node.js, and Webpack.
+[Live site here](https://photo-album-app.herokuapp.com/#/)
+
+### This is an image gallery app that uses MongoDB, Express, AngularJS, node.js, Webpack, and deployed via Heroku.
 
 ### Users can CRUD photo albums and images within the photo albums
 
