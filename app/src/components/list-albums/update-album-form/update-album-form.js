@@ -10,27 +10,25 @@ export default{
   controller(){
     this.styles = styles;
 
+    const resetAlbum = ()=>{
+      this.album = {};
+    };
+
+    resetAlbum();
+
     this.submit = ()=>{
-      //TODO see about refactoring this later
-      if(this.album){
-        const id = this.info._id;
-        const originalTitle = this.info.title;
-        this.album._id = id;
+      const albumId = this.info._id;
+      const originalTitle = this.info.title;
+      this.album._id = albumId;
 
-        if(this.album.title === originalTitle){
-          this.isInvalid = true;
-          return;
-        }
-
-        if(this.album.title !== ''){
-          this.isInvalid = false;
-          this.update(this.album);
-        } else {
-          this.isInvalid = true;
-        }
+      if(this.album.title && (this.album.title !== originalTitle)){
+        this.isInvalid = false;
+        this.update(this.album);
+        resetAlbum();
       } else {
         this.isInvalid = true;
       }
+
     };
   }
 };
