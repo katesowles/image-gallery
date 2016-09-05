@@ -31,4 +31,16 @@ function controller(albumService){
       })
       .catch(err=>console.log(err));
   };
+
+  this.update = albumToUpdate=>{
+    albumService.update(albumToUpdate)
+      .then(updatedAlbum=>{
+        if(!updatedAlbum) return;
+        const index = this.albums.findIndex(album=>album._id === updatedAlbum._id);
+        if(index !== -1){
+          this.albums.splice(index, 1, updatedAlbum);
+        }
+      })
+      .catch(err=>console.log(err));
+  };
 }

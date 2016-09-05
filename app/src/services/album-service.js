@@ -20,8 +20,15 @@ export default function albumService($http, apiUrl/*, $cacheFactory*/){
     },
     remove(albumId){
       //cache.remove(`${apiUrl}/albums`);
-  
+
       return $http.delete(`${apiUrl}/albums/${albumId}`)
+        .then(response=>response.data)
+        .catch(err=>console.log(err));
+    },
+    update(album){
+      const albumId = album._id;
+
+      return $http.put(`${apiUrl}/albums/${albumId}`, album)
         .then(response=>response.data)
         .catch(err=>console.log(err));
     }

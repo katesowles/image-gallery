@@ -15,6 +15,8 @@
 ._1t2g1fkcoNeTsLKlcL7UQ- img {
   height: 40%;
   width: 40%; }
+._1aRw_8d3S7McjP0G-8MWpj .confirmMessage {
+  color: #ff4d4d; }
 .z2FNsF9wbpmZHvLN_Tv9k md-radio-group {
   margin-bottom: 3%; }
 
@@ -43,11 +45,12 @@
   background: white;
   color: #333; }
 
-._37FOYshd97XLxVXjHo_ZRG #list, ._37FOYshd97XLxVXjHo_ZRG .confirmMessage {
-  text-align: right; }
-
 ._37FOYshd97XLxVXjHo_ZRG .confirmMessage {
   color: #ff4d4d; }
+._3yAZViovEBzFWYBOo34SxC {
+  margin: 3% auto; }
+  ._3yAZViovEBzFWYBOo34SxC #error {
+    color: #ff4d4d; }
 md-content {
   text-align: center;
   margin: 2%;
