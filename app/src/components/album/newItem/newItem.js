@@ -5,7 +5,7 @@ export default {
   template,
   bindings: {
     // collection: '=',
-    add: '<',
+    add: '<'
   },
   controller() {
     this.styles = styles;
@@ -21,15 +21,5 @@ export default {
       this.add(this.image);
       this.reset();
     };
-
-    // this.addNew = () => {
-    //   // image = {
-    //   //   title: this.title,
-    //   //   caption: this.caption,
-    //   //   link: this.link
-    //   // };
-    //   this.add(this.image);
-    //   this.reset();
-    // };
   }
 };

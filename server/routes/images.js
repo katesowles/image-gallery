@@ -20,14 +20,14 @@ module.exports = router
   })
 
   // add new image
-  .post('/', (request, response, next) => {
+  .post('/', parser, (request, response, next) => {
     new Image(request.body).save()
-      .then(saved => response.sned(saved))
+      .then(saved => response.send(saved))
       .catch(next);
   })
 
   // update an image
-  .put('/:id', (request, response, next) => {
+  .put('/:id', parser, (request, response, next) => {
     Image.findByIdAndUpdate(request.params.id, request.body, {new:true, runValidators:true})
       .then(updated => response.send(updated))
       .catch(next);

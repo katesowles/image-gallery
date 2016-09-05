@@ -44,34 +44,53 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
 	
-	var _angular = __webpack_require__(1);
+	var _angular = __webpack_require__(2);
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _gallery = __webpack_require__(3);
+	var _gallery = __webpack_require__(4);
 	
 	var _gallery2 = _interopRequireDefault(_gallery);
 	
-	__webpack_require__(35);
+	__webpack_require__(36);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	_angular2.default.module(_gallery2.default);
 	
+	module.value('apiUrl', (undefined) || '/api');
+	
 	_angular2.default.bootstrap(document, [_gallery2.default]);
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	__webpack_require__(2);
-	module.exports = angular;
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
 
 
 /***/ },
 /* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(3);
+	module.exports = angular;
+
+
+/***/ },
+/* 3 */
 /***/ function(module, exports) {
 
 	/**
@@ -31844,7 +31863,7 @@
 	!window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31853,22 +31872,26 @@
 	  value: true
 	});
 	
-	var _angular = __webpack_require__(1);
+	var _angular = __webpack_require__(2);
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _components = __webpack_require__(4);
+	var _components = __webpack_require__(5);
 	
 	var _components2 = _interopRequireDefault(_components);
 	
+	var _services = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./services\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _services2 = _interopRequireDefault(_services);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var app = _angular2.default.module('gallery', [_components2.default]);
+	var app = _angular2.default.module('gallery', [_components2.default, _services2.default]);
 	
 	exports.default = app.name;
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31877,22 +31900,22 @@
 	    value: true
 	});
 	
-	var _angular = __webpack_require__(1);
+	var _angular = __webpack_require__(2);
 	
 	var _angular2 = _interopRequireDefault(_angular);
 	
-	var _camelcase = __webpack_require__(5);
+	var _camelcase = __webpack_require__(6);
 	
 	var _camelcase2 = _interopRequireDefault(_camelcase);
 	
-	var _path = __webpack_require__(6);
+	var _path = __webpack_require__(7);
 	
 	var _path2 = _interopRequireDefault(_path);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// this is a webpack specific require construct
-	var reqContext = __webpack_require__(8);
+	var reqContext = __webpack_require__(9);
 	
 	var components = _angular2.default.module('components', []);
 	
@@ -31904,7 +31927,7 @@
 	exports.default = components.name;
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -31966,7 +31989,7 @@
 
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -32194,10 +32217,10 @@
 	    }
 	;
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -32363,16 +32386,16 @@
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./album/album.js": 9,
-		"./album/full/full.js": 15,
-		"./album/newItem/newItem.js": 19,
-		"./album/text/text.js": 23,
-		"./album/thumb/thumb.js": 27,
-		"./app/app.js": 31
+		"./album/album.js": 10,
+		"./album/full/full.js": 16,
+		"./album/newItem/newItem.js": 20,
+		"./album/text/text.js": 24,
+		"./album/thumb/thumb.js": 28,
+		"./app/app.js": 32
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -32385,11 +32408,11 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 8;
+	webpackContext.id = 9;
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32398,11 +32421,11 @@
 	  value: true
 	});
 	
-	var _album = __webpack_require__(10);
+	var _album = __webpack_require__(11);
 	
 	var _album2 = _interopRequireDefault(_album);
 	
-	var _album3 = __webpack_require__(11);
+	var _album3 = __webpack_require__(12);
 	
 	var _album4 = _interopRequireDefault(_album3);
 	
@@ -32435,22 +32458,22 @@
 	};
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <div class=\"picker\">\n    <label><input type=\"radio\" ng-model=\"$ctrl.view\" value=\"text\">Text</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.view\" value=\"thumb\">Thumb</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.view\" value=\"full\">Full</label>\n  </div>\n\n  <div class=\"display\">\n    <text ng-if=\"$ctrl.view === 'text'\" collection=\"$ctrl.collection\"></text>\n    <thumb ng-if=\"$ctrl.view === 'thumb'\" collection=\"$ctrl.collection\"></thumb>\n    <full ng-if=\"$ctrl.view === 'full'\" collection=\"$ctrl.collection\"></full>\n  </div>\n\n  <new-item add=\"$ctrl.add\"></new-item>\n</div>\n";
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(12);
+	var content = __webpack_require__(13);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(14)(content, {});
+	var update = __webpack_require__(15)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -32467,10 +32490,10 @@
 	}
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(13)();
+	exports = module.exports = __webpack_require__(14)();
 	// imports
 	
 	
@@ -32481,7 +32504,7 @@
 
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports) {
 
 	/*
@@ -32537,7 +32560,7 @@
 
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -32789,7 +32812,7 @@
 
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32798,11 +32821,11 @@
 	  value: true
 	});
 	
-	var _full = __webpack_require__(16);
+	var _full = __webpack_require__(17);
 	
 	var _full2 = _interopRequireDefault(_full);
 	
-	var _full3 = __webpack_require__(17);
+	var _full3 = __webpack_require__(18);
 	
 	var _full4 = _interopRequireDefault(_full3);
 	
@@ -32834,22 +32857,22 @@
 	};
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports) {
 
 	module.exports = "<section>\n  <h2>Full Preview</h2>\n  <div class=\"browseCtrls\">\n    <button ng-click=\"full.showPrev()\">Previous</button>\n    <button ng-click=\"full.showNext()\">Next</button>\n  </div>\n\n  <img class=\"full\" src=\"{{full.collection[full.index].link}}\" alt=\"{{full.collection[full.index].title}}\" />\n  <h3>{{full.collection[full.index].title}}</h3>\n  <p>{{full.collection[full.index].caption}}</p>\n</section>\n";
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(18);
+	var content = __webpack_require__(19);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(14)(content, {});
+	var update = __webpack_require__(15)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -32866,10 +32889,10 @@
 	}
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(13)();
+	exports = module.exports = __webpack_require__(14)();
 	// imports
 	
 	
@@ -32880,7 +32903,7 @@
 
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32889,11 +32912,11 @@
 	  value: true
 	});
 	
-	var _newItem = __webpack_require__(20);
+	var _newItem = __webpack_require__(21);
 	
 	var _newItem2 = _interopRequireDefault(_newItem);
 	
-	var _newItem3 = __webpack_require__(21);
+	var _newItem3 = __webpack_require__(22);
 	
 	var _newItem4 = _interopRequireDefault(_newItem3);
 	
@@ -32935,22 +32958,22 @@
 	};
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports) {
 
 	module.exports = "<section>\n  <h1>New Image</h1>\n  <!-- to do form validate or process errors here? -->\n  <form name=\"new\" ng-submit=\"$ctrl.submit()\">\n    <input type=\"text\" ng-model=\"$ctrl.image.title\" placeholder=\"image title\">\n    <input type=\"text\" ng-model=\"$ctrl.image.caption\" placeholder=\"image caption\">\n    <input type=\"text\" ng-model=\"$ctrl.image.link\" placeholder=\"image link\">\n    <button type=\"submit\">Add</button>\n  </form>\n</section>\n";
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(22);
+	var content = __webpack_require__(23);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(14)(content, {});
+	var update = __webpack_require__(15)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -32967,10 +32990,10 @@
 	}
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(13)();
+	exports = module.exports = __webpack_require__(14)();
 	// imports
 	
 	
@@ -32981,7 +33004,7 @@
 
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32990,11 +33013,11 @@
 	  value: true
 	});
 	
-	var _text = __webpack_require__(24);
+	var _text = __webpack_require__(25);
 	
 	var _text2 = _interopRequireDefault(_text);
 	
-	var _text3 = __webpack_require__(25);
+	var _text3 = __webpack_require__(26);
 	
 	var _text4 = _interopRequireDefault(_text3);
 	
@@ -33012,22 +33035,22 @@
 	};
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports) {
 
 	module.exports = "<section>\n  <h2>Text Only</h2>\n  <div class=\"indivImg\" ng-repeat=\"image in text.collection\">\n    <a href=\"{{text.image.link}}\"><h3>{{image.title}}</h3></a>\n    <p>{{image.caption}}</p>\n  </div>\n</section>\n";
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(26);
+	var content = __webpack_require__(27);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(14)(content, {});
+	var update = __webpack_require__(15)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -33044,10 +33067,10 @@
 	}
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(13)();
+	exports = module.exports = __webpack_require__(14)();
 	// imports
 	
 	
@@ -33058,7 +33081,7 @@
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33067,11 +33090,11 @@
 	  value: true
 	});
 	
-	var _thumb = __webpack_require__(28);
+	var _thumb = __webpack_require__(29);
 	
 	var _thumb2 = _interopRequireDefault(_thumb);
 	
-	var _thumb3 = __webpack_require__(29);
+	var _thumb3 = __webpack_require__(30);
 	
 	var _thumb4 = _interopRequireDefault(_thumb3);
 	
@@ -33089,22 +33112,22 @@
 	};
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports) {
 
 	module.exports = "<section>\n  <h2>Thumbnails Only</h2>\n  <span ng-repeat=\"image in thumb.collection\">\n    <img class=\"thumb\" src=\"{{image.link}}\" alt=\"{{image.title}}\" />\n  </span>\n</section>\n";
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(30);
+	var content = __webpack_require__(31);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(14)(content, {});
+	var update = __webpack_require__(15)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -33121,10 +33144,10 @@
 	}
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(13)();
+	exports = module.exports = __webpack_require__(14)();
 	// imports
 	
 	
@@ -33135,7 +33158,7 @@
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33144,11 +33167,11 @@
 	  value: true
 	});
 	
-	var _app = __webpack_require__(32);
+	var _app = __webpack_require__(33);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _app3 = __webpack_require__(33);
+	var _app3 = __webpack_require__(34);
 	
 	var _app4 = _interopRequireDefault(_app3);
 	
@@ -33160,29 +33183,24 @@
 	    this.styles = _app4.default;
 	  }
 	};
-	
-	// LEFT OVER...
-	// export default {
-	//   controllerAs: 'app',
-	// };
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports) {
 
 	module.exports = "<h1>Image Gallery</h1>\n<h4>Choose your view below</h4>\n<main>\n  <album></album>\n</main>\n";
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(34);
+	var content = __webpack_require__(35);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(14)(content, {});
+	var update = __webpack_require__(15)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -33199,10 +33217,10 @@
 	}
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(13)();
+	exports = module.exports = __webpack_require__(14)();
 	// imports
 	
 	
@@ -33213,16 +33231,16 @@
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(36);
+	var content = __webpack_require__(37);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(14)(content, {});
+	var update = __webpack_require__(15)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -33239,10 +33257,10 @@
 	}
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(13)();
+	exports = module.exports = __webpack_require__(14)();
 	// imports
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i);", ""]);
 	

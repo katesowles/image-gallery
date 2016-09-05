@@ -3,9 +3,9 @@ import styles from './thumb.scss';
 
 export default {
   template,
-  controllerAs: 'thumb',
   bindings: {
-    collection: '='
+    image: '<'
+    // collection: '='
   },
   controller() {
     this.styles = styles;

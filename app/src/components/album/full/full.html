@@ -1,4 +1,4 @@
-<section>
+<!-- <section>
   <h2>Full Preview</h2>
   <div class="browseCtrls">
     <button ng-click="full.showPrev()">Previous</button>
@@ -8,4 +8,10 @@
   <img class="full" src="{{full.collection[full.index].link}}" alt="{{full.collection[full.index].title}}" />
   <h3>{{full.collection[full.index].title}}</h3>
   <p>{{full.collection[full.index].caption}}</p>
+</section> -->
+
+<section ng-class="$ctrl.styles.full">
+  <img src="{{$ctrl.image.link}}" alt="{{$ctrl.image.title}}" />
+  <h3>{{$ctrl.image.title}}</h3>
+  <p>{{$ctrl.image.caption}}</p>
 </section>

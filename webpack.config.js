@@ -1,6 +1,7 @@
 // filename : webpack.config.js
 
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
+const EnvironmentPlugin = require('webpack').EnvironmentPlugin;
 
 module.exports = {
   entry: './app/src/main.js',
@@ -9,9 +10,12 @@ module.exports = {
     filename: 'bundle.js'
   },
   devtool: 'source-map',
-  plugins: [new HtmlWebpackPlugin({
-    template: './app/src/index.html'
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './app/src/index.html'
+    }),
+    new EnvironmentPlugin(['API_URL'])
+  ],
   module: {
     preLoaders: [{
       test: /\.js$/,

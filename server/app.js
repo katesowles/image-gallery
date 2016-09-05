@@ -7,6 +7,7 @@ app.use(morgan('dev'));
 
 app.use(express.static(__dirname + '/dist'));
 
+// CORS stuffs
 app.use((request, response, next) => {
   const url = '*';
   response.header('Access-Control-Allow-Origin', url);
@@ -20,7 +21,5 @@ app.use('/api/images', images);
 // eslint-disable-next-line
 app.use((err, request, response, next) => {
   response.status(err.code || 500)
-  .send({
-    error: err.error || err.message || err
-  });
+  .send({ error: err.error || err.message || err });
 });

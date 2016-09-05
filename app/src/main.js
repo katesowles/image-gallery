@@ -1,7 +1,9 @@
 import angular  from 'angular';
-import app from './gallery';
+import gallery from './gallery';
 import './scss/main.scss';
 
-angular.module(app);
+const module = angular.module(gallery);
 
-angular.bootstrap(document, [app]);
+module.value('apiUrl', process.env.API_URL || '/api');
+
+angular.bootstrap(document, [gallery]);

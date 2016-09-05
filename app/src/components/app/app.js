@@ -7,9 +7,3 @@ export default {
     this.styles = styles;
   }
 };
-
-
-// LEFT OVER...
-// export default {
-//   controllerAs: 'app',
-// };
