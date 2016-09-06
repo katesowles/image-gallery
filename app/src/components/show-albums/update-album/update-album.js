@@ -1,5 +1,5 @@
-import template from './updateAlbum.html';
-import styles from './updateAlbum.html';
+import template from './update-album.html';
+import styles from './update-album.html';
 
 export default {
   template,

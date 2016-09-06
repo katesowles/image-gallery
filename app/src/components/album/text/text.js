@@ -4,7 +4,7 @@ import styles from './text.scss';
 export default {
   template,
   bindings: {
-    info: '<',
+    collection: '<',
     remove: '<',
     update: '<'
   },

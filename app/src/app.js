@@ -3,6 +3,6 @@ import router from 'angular-ui-router';
 import components from './components';
 import services from './services';
 
-const app = angular.module('gallery', [components, services, router]);
+const app = angular.module('gallery', [router, components, services]);
 
 export default app.name;

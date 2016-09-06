@@ -1,5 +1,5 @@
-import template from './showAlbums.html';
-import styles from './showAlbums.scss';
+import template from './show-albums.html';
+import styles from './show-albums.scss';
 
 export default {
   template,

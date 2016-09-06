@@ -3,33 +3,42 @@ configRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
 export default function configRoutes($stateProvider, $urlRouterProvider) {
 
   $stateProvider
-    // landing page
     .state('landing', {
       url: '/',
       views: {
         header: {
-          component: 'mainNav'
+          templateUrl: '../app/src/components/main-nav/main-nav.html',
+          controller: function () {
+            this.styles = '../app/src/components/main-nav/main-nav.scss';
+          }
         },
         main: {
-          component: 'landing'
+          templateUrl: '../app/src/components/landing/landing.html',
+          controller: function () {
+            this.styles = '../app/src/components/landing/landing.scss';
+          }
         }
       }
     })
 
-    // album picker view
     .state('show-albums', {
       url: '/albums',
       views: {
         header: {
-          component: 'mainNav'
+          templateUrl: '../app/src/components/main-nav/main-nav.html',
+          controller: function () {
+            this.styles = '../app/src/components/main-nav/main-nav.scss';
+          }
         },
         main: {
-          component: 'showAlbums'
+          templateUrl: '../app/src/components/show-albums/show-albums.html',
+          controller: function () {
+            this.styles = '../app/src/components/show-albums/show-albums.scss';
+          }
         }
       }
     })
 
-    // specific album view
     .state('specific-album', {
       url: 'album/:albumId?display',
       params: {display: {dynamic: true}},
@@ -39,10 +48,16 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
       },
       views: {
         header: {
-          component: 'mainNav'
+          templateUrl: '../app/src/components/main-nav/main-nav.html',
+          controller: function () {
+            this.styles = '../app/src/components/main-nav/main-nav.scss';
+          }
         },
         main: {
-          component: 'specificAlbum'
+          templateUrl: '../app/src/components/specific-album/specific-album.html',
+          controller: function () {
+            this.styles = '../app/src/components/specific-album/specific-album.scss';
+          }
         }
       }
     });

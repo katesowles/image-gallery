@@ -5,7 +5,7 @@ export default {
   template,
   bindings: {
     update: '<',
-    info: '<'
+    collection: '<'
   },
   controller() {
     this.styles = styles;
@@ -17,7 +17,7 @@ export default {
     reset();
 
     this.submit = () => {
-      const imageId = this.info._id;
+      const imageId = this.collection._id;
       this.image._id = imageId;
 
       this.update(this.image);

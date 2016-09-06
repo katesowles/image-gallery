@@ -4,7 +4,7 @@ import styles from './full.scss';
 export default {
   template,
   bindings: {
-    info: '<'
+    collection: '<'
   },
   controller() {
     this.styles = styles;
