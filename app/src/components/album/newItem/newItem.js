@@ -4,17 +4,15 @@ import styles from './newItem.scss';
 export default {
   template,
   bindings: {
-    // collection: '=',
-    add: '<'
+    add: '<',
+    id: '<'
   },
   controller() {
     this.styles = styles;
     this.image = {};
 
     this.reset = () => {
-      this.title = '';
-      this.caption = '';
-      this.link = '';
+      this.image = {};
     };
 
     this.submit = () => {

@@ -3,23 +3,64 @@ import styles from './album.scss';
 
 export default {
   template,
-  controller
+  controller,
+  bindings: {
+    albumId: '<',
+    display: '<'
+  }
 };
 
-controller.$inject = ['imageService'];
+controller.$inject = ['imageService', '$state'];
 
-function controller (imageService) {
+function controller (imageService, $state) {
   this.styles = styles;
-  this.view = 'text';
 
-  imageService.getAll()
-    .then(images => this.images = images)
+  this.uiOnChange = params => {
+    if (params.display) {
+      if (params.display === 'gallery') this.display = 'gallery';
+      else if (params.display === 'thumb') this.display = 'thumb';
+      else this.display = 'list';
+    }
+    else this.display = 'list';
+  };
+
+  this.changeDisplay = selectedDisplay => {
+    this.display = selectedDisplay;
+    $state.go($state.current.name, {display: this.display});
+  };
+
+  imageService.getAlbumContent(this.albumId)
+    .then(incoming => {
+      this.images = incoming;
+      if(incoming.length) {
+        this.title = incoming[0].album.title;
+      }
+      else this.title = '';
+    })
     .catch(err => console.error('something went wrong: ', err));
+
 
   this.add = imageToAdd => {
     imageService.add(imageToAdd)
       .then(addedImage => this.image.push(addedImage))
       .catch(err => console.error('something went wrong: ', err));
+  };
+
+  this.remove = imageToRemove => {
+    imageService.remove(imageToRemove)
+      .then(removed => {
+        const index = this.images.findIndex(image => image._id === removed._id);
+        if(index !== -1) this.images.splice(index, 1);
+      });
+  };
+
+  this.update = imageToUpdate => {
+    imageService.update(imageToUpdate)
+      .then(updated => {
+        const index = this.image.findIndex(image => image._id === updated._id);
+        if(index !== -1) this.images.splice(index, 1, updated);
+      })
+      .catch(err => console.error('somethign went wrong: ', err));
   };
 }
 

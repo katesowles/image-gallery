@@ -4,8 +4,9 @@ import styles from './text.scss';
 export default {
   template,
   bindings: {
-    image: '<'
-    // collection: '='
+    info: '<',
+    remove: '<',
+    update: '<'
   },
   controller() {
     this.styles = styles;

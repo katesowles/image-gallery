@@ -1,15 +1,17 @@
 <div ng-class="$ctrl.styles.album">
+  <h2>{{$ctrl.title}}</h2>
+
   <div class="picker">
-    <label><input type="radio" ng-model="$ctrl.view" value="text">Text</label>
-    <label><input type="radio" ng-model="$ctrl.view" value="thumb">Thumb</label>
-    <label><input type="radio" ng-model="$ctrl.view" value="full">Full</label>
+    <label><input type="radio" ng-model="$ctrl.display" value="text">Text</label>
+    <label><input type="radio" ng-model="$ctrl.display" value="thumb">Thumb</label>
+    <label><input type="radio" ng-model="$ctrl.display" value="full">Full</label>
   </div>
 
   <div class="display">
-    <text ng-if="$ctrl.view === 'text'" collection="$ctrl.collection"></text>
-    <thumb ng-if="$ctrl.view === 'thumb'" collection="$ctrl.collection"></thumb>
-    <full ng-if="$ctrl.view === 'full'" collection="$ctrl.collection"></full>
+    <text ng-if="$ctrl.display === 'text'" collection="$ctrl.collection"></text>
+    <thumb ng-if="$ctrl.display === 'thumb'" collection="$ctrl.collection"></thumb>
+    <full ng-if="$ctrl.display === 'full'" collection="$ctrl.collection"></full>
   </div>
 
-  <new-item add="$ctrl.add"></new-item>
+  <new-item add="$ctrl.add" id="$ctrl.albumId"></new-item>
 </div>

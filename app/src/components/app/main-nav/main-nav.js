@@ -1,5 +1,5 @@
-import template from './mainNav.html';
-import styles from './mainNav.scss';
+import template from './main-nav.html';
+import styles from './main-nav.scss';
 
 export default {
   template,

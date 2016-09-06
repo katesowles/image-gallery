@@ -1,8 +1,8 @@
 configRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
 
 export default function configRoutes($stateProvider, $urlRouterProvider) {
-  $stateProvider
 
+  $stateProvider
     // landing page
     .state('landing', {
       url: '/',
@@ -32,7 +32,7 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
     // specific album view
     .state('specific-album', {
       url: 'album/:albumId?display',
-      params: {display: {dynamic:true}},
+      params: {display: {dynamic: true}},
       resolve: {
         albumId: ['$stateParams', params => params.albumId],
         display: ['$stateParams', params => params.display || 'text']

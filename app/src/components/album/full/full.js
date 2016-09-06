@@ -4,11 +4,9 @@ import styles from './full.scss';
 export default {
   template,
   bindings: {
-    image: '<'
-    // collection: '='
+    info: '<'
   },
   controller() {
-    // console.log('this', this);
     this.styles = styles;
     // this.index = 0;
     //

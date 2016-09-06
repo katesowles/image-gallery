@@ -2,15 +2,31 @@ imageService.$inject = ['$http', 'apiUrl'];
 
 export default function imageService ($http, apiUrl) {
   return {
-    getAll() {
-      return $http.get(`${apiUrl}/images`)
+
+    getAlbumContent(albumId) {
+      return $http.get(`${apiUrl}/albums/${albumId}/images`)
         .then(response => response.data)
-        .catch(err => console.error('something has gone wrong:', err));
+        .catch(err => console.error('something went wrong: ', err));
     },
+
     add(image) {
       return $http.post(`${apiUrl}/images`, image)
-        .then (response => response.data)
-        .catch(err => console.error('something has gone wrong:', err));
+        .then (added => added.data)
+        .catch(err => console.error('something went wrong:', err));
+    },
+
+    remove(image) {
+      const imageId = image._id;
+      return $http.delete(`${apiUrl}/images/${imageId}`)
+        .then(removed => removed.data)
+        .catch(err => console.error('something went wrong: ', err));
+    },
+    
+    update(image) {
+      const imageId = image._id;
+      return $http.put(`${apiUrl}/images/${imageId}`, image)
+        .then(updated => updated.data)
+        .catch(err => console.error('something went wrong: ', err));
     }
   };
 }
