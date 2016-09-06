@@ -4,7 +4,7 @@ import styles from './update-album.html';
 export default {
   template,
   bindings: {
-    update: '<',
+    update: '&',
     collection: '<'
   },
   controller() {

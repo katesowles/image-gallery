@@ -6,21 +6,21 @@ const router = express.Router();
 
 module.exports = router
 
-  // get all albums
+  // get all albums -- /api/albums/
   .get('/', (request, response, next) => {
     Album.find()
       .then(albums => response.send(albums))
       .catch(next);
   })
 
-  // get specific album
+  // get specific album -- /api/albums/:id
   .get('/:id', (request, response, next) => {
     Album.findById(request.params.id)
       .then(album => response.send(album))
       .catch(next);
   })
 
-  // get all images belonging to specific album
+  // get all images belonging to specific album -- /api/albums/:id/images
   .get('/:id/images', (request, response, next) => {
     Image.find({album: request.params.id})
       .populate({path: 'album', select: 'title'})
@@ -28,21 +28,21 @@ module.exports = router
       .catch(next);
   })
 
-  // add new albums
+  // add new albums -- /api/albums/
   .post('/', parser, (request, response, next) => {
     new Album(request.body).save()
       .then(saved => response.send(saved))
       .catch(next);
   })
 
-  // update specific album
+  // update specific album -- /api/albums/:id
   .put('/:id', parser, (request, response, next) => {
     Album.findByIdAndUpdate(request.params.id, request.body, {new:true, runValidators:true})
       .then(updated => response.send(updated))
       .catch(next);
   })
 
-  // remove specific album
+  // remove specific album -- /api/albums/:id
   .delete('/:id', (request, response, next) => {
     Image.find({album: request.params.id}).remove()
       .then(() => {

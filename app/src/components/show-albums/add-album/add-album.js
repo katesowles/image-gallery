@@ -4,7 +4,8 @@ import styles from './add-album.js';
 export default {
   template,
   bindings: {
-    add: '<'
+    // needs functional scope so that it can see the add function in the (parent) show-albums controller
+    add: '&'
   },
   controller() {
     this.styles = styles;
@@ -16,7 +17,6 @@ export default {
 
     this.submit = () => {
       if(this.album.title !== '') {
-        console.log('this', this);
         this.add(this.album);
         reset();
       }

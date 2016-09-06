@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const image = new Schema({
+const image = new Schema ({
   title : {
     type : String,
     required : true
@@ -16,8 +16,8 @@ const image = new Schema({
   },
   album : {
     type : Schema.Types.ObjectId,
-    ref : 'Album',
-    required : true
+    required : true,
+    ref : 'Album'
   }
 });
 
