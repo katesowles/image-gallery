@@ -4,9 +4,10 @@ import styles from './add-album.js';
 export default {
   template,
   bindings: {
-    add: '<'
+    add: '&'
   },
   controller() {
+    console.log(this.add);
     this.styles = styles;
     this.album = {};
 

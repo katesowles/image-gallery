@@ -6,37 +6,17 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
     .state('landing', {
       url: '/',
       views: {
-        header: {
-          templateUrl: '../app/src/components/main-nav/main-nav.html',
-          controller: function () {
-            this.styles = '../app/src/components/main-nav/main-nav.scss';
-          }
-        },
-        main: {
-          templateUrl: '../app/src/components/landing/landing.html',
-          controller: function () {
-            this.styles = '../app/src/components/landing/landing.scss';
-          }
-        }
-      }
+        header: { component: 'mainNav' },
+        main: { component: 'landing' },
+      },
     })
 
     .state('show-albums', {
       url: '/albums',
       views: {
-        header: {
-          templateUrl: '../app/src/components/main-nav/main-nav.html',
-          controller: function () {
-            this.styles = '../app/src/components/main-nav/main-nav.scss';
-          }
-        },
-        main: {
-          templateUrl: '../app/src/components/show-albums/show-albums.html',
-          controller: function () {
-            this.styles = '../app/src/components/show-albums/show-albums.scss';
-          }
-        }
-      }
+        header: { component: 'mainNav' },
+        main: { component: 'showAlbums' },
+      },
     })
 
     .state('specific-album', {
@@ -47,19 +27,9 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
         display: ['$stateParams', params => params.display || 'text']
       },
       views: {
-        header: {
-          templateUrl: '../app/src/components/main-nav/main-nav.html',
-          controller: function () {
-            this.styles = '../app/src/components/main-nav/main-nav.scss';
-          }
-        },
-        main: {
-          templateUrl: '../app/src/components/specific-album/specific-album.html',
-          controller: function () {
-            this.styles = '../app/src/components/specific-album/specific-album.scss';
-          }
-        }
-      }
+        header: { component: 'mainNav' },
+        main: { component: 'specificAlbum' },
+      },
     });
 
   // default view if any other URL used

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const album = new Schema ({
   title : {
-    tyle : String,
+    type : String,
     required : true
   }
 });
