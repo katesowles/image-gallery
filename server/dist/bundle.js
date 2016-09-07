@@ -40883,7 +40883,7 @@
 /* 41 */
 /***/ function(module, exports) {
 
-	module.exports = "<main ng-class=\"$ctrl.styles.landing\">\n  <button class=\"\" style=\"display:block; margin:50px auto;\" ui-sref-active=\"active\" ui-sref=\"showAlbums\">Show Albums</button>\n\n  <h5>Welcome! Use the button above to see the list of available albums.</h5>\n\n  <h6><a href=\"http://github.com/katesowles/image-gallery\">See this project on Github</a></h6>\n</main>\n";
+	module.exports = "<main ng-class=\"$ctrl.styles.landing\">\n  <button class=\"\" style=\"display:block; margin:50px auto;\" ui-sref-active=\"active\" ui-sref=\"show-albums\">Show Albums</button>\n\n  <h5>Welcome! Use the button above to see the list of available albums.</h5>\n\n  <h6><a href=\"http://github.com/katesowles/image-gallery\">See this project on Github</a></h6>\n</main>\n";
 
 /***/ },
 /* 42 */
@@ -41152,35 +41152,36 @@
 	albumService.$inject = ['$http', 'apiUrl'];
 	
 	function albumService($http, apiUrl) {
+	
 	  return {
 	    getAll: function getAll() {
 	      return $http.get(apiUrl + '/albums').then(function (response) {
 	        return response.data;
 	      }).catch(function (err) {
-	        return console.error('something went wrong: ', err);
+	        return console.error('something went wrong when calling getAll() on the albums: ', err);
 	      });
 	    },
 	    add: function add(album) {
-	      return $http.post(apiUrl + '/albums', album).then(function (added) {
-	        return added.data;
+	      return $http.post(apiUrl + '/albums', album).then(function (response) {
+	        return response.data;
 	      }).catch(function (err) {
-	        return console.error('something went wrong:', err);
+	        return console.error('something went wrong when calling add() on an album: ', err);
 	      });
 	    },
 	    remove: function remove(album) {
 	      var albumId = album._id;
-	      return $http.delete(apiUrl + '/albums/' + albumId).then(function (removed) {
-	        return removed.data;
+	      return $http.delete(apiUrl + '/albums/' + albumId).then(function (response) {
+	        return response.data;
 	      }).catch(function (err) {
-	        return console.error('something went wrong: ', err);
+	        return console.error('something went wrong when calling remove() on an album: ', err);
 	      });
 	    },
 	    update: function update(album) {
 	      var albumId = album._id;
-	      return $http.put(apiUrl + '/albums/' + albumId, album).then(function (updated) {
-	        return updated.data;
+	      return $http.put(apiUrl + '/albums/' + albumId, album).then(function (response) {
+	        return response.data;
 	      }).catch(function (err) {
-	        return console.error('something went wrong: ', err);
+	        return console.error('something went wrong when calling update() on an album: ', err);
 	      });
 	    }
 	  };
@@ -41255,7 +41256,7 @@
 	  }).state('show-albums', {
 	    url: '/albums',
 	    views: {
-	      main: { component: 'show-albums' }
+	      main: { component: 'showAlbums' }
 	    }
 	  }).state('specific-album', {
 	    url: 'album/:albumId?display',
@@ -41269,7 +41270,7 @@
 	      }]
 	    },
 	    views: {
-	      main: { component: 'show-specific' }
+	      main: { component: 'showSpecific' }
 	    }
 	  });
 	

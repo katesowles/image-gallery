@@ -1,6 +1,6 @@
 const app = require('./app');
 const http = require('http');
-const portNum = process.env.PORT || 3000;
+const portNum = process.env.PORT || 8080;
 require('./mongooseSetup');
 
 const server = http.createServer(app);
