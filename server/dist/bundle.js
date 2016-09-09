@@ -40493,17 +40493,14 @@
 	      var index = _this.images.findIndex(function (image) {
 	        return image._id === removed._id;
 	      });
-	      if (index !== -1) {
-	        _this.images.splice(index, 1);
-	        // window.location.reload(true);
-	      }
+	      if (index !== -1) _this.images.splice(index, 1);
 	    }).catch(function (err) {
 	      return console.error('something went wrong: ', err);
 	    });
 	  };
 	
-	  this.update = function (imageToUpdate) {
-	    imageService.update(imageToUpdate).then(function (updated) {
+	  this.update = function (image) {
+	    imageService.update(image).then(function (updated) {
 	      var index = _this.image.findIndex(function (image) {
 	        return image._id === updated._id;
 	      });
@@ -40713,7 +40710,7 @@
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.text\">\n  <span class=\"display\" ng-repeat=\"image in $ctrl.images\">\n    <a href=\"{{image.link}}\"><h3>{{image.title}}</h3></a>\n    <p>{{image.caption}}</p>\n\n    <button ng-click=\"showUpdate=!showUpdate\">Update Image</button>\n    <update-image ng-show=\"showUpdate\" showUpdate=\"$ctrl.showUpdate\" update=$ctrl.update images=$ctrl.images></update-image>\n\n    <button ng-click=\"$ctrl.remove(image._id)\">Delete Image</button>\n  </span>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.text\">\n  <span class=\"display\" ng-repeat=\"image in $ctrl.images\">\n    <a href=\"{{image.link}}\"><h3>{{image.title}}</h3></a>\n    <p>{{image.caption}}</p>\n\n    <button ng-click=\"showUpdate=!showUpdate\">Update Image</button>\n    <update-image ng-show=\"showUpdate\" showUpdate=\"$ctrl.showUpdate\" update=$ctrl.update image=image></update-image>\n\n    <button ng-click=\"$ctrl.remove(image._id)\">Delete Image</button>\n  </span>\n</section>\n";
 
 /***/ },
 /* 30 */
@@ -40747,25 +40744,15 @@
 	  template: _updateImage2.default,
 	  bindings: {
 	    update: '<',
-	    collection: '<'
+	    image: '<'
 	  },
 	  controller: function controller() {
 	    var _this = this;
 	
 	    this.styles = _updateImage4.default;
 	
-	    var reset = function reset() {
-	      _this.image = {};
-	    };
-	
-	    reset();
-	
 	    this.submit = function () {
-	      var imageId = _this.collection._id;
-	      _this.image._id = imageId;
-	
 	      _this.update(_this.image);
-	      reset();
 	    };
 	  }
 	};
@@ -40774,7 +40761,7 @@
 /* 33 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.updateImage\">\n  <form ng-submit=\"$ctrl.submit()\">\n    <input type=\"text\" ng-model=\"$ctrl.collection.title\" placeholder=\"image title\">\n    <input type=\"text\" ng-model=\"$ctrl.collection.caption\" placeholder=\"image caption\">\n    <input type=\"text\" ng-model=\"$ctrl.collection.link\" placeholder=\"image link\">\n    <button type=\"submit\">Update Image</button>\n  </form>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.updateImage\">\n  <form ng-submit=\"$ctrl.submit()\">\n    <input type=\"text\" ng-model=\"$ctrl.image.title\" placeholder=\"image title\">\n    <input type=\"text\" ng-model=\"$ctrl.image.caption\" placeholder=\"image caption\">\n    <input type=\"text\" ng-model=\"$ctrl.image.link\" placeholder=\"image link\">\n    <button type=\"submit\">Update Image</button>\n  </form>\n</section>\n";
 
 /***/ },
 /* 34 */

@@ -5,23 +5,13 @@ export default {
   template,
   bindings: {
     update: '<',
-    collection: '<'
+    image: '<'
   },
   controller() {
     this.styles = styles;
 
-    const reset = () => {
-      this.image = {};
-    };
-
-    reset();
-
     this.submit = () => {
-      const imageId = this.collection._id;
-      this.image._id = imageId;
-
       this.update(this.image);
-      reset();
     };
   }
 };

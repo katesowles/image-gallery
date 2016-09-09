@@ -49,16 +49,13 @@ function controller (imageService, $state) {
     imageService.remove(imageId)
       .then(removed => {
         const index = this.images.findIndex(image => image._id === removed._id);
-        if(index !== -1) {
-          this.images.splice(index, 1);
-          // window.location.reload(true);
-        }
+        if(index !== -1) this.images.splice(index, 1);
       })
       .catch(err => console.error('something went wrong: ', err));
   };
 
-  this.update = imageToUpdate => {
-    imageService.update(imageToUpdate)
+  this.update = image => {
+    imageService.update(image)
       .then(updated => {
         const index = this.image.findIndex(image => image._id === updated._id);
         if(index !== -1) this.images.splice(index, 1, updated);
