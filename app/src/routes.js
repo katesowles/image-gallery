@@ -18,14 +18,14 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
     })
 
     .state('specific-album', {
-      url: 'album/:albumId?display',
+      url: '/albums/:albumId/images?display',
       params: {display: {dynamic: true}},
       resolve: {
         albumId: ['$stateParams', params => params.albumId],
         display: ['$stateParams', params => params.display || 'text']
       },
       views: {
-        main: { component: 'showSpecific' },
+        main: { component: 'album' },
       }
     });
 

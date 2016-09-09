@@ -23,14 +23,23 @@ module.exports = router
   // get all images belonging to specific album -- /api/albums/:id/images
   .get('/:id/images', (request, response, next) => {
     Image.find({album: request.params.id})
-      .populate({path: 'album', select: 'title'})
-      .then(albumImages => response.send(albumImages))
+      .populate({path: 'album', select: 'title caption link _id'})
+      .then(albumImages => {
+        response.send(albumImages);
+      })
       .catch(next);
   })
 
   // add new albums -- /api/albums/
   .post('/', parser, (request, response, next) => {
     new Album(request.body).save()
+      .then(saved => response.send(saved))
+      .catch(next);
+  })
+
+  .post('/:id/images', parser, (request, response, next) => {
+    console.log('request body', request.body);
+    new Image(request.body).save()
       .then(saved => response.send(saved))
       .catch(next);
   })
@@ -51,5 +60,3 @@ module.exports = router
       .then(deleted => response.send(deleted))
       .catch(next);
   });
-
-  

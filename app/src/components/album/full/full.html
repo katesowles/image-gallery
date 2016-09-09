@@ -1,17 +1,7 @@
-<!-- <section>
-  <h2>Full Preview</h2>
-  <div class="browseCtrls">
-    <button ng-click="full.showPrev()">Previous</button>
-    <button ng-click="full.showNext()">Next</button>
-  </div>
-
-  <img class="full" src="{{full.collection[full.index].link}}" alt="{{full.collection[full.index].title}}" />
-  <h3>{{full.collection[full.index].title}}</h3>
-  <p>{{full.collection[full.index].caption}}</p>
-</section> -->
-
 <section ng-class="$ctrl.styles.full">
-  <img src="{{$ctrl.info.link}}" alt="{{$ctrl.info.title}}" />
-  <h3>{{$ctrl.info.title}}</h3>
-  <p>{{$ctrl.info.caption}}</p>
+  <span ng-repeat="image in $ctrl.images">
+    <img src="{{image.link}}" alt="{{image.title}}" />
+    <h3>{{image.title}}</h3>
+    <p>{{image.caption}}</p>
+  </span>
 </section>

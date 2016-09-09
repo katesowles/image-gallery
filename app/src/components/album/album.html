@@ -8,10 +8,10 @@
   </div>
 
   <div class="display">
-    <text ng-if="$ctrl.display === 'text'" collection="$ctrl.collection"></text>
-    <thumb ng-if="$ctrl.display === 'thumb'" collection="$ctrl.collection"></thumb>
-    <full ng-if="$ctrl.display === 'full'" collection="$ctrl.collection"></full>
+    <text ng-if="$ctrl.display === 'text'" images="$ctrl.images"></text>
+    <thumb ng-if="$ctrl.display === 'thumb'" images="$ctrl.images"></thumb>
+    <full ng-if="$ctrl.display === 'full'" images="$ctrl.images"></full>
   </div>
 
-  <new-item add="$ctrl.add" id="$ctrl.albumId"></new-item>
+  <new-item add="$ctrl.add" newImage="$ctrl.newImage" id="$ctrl.albumId"></new-item>
 </div>

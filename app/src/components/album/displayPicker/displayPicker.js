@@ -8,6 +8,7 @@ export default {
   },
   controller: ($state) => {
     this.styles = styles;
+
     this.viewChange = viewState => {
       $state.go($state.current.name, {display: viewState});
     };

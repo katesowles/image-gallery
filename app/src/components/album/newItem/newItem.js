@@ -9,14 +9,14 @@ export default {
   },
   controller() {
     this.styles = styles;
-    this.image = {};
+    this.newImage = {};
 
     this.reset = () => {
-      this.image = {};
+      this.newImage = {};
     };
 
     this.submit = () => {
-      this.add(this.image);
+      this.add(this.newImage);
       this.reset();
     };
   }

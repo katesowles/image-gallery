@@ -53,7 +53,8 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Source Sans Pro', helvetica, arial, sans-serif;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+  color: #333333; }
 
 .ng-isolated-scope {
   margin: 0;
@@ -65,11 +66,11 @@ body {
   min-height: 100vh; }
 
 .gradient {
-  background: #fff;
-  background: -webkit-linear-gradient(#fff, #fff, #fff, #ddd);
-  background: -o-linear-gradient(#fff, #fff, #fff, #ddd);
-  background: -moz-linear-gradient(#fff, #fff, #fff, #ddd);
-  background: linear-gradient(#fff, #fff, #fff, #ddd); }
+  background: #eeeeee;
+  background: -webkit-linear-gradient(#eeeeee, #eeeeee, #eeeeee, #dddddd);
+  background: -o-linear-gradient(#eeeeee, #eeeeee, #eeeeee, #dddddd);
+  background: -moz-linear-gradient(#eeeeee, #eeeeee, #eeeeee, #dddddd);
+  background: linear-gradient(#eeeeee, #eeeeee, #eeeeee, #dddddd); }
 
 main {
   width: 60%;
@@ -80,6 +81,8 @@ main {
 section {
   padding: 20px;
   border: 1px solid #ddd;
+  background-color: #eeeeee;
+  box-shadow: 0 0 20px #ddd;
   margin-bottom: 30px; }
 
 h1 {
@@ -102,7 +105,7 @@ h3 {
 
 h4 {
   font-size: 1.65em;
-  font-weight: 200;
+  font-weight: 300;
   margin-bottom: 10px;
   text-align: center;
   text-transform: uppercase;
@@ -130,6 +133,19 @@ p {
   font-size: 1em;
   font-weight: 300; }
 
+a, a:link, a:visited, a:hover, a:active {
+  text-decoration: none; }
+
+a, a:link, a:visited {
+  color: #333333; }
+
+a:hover, a:active {
+  color: #999999; }
+
+.buttonHolder {
+  width: 314px;
+  margin: 20px auto 0 auto; }
+
 button {
   padding: 5px 20px;
   text-transform: uppercase;
@@ -150,12 +166,17 @@ button.center {
   margin: 50px auto;
   display: block; }
 
+button:first-child {
+  margin-right: 20px; }
+
 input[type="radio"] {
-  margin-right: 10px; }
+  margin-right: 10px;
+  background-color: transparent; }
 
 input[type="text"] {
   width: calc(100%);
   margin-bottom: 10px;
+  background-color: transparent;
   border: none;
   border-bottom: 1px solid #ddd;
   outline: none;

@@ -40448,7 +40448,8 @@
 	  controller: controller,
 	  bindings: {
 	    albumId: '<',
-	    display: '<'
+	    display: '<',
+	    images: '='
 	  }
 	};
 	
@@ -40459,6 +40460,7 @@
 	  var _this = this;
 	
 	  this.styles = _album4.default;
+	  this.images = [];
 	
 	  this.uiOnChange = function (params) {
 	    if (params.display) {
@@ -40473,25 +40475,23 @@
 	
 	  imageService.getAlbumContent(this.albumId).then(function (incoming) {
 	    _this.images = incoming;
-	    if (incoming.length) {
-	      _this.title = incoming[0].album.title;
-	    } else _this.title = '';
 	  }).catch(function (err) {
 	    return console.error('something went wrong: ', err);
 	  });
 	
 	  this.add = function (imageToAdd) {
+	    imageToAdd.album = _this.albumId;
 	    imageService.add(imageToAdd).then(function (addedImage) {
-	      return _this.image.push(addedImage);
+	      return _this.images.push(addedImage);
 	    }).catch(function (err) {
 	      return console.error('something went wrong: ', err);
 	    });
 	  };
 	
-	  this.remove = function (imageToRemove) {
-	    imageService.remove(imageToRemove).then(function (removed) {
-	      var index = _this.images.findIndex(function (image) {
-	        return image._id === removed._id;
+	  this.remove = function (imageId) {
+	    imageService.remove(imageId).then(function (removed) {
+	      var index = _this.images.findIndex(function (imageId) {
+	        return imageId === removed._id;
 	      });
 	      if (index !== -1) _this.images.splice(index, 1);
 	    });
@@ -40508,30 +40508,12 @@
 	    });
 	  };
 	}
-	
-	// this.collection = [
-	//   {
-	//     title : 'Blue-burries!',
-	//     caption : 'I got a call from our sweet neighbors last week asking how our build was progressing and if we knew there were men with big trucks on our property. I told her we were having the well installed and she was relieved that she wouldn\'t have to go scare the off with her shotgun. After resolving the case of the "intruders" she told us she missed us and that we should come over and take some of her blueberries this weekend. We visited for over an hour on Saturday night, drank beer, and ate the most delicious blueberries until my tummy ached. Now I can\'t get the idea of a weekly card/domino game night with them out of my head.',
-	//     link : 'https://scontent.xx.fbcdn.net/t31.0-8/13692933_10208598285026313_4964730177215303654_o.jpg'
-	//   },
-	//   {
-	//     title: 'Werkin!',
-	//     caption: 'There\'s only so much brush that my puny arms, and our battery-powered trimmer (and two batteries) could tackle today, and of course the batteries died with about 30ft left over to the right of our driveway. Glad the batteries and I have a week to recharge before we get back to it.',
-	//     link: 'https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/13494772_10208434206524453_4129712838873273660_n.jpg?oh=32061c0f0559a205e9fc23b41de7b5b4&oe=584C8F18'
-	//   },
-	//   {
-	//     title: 'Diggin\'',
-	//     caption: 'Playing in the dirt with the family today. 🌲🚜',
-	//     link: 'https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/12986962_10207904697407056_610953020186499048_n.jpg?oh=cb505a36030203999ed9147d94cd19a5&oe=5858BECC'
-	//   }
-	// ];
 
 /***/ },
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <h2>{{$ctrl.title}}</h2>\n\n  <div class=\"picker\">\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"text\">Text</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"thumb\">Thumb</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"full\">Full</label>\n  </div>\n\n  <div class=\"display\">\n    <text ng-if=\"$ctrl.display === 'text'\" collection=\"$ctrl.collection\"></text>\n    <thumb ng-if=\"$ctrl.display === 'thumb'\" collection=\"$ctrl.collection\"></thumb>\n    <full ng-if=\"$ctrl.display === 'full'\" collection=\"$ctrl.collection\"></full>\n  </div>\n\n  <new-item add=\"$ctrl.add\" id=\"$ctrl.albumId\"></new-item>\n</div>\n";
+	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <h2>{{$ctrl.title}}</h2>\n\n  <div class=\"picker\">\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"text\">Text</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"thumb\">Thumb</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"full\">Full</label>\n  </div>\n\n  <div class=\"display\">\n    <text ng-if=\"$ctrl.display === 'text'\" images=\"$ctrl.images\"></text>\n    <thumb ng-if=\"$ctrl.display === 'thumb'\" images=\"$ctrl.images\"></thumb>\n    <full ng-if=\"$ctrl.display === 'full'\" images=\"$ctrl.images\"></full>\n  </div>\n\n  <new-item add=\"$ctrl.add\" newImage=\"$ctrl.newImage\" id=\"$ctrl.albumId\"></new-item>\n</div>\n";
 
 /***/ },
 /* 12 */
@@ -40570,6 +40552,7 @@
 	  },
 	  controller: function controller($state) {
 	    undefined.styles = _displayPicker4.default;
+	
 	    undefined.viewChange = function (viewState) {
 	      $state.go($state.current.name, { display: viewState });
 	    };
@@ -40612,23 +40595,10 @@
 	exports.default = {
 	  template: _full2.default,
 	  bindings: {
-	    collection: '<'
+	    images: '<'
 	  },
 	  controller: function controller() {
 	    this.styles = _full4.default;
-	    // this.index = 0;
-	    //
-	    // this.showPrev = () => {
-	    //   // if the current index - 1 does not exist, cycle back to last image in the array
-	    //   if ((this.index - 1) < 0) this.index = this.collection.length - 1;
-	    //   else this.index = --this.index;
-	    // };
-	    //
-	    // this.showNext = () => {
-	    //   // if the current index + 1 is greater than the length of the array, cycle back to the first image in the array
-	    //   if ((this.index + 1) > (this.collection.length - 1)) this.index = 0;
-	    //   else this.index = ++this.index;
-	    // };
 	  }
 	};
 
@@ -40636,7 +40606,7 @@
 /* 21 */
 /***/ function(module, exports) {
 
-	module.exports = "<!-- <section>\n  <h2>Full Preview</h2>\n  <div class=\"browseCtrls\">\n    <button ng-click=\"full.showPrev()\">Previous</button>\n    <button ng-click=\"full.showNext()\">Next</button>\n  </div>\n\n  <img class=\"full\" src=\"{{full.collection[full.index].link}}\" alt=\"{{full.collection[full.index].title}}\" />\n  <h3>{{full.collection[full.index].title}}</h3>\n  <p>{{full.collection[full.index].caption}}</p>\n</section> -->\n\n<section ng-class=\"$ctrl.styles.full\">\n  <img src=\"{{$ctrl.info.link}}\" alt=\"{{$ctrl.info.title}}\" />\n  <h3>{{$ctrl.info.title}}</h3>\n  <p>{{$ctrl.info.caption}}</p>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.full\">\n  <span ng-repeat=\"image in $ctrl.images\">\n    <img src=\"{{image.link}}\" alt=\"{{image.title}}\" />\n    <h3>{{image.title}}</h3>\n    <p>{{image.caption}}</p>\n  </span>\n</section>\n";
 
 /***/ },
 /* 22 */
@@ -40676,14 +40646,14 @@
 	    var _this = this;
 	
 	    this.styles = _newItem4.default;
-	    this.image = {};
+	    this.newImage = {};
 	
 	    this.reset = function () {
-	      _this.image = {};
+	      _this.newImage = {};
 	    };
 	
 	    this.submit = function () {
-	      _this.add(_this.image);
+	      _this.add(_this.newImage);
 	      _this.reset();
 	    };
 	  }
@@ -40693,7 +40663,7 @@
 /* 25 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.newImage\">\n  <h1>New Image</h1>\n  <!-- to do form validate or process errors here? -->\n  <form name=\"new\" ng-submit=\"$ctrl.submit()\">\n    <input type=\"text\" ng-model=\"$ctrl.image.title\" placeholder=\"image title\">\n    <input type=\"text\" ng-model=\"$ctrl.image.caption\" placeholder=\"image caption\">\n    <input type=\"text\" ng-model=\"$ctrl.image.link\" placeholder=\"image link\">\n    <button type=\"submit\">Add Image</button>\n  </form>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.newImage\">\n  <h1>New Image</h1>\n  <!-- to do form validate or process errors here? -->\n  <form name=\"new\" ng-submit=\"$ctrl.submit()\">\n    <input type=\"text\" ng-model=\"$ctrl.newImage.title\" placeholder=\"image title\">\n    <input type=\"text\" ng-model=\"$ctrl.newImage.caption\" placeholder=\"image caption\">\n    <input type=\"text\" ng-model=\"$ctrl.newImage.link\" placeholder=\"image link\">\n    <button type=\"submit\">Add Image</button>\n  </form>\n</section>\n";
 
 /***/ },
 /* 26 */
@@ -40725,7 +40695,7 @@
 	exports.default = {
 	  template: _text2.default,
 	  bindings: {
-	    collection: '<',
+	    images: '=',
 	    remove: '<',
 	    update: '<'
 	  },
@@ -40738,7 +40708,7 @@
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<!-- <section>\n  <h2>Text Only</h2>\n  <div class=\"indivImg\" ng-repeat=\"image in $ctrl.collection\">\n    <a href=\"{{$ctrl.collection.link}}\"><h3>{{$ctrl.collection.title}}</h3></a>\n    <p>{{$ctrl.collection.caption}}</p>\n  </div>\n</section> -->\n\n<section ng-class=\"$ctrl.styles.text\">\n  <!-- each item -->\n  <a href=\"{{$ctrl.image.link}}\"><h3>{{$ctrl.image.title}}</h3></a>\n  <p>{{$ctrl.image.caption}}</p>\n\n  <button ng-click=\"showUpdate=!showUpdate\">Update Image</button>\n  <update-image ng-show=\"showUpdate\" showUpdate=\"$ctrl.showUpdate\" update=$ctrl.update info=$ctrl.info></update-image>\n  \n  <button ng-click=\"$ctrl.remove($ctrl.info)\">Delete Image</button>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.text\">\n  <span class=\"display\" ng-repeat=\"image in $ctrl.images\">\n    <a href=\"{{image.link}}\"><h3>{{image.title}}</h3></a>\n    <p>{{image.caption}}</p>\n\n    <button ng-click=\"showUpdate=!showUpdate\">Update Image</button>\n    <update-image ng-show=\"showUpdate\" showUpdate=\"$ctrl.showUpdate\" update=$ctrl.update images=$ctrl.images></update-image>\n\n    <button ng-click=\"$ctrl.remove($ctrl.image._id)\">Delete Image</button>\n  </span>\n</section>\n";
 
 /***/ },
 /* 30 */
@@ -40799,7 +40769,7 @@
 /* 33 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.updateImage\">\n  <form ng-submit=\"$ctrl.submit()\">\n    <input type=\"text\" ng-model=\"$ctrl.image.title\" placeholder=\"image title\">\n    <input type=\"text\" ng-model=\"$ctrl.image.caption\" placeholder=\"image caption\">\n    <input type=\"text\" ng-model=\"$ctrl.image.link\" placeholder=\"image link\">\n    <button type=\"submit\">Update Image</button>\n  </form>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.updateImage\">\n  <form ng-submit=\"$ctrl.submit()\">\n    <input type=\"text\" ng-model=\"$ctrl.collection.title\" placeholder=\"image title\">\n    <input type=\"text\" ng-model=\"$ctrl.collection.caption\" placeholder=\"image caption\">\n    <input type=\"text\" ng-model=\"$ctrl.collection.link\" placeholder=\"image link\">\n    <button type=\"submit\">Update Image</button>\n  </form>\n</section>\n";
 
 /***/ },
 /* 34 */
@@ -40831,7 +40801,7 @@
 	exports.default = {
 	  template: _thumb2.default,
 	  bindings: {
-	    collection: '<'
+	    images: '<'
 	  },
 	  controller: function controller() {
 	    this.styles = _thumb4.default;
@@ -40842,7 +40812,7 @@
 /* 37 */
 /***/ function(module, exports) {
 
-	module.exports = "<!-- <section ng-class=\"$ctrl.styles.thumb\">\n  <h2>Thumbnails Only</h2>\n  <span ng-repeat=\"image in $ctrl.collection\">\n    <img class=\"thumb\" src=\"{{$ctrl.collection.link}}\" alt=\"{{$ctrl.collection.title}}\" />\n  </span>\n</section> -->\n\n<span ng-class=\"$ctrl.styles.thumb\">\n  <img src=\"{{$ctrl.image.link}}\" alt=\"{{$ctrl.image.title}}\" />\n</span>\n";
+	module.exports = "<!-- <section ng-class=\"$ctrl.styles.thumb\">\n  <h2>Thumbnails Only</h2>\n  <span ng-repeat=\"image in $ctrl.collection\">\n    <img class=\"thumb\" src=\"{{$ctrl.collection.link}}\" alt=\"{{$ctrl.collection.title}}\" />\n  </span>\n</section> -->\n<section ng-class=\"$ctrl.styles.thumb\">\n  <span ng-repeat=\"image in $ctrl.images\">\n    <img class=\"thumb\" src=\"{{image.link}}\" alt=\"{{image.title}}\" />\n  </span>\n</section>\n";
 
 /***/ },
 /* 38 */
@@ -40979,7 +40949,7 @@
 	  this.styles = _showAlbums4.default;
 	
 	  albumService.getAll().then(function (albums) {
-	    return _this.albums = albums;
+	    _this.albums = albums;
 	  }).catch(function (err) {
 	    return console.error('something went wrong', err);
 	  });
@@ -41024,7 +40994,7 @@
 /* 47 */
 /***/ function(module, exports) {
 
-	module.exports = "<main ng-class=$ctrl.styles.showAlbums>\n  <h2>Your Albums</h2>\n  <h5>Select the album to view</h5>\n\n  <section ng-repeat=\"album in $ctrl.albums\">\n    <!-- <div ng-show=\"album\"> -->\n      <a ui-sref=\"specific-album({albumId: album._id, display: 'text'})\"><h4>{{album.title}}</h4></a>\n      <button ng-click=\"$ctrl.remove(album._id)\">Delete Album</button>\n      <button ng-click=\"showUpdate=!showUpdate\">Edit Album</button>\n    <!-- </div> -->\n\n    <!-- <div ng-show=\"!album\">\n      <h5>You don't currently have any albums, add one below</h5>\n    </div> -->\n  </section>\n\n  <section ng-show=\"showUpdate\">\n    <h4>Update an Album</h4>\n    <update-album update=\"$ctrl.update\" collection=\"album\"> <!-- form will go here --> </update-album>\n  </section>\n\n  <section>\n    <h4 class=\"inline\">Add an Album</h4>\n    <add-album add=\"$ctrl.add\"></add-album>\n  </section>\n</main>\n";
+	module.exports = "<main ng-class=$ctrl.styles.showAlbums>\n  <h2>Your Albums</h2>\n  <h5>Select the album to view</h5>\n\n  <section ng-repeat=\"album in $ctrl.albums\">\n    <!-- <div ng-show=\"album\"> -->\n      <!-- TODO FIX THIS SHIT -->\n      <a ui-sref=\"specific-album({albumId: album._id, display: 'text'})\"><h4>{{album.title}}</h4></a>\n\n      <div class=\"buttonHolder\">\n        <button class=\"inline\" ng-click=\"showUpdate=!showUpdate\">Edit Album</button>\n        <button class=\"inline\" ng-click=\"$ctrl.remove(album._id)\">Delete Album</button>\n      </div>\n    <!-- </div> -->\n\n    <!-- <div ng-show=\"!album\">\n      <h5>You don't currently have any albums, add one below</h5>\n    </div> -->\n  </section>\n\n  <section ng-show=\"showUpdate\">\n    <h4>Update an Album</h4>\n    <update-album update=\"$ctrl.update\" collection=\"album\"> <!-- form will go here --> </update-album>\n  </section>\n\n  <section>\n    <h4 class=\"inline\">Add an Album</h4>\n    <add-album add=\"$ctrl.add\"></add-album>\n  </section>\n</main>\n";
 
 /***/ },
 /* 48 */
@@ -41209,14 +41179,14 @@
 	      });
 	    },
 	    add: function add(image) {
-	      return $http.post(apiUrl + '/images', image).then(function (added) {
+	      console.log('image', image);
+	      return $http.post(apiUrl + '/albums/' + image.album + '/images', image).then(function (added) {
 	        return added.data;
 	      }).catch(function (err) {
 	        return console.error('something went wrong:', err);
 	      });
 	    },
-	    remove: function remove(image) {
-	      var imageId = image._id;
+	    remove: function remove(imageId) {
 	      return $http.delete(apiUrl + '/images/' + imageId).then(function (removed) {
 	        return removed.data;
 	      }).catch(function (err) {
@@ -41259,7 +41229,7 @@
 	      main: { component: 'showAlbums' }
 	    }
 	  }).state('specific-album', {
-	    url: 'album/:albumId?display',
+	    url: '/albums/:albumId/images?display',
 	    params: { display: { dynamic: true } },
 	    resolve: {
 	      albumId: ['$stateParams', function (params) {
@@ -41270,7 +41240,7 @@
 	      }]
 	    },
 	    views: {
-	      main: { component: 'showSpecific' }
+	      main: { component: 'album' }
 	    }
 	  });
 	

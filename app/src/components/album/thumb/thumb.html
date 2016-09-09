@@ -4,7 +4,8 @@
     <img class="thumb" src="{{$ctrl.collection.link}}" alt="{{$ctrl.collection.title}}" />
   </span>
 </section> -->
-
-<span ng-class="$ctrl.styles.thumb">
-  <img src="{{$ctrl.image.link}}" alt="{{$ctrl.image.title}}" />
-</span>
+<section ng-class="$ctrl.styles.thumb">
+  <span ng-repeat="image in $ctrl.images">
+    <img class="thumb" src="{{image.link}}" alt="{{image.title}}" />
+  </span>
+</section>

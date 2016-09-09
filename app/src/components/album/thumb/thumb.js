@@ -4,7 +4,7 @@ import styles from './thumb.scss';
 export default {
   template,
   bindings: {
-    collection: '<'
+    images: '<'
   },
   controller() {
     this.styles = styles;
