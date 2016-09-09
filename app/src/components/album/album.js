@@ -7,7 +7,7 @@ export default {
   bindings: {
     albumId: '<',
     display: '<',
-    images: '='
+    images: '=',
   }
 };
 
@@ -48,9 +48,13 @@ function controller (imageService, $state) {
   this.remove = imageId => {
     imageService.remove(imageId)
       .then(removed => {
-        const index = this.images.findIndex(imageId => imageId === removed._id);
-        if(index !== -1) this.images.splice(index, 1);
-      });
+        const index = this.images.findIndex(image => image._id === removed._id);
+        if(index !== -1) {
+          this.images.splice(index, 1);
+          // window.location.reload(true);
+        }
+      })
+      .catch(err => console.error('something went wrong: ', err));
   };
 
   this.update = imageToUpdate => {
@@ -59,6 +63,6 @@ function controller (imageService, $state) {
         const index = this.image.findIndex(image => image._id === updated._id);
         if(index !== -1) this.images.splice(index, 1, updated);
       })
-      .catch(err => console.error('somethign went wrong: ', err));
+      .catch(err => console.error('something went wrong: ', err));
   };
 }

@@ -40490,10 +40490,15 @@
 	
 	  this.remove = function (imageId) {
 	    imageService.remove(imageId).then(function (removed) {
-	      var index = _this.images.findIndex(function (imageId) {
-	        return imageId === removed._id;
+	      var index = _this.images.findIndex(function (image) {
+	        return image._id === removed._id;
 	      });
-	      if (index !== -1) _this.images.splice(index, 1);
+	      if (index !== -1) {
+	        _this.images.splice(index, 1);
+	        // window.location.reload(true);
+	      }
+	    }).catch(function (err) {
+	      return console.error('something went wrong: ', err);
 	    });
 	  };
 	
@@ -40504,7 +40509,7 @@
 	      });
 	      if (index !== -1) _this.images.splice(index, 1, updated);
 	    }).catch(function (err) {
-	      return console.error('somethign went wrong: ', err);
+	      return console.error('something went wrong: ', err);
 	    });
 	  };
 	}
@@ -40513,7 +40518,7 @@
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <h2>{{$ctrl.title}}</h2>\n\n  <div class=\"picker\">\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"text\">Text</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"thumb\">Thumb</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"full\">Full</label>\n  </div>\n\n  <div class=\"display\">\n    <text ng-if=\"$ctrl.display === 'text'\" images=\"$ctrl.images\"></text>\n    <thumb ng-if=\"$ctrl.display === 'thumb'\" images=\"$ctrl.images\"></thumb>\n    <full ng-if=\"$ctrl.display === 'full'\" images=\"$ctrl.images\"></full>\n  </div>\n\n  <new-item add=\"$ctrl.add\" newImage=\"$ctrl.newImage\" id=\"$ctrl.albumId\"></new-item>\n</div>\n";
+	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <h2>{{$ctrl.title}}</h2>\n\n  <div class=\"picker\">\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"text\">Text</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"thumb\">Thumb</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"full\">Full</label>\n  </div>\n\n  <div class=\"display\">\n    <text ng-if=\"$ctrl.display === 'text'\" images=\"$ctrl.images\" remove=\"$ctrl.remove\"></text>\n    <thumb ng-if=\"$ctrl.display === 'thumb'\" images=\"$ctrl.images\"></thumb>\n    <full ng-if=\"$ctrl.display === 'full'\" images=\"$ctrl.images\"></full>\n  </div>\n\n  <new-item add=\"$ctrl.add\" newImage=\"$ctrl.newImage\" id=\"$ctrl.albumId\"></new-item>\n</div>\n";
 
 /***/ },
 /* 12 */
@@ -40708,7 +40713,7 @@
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.text\">\n  <span class=\"display\" ng-repeat=\"image in $ctrl.images\">\n    <a href=\"{{image.link}}\"><h3>{{image.title}}</h3></a>\n    <p>{{image.caption}}</p>\n\n    <button ng-click=\"showUpdate=!showUpdate\">Update Image</button>\n    <update-image ng-show=\"showUpdate\" showUpdate=\"$ctrl.showUpdate\" update=$ctrl.update images=$ctrl.images></update-image>\n\n    <button ng-click=\"$ctrl.remove($ctrl.image._id)\">Delete Image</button>\n  </span>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.text\">\n  <span class=\"display\" ng-repeat=\"image in $ctrl.images\">\n    <a href=\"{{image.link}}\"><h3>{{image.title}}</h3></a>\n    <p>{{image.caption}}</p>\n\n    <button ng-click=\"showUpdate=!showUpdate\">Update Image</button>\n    <update-image ng-show=\"showUpdate\" showUpdate=\"$ctrl.showUpdate\" update=$ctrl.update images=$ctrl.images></update-image>\n\n    <button ng-click=\"$ctrl.remove(image._id)\">Delete Image</button>\n  </span>\n</section>\n";
 
 /***/ },
 /* 30 */

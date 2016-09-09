@@ -6,6 +6,6 @@
     <button ng-click="showUpdate=!showUpdate">Update Image</button>
     <update-image ng-show="showUpdate" showUpdate="$ctrl.showUpdate" update=$ctrl.update images=$ctrl.images></update-image>
 
-    <button ng-click="$ctrl.remove($ctrl.image._id)">Delete Image</button>
+    <button ng-click="$ctrl.remove(image._id)">Delete Image</button>
   </span>
 </section>
