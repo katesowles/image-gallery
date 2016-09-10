@@ -12,7 +12,6 @@ export default function imageService ($http, apiUrl) {
     },
 
     add(image) {
-      console.log('image', image);
       return $http.post(`${apiUrl}/albums/${image.album}/images`, image)
         .then (added => added.data)
         .catch(err => console.error('something went wrong:', err));
@@ -24,8 +23,7 @@ export default function imageService ($http, apiUrl) {
         .catch(err => console.error('something went wrong: ', err));
     },
 
-    update(image) {
-      const imageId = image._id;
+    update(image, imageId) {
       return $http.put(`${apiUrl}/images/${imageId}`, image)
         .then(updated => updated.data)
         .catch(err => console.error('something went wrong: ', err));

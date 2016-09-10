@@ -40499,10 +40499,10 @@
 	    });
 	  };
 	
-	  this.update = function (image) {
-	    imageService.update(image).then(function (updated) {
-	      var index = _this.image.findIndex(function (image) {
-	        return image._id === updated._id;
+	  this.update = function (updatedImage, imageId) {
+	    imageService.update(updatedImage, imageId).then(function (updated) {
+	      var index = _this.image.findIndex(function (updatedImage) {
+	        return updatedImage._id === updated._id;
 	      });
 	      if (index !== -1) _this.images.splice(index, 1, updated);
 	    }).catch(function (err) {
@@ -40515,7 +40515,7 @@
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <h2>{{$ctrl.title}}</h2>\n\n  <div class=\"picker\">\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"text\">Text</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"thumb\">Thumb</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"full\">Full</label>\n  </div>\n\n  <div class=\"display\">\n    <text ng-if=\"$ctrl.display === 'text'\" images=\"$ctrl.images\" remove=\"$ctrl.remove\"></text>\n    <thumb ng-if=\"$ctrl.display === 'thumb'\" images=\"$ctrl.images\"></thumb>\n    <full ng-if=\"$ctrl.display === 'full'\" images=\"$ctrl.images\"></full>\n  </div>\n\n  <new-item add=\"$ctrl.add\" newImage=\"$ctrl.newImage\" id=\"$ctrl.albumId\"></new-item>\n</div>\n";
+	module.exports = "<div ng-class=\"$ctrl.styles.album\">\n  <h2>{{$ctrl.title}}</h2>\n\n  <div class=\"picker\">\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"text\">Text</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"thumb\">Thumb</label>\n    <label><input type=\"radio\" ng-model=\"$ctrl.display\" value=\"full\">Full</label>\n  </div>\n\n  <div class=\"display\">\n    <text ng-if=\"$ctrl.display === 'text'\" images=\"$ctrl.images\" remove=\"$ctrl.remove\" update=\"$ctrl.update\"></text>\n    <thumb ng-if=\"$ctrl.display === 'thumb'\" images=\"$ctrl.images\"></thumb>\n    <full ng-if=\"$ctrl.display === 'full'\" images=\"$ctrl.images\"></full>\n  </div>\n\n  <new-item add=\"$ctrl.add\" newImage=\"$ctrl.newImage\" id=\"$ctrl.albumId\"></new-item>\n</div>\n";
 
 /***/ },
 /* 12 */
@@ -40699,7 +40699,8 @@
 	  bindings: {
 	    images: '=',
 	    remove: '<',
-	    update: '<'
+	    update: '<',
+	    image: '<'
 	  },
 	  controller: function controller() {
 	    this.styles = _text4.default;
@@ -40710,7 +40711,7 @@
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.text\">\n  <span class=\"display\" ng-repeat=\"image in $ctrl.images\">\n    <a href=\"{{image.link}}\"><h3>{{image.title}}</h3></a>\n    <p>{{image.caption}}</p>\n\n    <button ng-click=\"showUpdate=!showUpdate\">Update Image</button>\n    <update-image ng-show=\"showUpdate\" showUpdate=\"$ctrl.showUpdate\" update=$ctrl.update image=image></update-image>\n\n    <button ng-click=\"$ctrl.remove(image._id)\">Delete Image</button>\n  </span>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.text\">\n  <span class=\"display\" ng-repeat=\"image in $ctrl.images\">\n    <a href=\"{{image.link}}\"><h3>{{image.title}}</h3></a>\n    <p>{{image.caption}}</p>\n\n    <button ng-click=\"showUpdate=!showUpdate\">Update Image</button>\n    <update-image ng-show=\"showUpdate\" showUpdate=\"$ctrl.showUpdate\" update=\"$ctrl.update\" image=\"image\"></update-image>\n    <button ng-click=\"$ctrl.remove(image._id)\">Delete Image</button>\n  </span>\n</section>\n";
 
 /***/ },
 /* 30 */
@@ -40750,9 +40751,29 @@
 	    var _this = this;
 	
 	    this.styles = _updateImage4.default;
+	    this.updatedImage = {
+	      title: '',
+	      caption: '',
+	      link: ''
+	    };
 	
-	    this.submit = function () {
-	      _this.update(_this.image);
+	    this.reset = function () {
+	      _this.updatedImage = {};
+	    };
+	
+	    this.submit = function (imageId) {
+	      if (_this.updatedImage.title === '') {
+	        _this.updatedImage.title = _this.image.title;
+	      }
+	      if (_this.updatedImage.caption === '') {
+	        _this.updatedImage.caption = _this.image.caption;
+	      }
+	      if (_this.updatedImage.link === '') {
+	        _this.updatedImage.link = _this.image.link;
+	      }
+	      _this.update(_this.updatedImage, imageId);
+	      _this.reset();
+	      window.location.reload();
 	    };
 	  }
 	};
@@ -40761,7 +40782,7 @@
 /* 33 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.updateImage\">\n  <form ng-submit=\"$ctrl.submit()\">\n    <input type=\"text\" ng-model=\"$ctrl.image.title\" placeholder=\"image title\">\n    <input type=\"text\" ng-model=\"$ctrl.image.caption\" placeholder=\"image caption\">\n    <input type=\"text\" ng-model=\"$ctrl.image.link\" placeholder=\"image link\">\n    <button type=\"submit\">Update Image</button>\n  </form>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.updateImage\">\n  <form ng-submit=\"$ctrl.submit($ctrl.image._id)\">\n    <input type=\"text\" ng-model=\"$ctrl.updatedImage.title\" placeholder=\"image title\" ng-value=\"$ctrl.image.title\">\n    <input type=\"text\" ng-model=\"$ctrl.updatedImage.caption\" placeholder=\"image caption\" ng-value=\"$ctrl.image.caption\">\n    <input type=\"text\" ng-model=\"$ctrl.updatedImage.link\" placeholder=\"image link\" ng-value=\"$ctrl.image.link\">\n    <button type=\"submit\">Update Image</button>\n  </form>\n</section>\n";
 
 /***/ },
 /* 34 */
@@ -41171,7 +41192,6 @@
 	      });
 	    },
 	    add: function add(image) {
-	      console.log('image', image);
 	      return $http.post(apiUrl + '/albums/' + image.album + '/images', image).then(function (added) {
 	        return added.data;
 	      }).catch(function (err) {
@@ -41185,8 +41205,7 @@
 	        return console.error('something went wrong: ', err);
 	      });
 	    },
-	    update: function update(image) {
-	      var imageId = image._id;
+	    update: function update(image, imageId) {
 	      return $http.put(apiUrl + '/images/' + imageId, image).then(function (updated) {
 	        return updated.data;
 	      }).catch(function (err) {

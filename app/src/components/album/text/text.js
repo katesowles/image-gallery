@@ -6,7 +6,8 @@ export default {
   bindings: {
     images: '=',
     remove: '<',
-    update: '<'
+    update: '<',
+    image: '<'
   },
   controller() {
     this.styles = styles;

@@ -54,10 +54,10 @@ function controller (imageService, $state) {
       .catch(err => console.error('something went wrong: ', err));
   };
 
-  this.update = image => {
-    imageService.update(image)
+  this.update = (updatedImage, imageId) => {
+    imageService.update(updatedImage, imageId)
       .then(updated => {
-        const index = this.image.findIndex(image => image._id === updated._id);
+        const index = this.image.findIndex(updatedImage => updatedImage._id === updated._id);
         if(index !== -1) this.images.splice(index, 1, updated);
       })
       .catch(err => console.error('something went wrong: ', err));
