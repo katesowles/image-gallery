@@ -41402,23 +41402,25 @@
 	        return console.error('something went wrong:', err);
 	      });
 	    },
-	    remove: function remove(image) {
-	      cache.remove(apiUrl + '/albums/' + image.album + '/images');
 	
-	      return $http.delete(apiUrl + '/images/' + image._id).then(function (removed) {
+	
+	    // remove(image) {
+	    //   cache.remove(`${apiUrl}/albums/${image.album}/images`);
+	    //
+	    //   return $http.delete(`${apiUrl}/images/${image._id}`)
+	    //     .then(removed => removed.data)
+	    //     .catch(err => console.error('something went wrong: ', err));
+	    // },
+	
+	    remove: function remove(imageId) {
+	      cache.remove(apiUrl + '/albums');
+	
+	      return $http.delete(apiUrl + '/images/' + imageId).then(function (removed) {
 	        return removed.data;
 	      }).catch(function (err) {
 	        return console.error('something went wrong: ', err);
 	      });
 	    },
-	
-	
-	    // remove(imageId) {
-	    //   return $http.delete(`${apiUrl}/images/${imageId}`)
-	    //     .then(removed => removed.data)
-	    //     .catch(err => console.error('something went wrong: ', err));
-	    // },
-	
 	    update: function update(image, imageId) {
 	      cache.remove(apiUrl + '/albums/' + image.album + '/images');
 	
