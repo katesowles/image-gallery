@@ -35,12 +35,10 @@ module.exports = {
     {
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract('style!', 'css?sourceMap!sass?sourceMap')
-      // loader: 'style!css?sourceMap!sass?sourceMap'
     },
     {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style!', 'css?sourceMap!')
-      // loader: 'style!css?sourceMap'
     },
     {
       test: /\.html$/,
