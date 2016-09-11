@@ -41055,7 +41055,7 @@
 /* 53 */
 /***/ function(module, exports) {
 
-	module.exports = "<main ng-class=\"$ctrl.styles.landing\">\n  <!-- <div class=\"loggedOut\" ng-if=\"userService.isAuthenticated()\"> -->\n    <h2>Sign In or Create an Account</h2>\n    <user-auth success=\"success()\"></user-auth>\n  <!-- </div> -->\n\n  <!-- <div class=\"loggedIn\" ng-if=\"!userService.isAuthenticated()\"> -->\n    <button class=\"center\" ui-sref-active=\"active\" ui-sref=\"show-albums\">Show Albums</button>\n\n    <h5>Welcome! Use the button above to see the list of available albums.</h5>\n  <!-- </div> -->\n\n  <h6><a href=\"http://github.com/katesowles/image-gallery\">See this project on Github</a></h6>\n\n</main>\n";
+	module.exports = "<main ng-class=\"$ctrl.styles.landing\">\n\n  <!-- <div class=\"loggedOut\" ng-if=\"userService.isAuthenticated()\"> -->\n    <!-- <h2>Sign In or Create an Account</h2>\n    <user-auth success=\"success()\"></user-auth> -->\n  <!-- </div> -->\n\n  <!-- <div class=\"loggedIn\" ng-if=\"!userService.isAuthenticated()\"> -->\n    <button class=\"center\" ui-sref-active=\"active\" ui-sref=\"show-albums\">Show Albums</button>\n\n    <h5>Welcome! Use the button above to see the list of available albums.</h5>\n  <!-- </div> -->\n\n  <h6><a href=\"http://github.com/katesowles/image-gallery\">See this project on Github</a></h6>\n\n</main>\n";
 
 /***/ },
 /* 54 */
@@ -41497,7 +41497,7 @@
 	      token.remove();
 	    },
 	
-	    singin: credential('signin'),
+	    signin: credential('signin'),
 	    signup: credential('signup')
 	  };
 	}
@@ -79472,7 +79472,7 @@
 	
 	      $mdDialog.show({
 	        parent: _angular2.default.element(document.body),
-	        template: '<md-dialog><user-auth success="success()"></user-auth<md-dialog>',
+	        template: '<main><md-dialog><h3 class="center">Login or Create an Account</h3><user-auth success="success()"></user-auth<md-dialog></main>',
 	        controller: ['$scope', function ($scope) {
 	          $scope.success = function () {
 	            $mdDialog.hide();

@@ -9,7 +9,7 @@ export default function auth($rootScope, userService, $mdDialog, $state) {
 
       $mdDialog.show({
         parent: angular.element(document.body),
-        template: '<md-dialog><user-auth success="success()"></user-auth<md-dialog>',
+        template: '<main><md-dialog><h3 class="center">Login or Create an Account</h3><user-auth success="success()"></user-auth<md-dialog></main>',
         controller: ['$scope', function ($scope) {
           $scope.success = function () {
             $mdDialog.hide();

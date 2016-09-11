@@ -24,7 +24,7 @@ export default function userService(token, $http, apiUrl) {
     logout() {
       token.remove();
     },
-    singin: credential('signin'),
+    signin: credential('signin'),
     signup: credential('signup')
   };
 }
