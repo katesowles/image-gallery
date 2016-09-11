@@ -12,6 +12,9 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
 
     .state('show-albums', {
       url: '/albums',
+      data: {
+        requiresAuth: true
+      },
       views: {
         main: { component: 'showAlbums' },
       }
@@ -19,6 +22,9 @@ export default function configRoutes($stateProvider, $urlRouterProvider) {
 
     .state('specific-album', {
       url: '/albums/:albumId/images?display',
+      data: {
+        requiresAuth: true
+      },
       params: {display: {dynamic: true}},
       resolve: {
         albumId: ['$stateParams', params => params.albumId],

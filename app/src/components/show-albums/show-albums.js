@@ -12,9 +12,7 @@ function controller(albumService) {
   this.styles = styles;
 
   albumService.getAll()
-    .then(albums => {
-      this.albums = albums;
-    })
+    .then(albums => this.albums = albums)
     .catch(err => console.error('something went wrong', err));
 
   this.add = albumToAdd => {
