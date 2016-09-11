@@ -10,7 +10,7 @@ module.exports = router
     const {email, password} = request.body;
     delete request.body.password;
 
-    if (!email || password) {
+    if (!email || !password) {
       return response.status(400).json({
         message: 'Please add both an email address and password',
       });
