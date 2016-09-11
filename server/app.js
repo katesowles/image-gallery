@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const images = require('./routes/images');
 const albums = require('./routes/albums');
 const auth = require('./routes/auth');
-const ensureAuth = require('./auth/ensureAuth');
+// const ensureAuth = require('./auth/ensureAuth');
 
 app.use(morgan('dev'));
 
@@ -20,8 +20,8 @@ app.use((request, response, next) => {
 });
 
 app.use('/api/'), auth;
-app.use('/api/images', ensureAuth, images);
-app.use('/api/albums', ensureAuth, albums);
+app.use('/api/images', /*ensureAuth,*/ images);
+app.use('/api/albums', /*ensureAuth,*/ albums);
 
 // eslint-disable-next-line
 app.use((err, request, response, next) => {

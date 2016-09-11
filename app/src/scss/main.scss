@@ -41,11 +41,16 @@ body {
   @include linear-gradient($lter, $lt);
 }
 
-main {
+
+header, main {
   width: 60%;
   margin: 0 auto;
   min-width: 400px;
   max-width: 1200px;
+}
+
+header {
+  text-align: right;
 }
 
 section {
@@ -55,7 +60,6 @@ section {
   box-shadow: 0 0 20px #ddd;
   margin-bottom: 30px;
 }
-
 
 h1 { // "Image Gallery"
   font-size: 4em;
@@ -71,7 +75,7 @@ h2 { // "Your Albums"
   text-align: center;
 }
 
-h3 { // ""
+h3 { // "SignIn" or "SignUp"
   font-size: 2em;
   font-weight: 200;
   text-align: left;
@@ -162,7 +166,7 @@ input[type="radio"] {
   background-color: transparent;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
   width: calc(100%);
   margin-bottom: 10px;
   background-color: transparent;

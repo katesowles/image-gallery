@@ -54,20 +54,28 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _routes = __webpack_require__(56);
+	var _routes = __webpack_require__(71);
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
-	__webpack_require__(57);
+	var _http = __webpack_require__(72);
+	
+	var _http2 = _interopRequireDefault(_http);
+	
+	var _auth = __webpack_require__(73);
+	
+	var _auth2 = _interopRequireDefault(_auth);
+	
+	__webpack_require__(74);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var _module = _angular2.default.module(_app2.default);
+	_app2.default.config(_http2.default);
+	_app2.default.config(_routes2.default);
+	_app2.default.run(_auth2.default);
+	_app2.default.value('apiUrl', (undefined) || '/api');
 	
-	_module.config(_routes2.default);
-	_module.value('apiUrl', (undefined) || '/api');
-	
-	_angular2.default.bootstrap(document, [_app2.default]);
+	_angular2.default.bootstrap(document, [_app2.default.name]);
 
 /***/ },
 /* 1 */
@@ -31872,15 +31880,17 @@
 	
 	var _components2 = _interopRequireDefault(_components);
 	
-	var _services = __webpack_require__(52);
+	var _services = __webpack_require__(64);
 	
 	var _services2 = _interopRequireDefault(_services);
 	
+	__webpack_require__(70);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var app = _angular2.default.module('gallery', [_angularUiRouter2.default, _components2.default, _services2.default]);
+	var app = _angular2.default.module('gallery', [_angularUiRouter2.default, _angular2.default.module('ui.router.state.events').name, _components2.default, _services2.default]);
 	
-	exports.default = app.name;
+	exports.default = app;
 
 /***/ },
 /* 4 */
@@ -40404,10 +40414,13 @@
 		"./album/text/text.js": 28,
 		"./album/text/updateImage/updateImage.js": 32,
 		"./album/thumb/thumb.js": 36,
-		"./landing/landing.js": 40,
-		"./show-albums/add-album/add-album.js": 44,
-		"./show-albums/show-albums.js": 46,
-		"./show-albums/update-album/update-album.js": 50
+		"./auth/signin/signin.js": 40,
+		"./auth/signup/signup.js": 44,
+		"./auth/user-auth.js": 48,
+		"./landing/landing.js": 52,
+		"./show-albums/add-album/add-album.js": 56,
+		"./show-albums/show-albums.js": 58,
+		"./show-albums/update-album/update-album.js": 62
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -40845,28 +40858,52 @@
 	  value: true
 	});
 	
-	var _landing = __webpack_require__(41);
+	var _signin = __webpack_require__(41);
 	
-	var _landing2 = _interopRequireDefault(_landing);
+	var _signin2 = _interopRequireDefault(_signin);
 	
-	var _landing3 = __webpack_require__(42);
+	var _signin3 = __webpack_require__(42);
 	
-	var _landing4 = _interopRequireDefault(_landing3);
+	var _signin4 = _interopRequireDefault(_signin3);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
-	  template: _landing2.default,
-	  controller: function controller() {
-	    this.styles = _landing4.default;
-	  }
+	  template: _signin2.default,
+	  bindings: {
+	    success: '&'
+	  },
+	  controller: controller
 	};
+	
+	
+	controller.$inject = ['userService'];
+	
+	function controller(userService) {
+	  var _this = this;
+	
+	  this.styles = _signin4.default;
+	  this.credentials = {
+	    email: '',
+	    password: ''
+	  };
+	
+	  this.authenticate = function () {
+	    return userService.signin(_this.credentials).then(function () {
+	      _this.success();
+	      return true;
+	    }).catch(function (error) {
+	      _this.error = error;
+	      return false;
+	    });
+	  };
+	}
 
 /***/ },
 /* 41 */
 /***/ function(module, exports) {
 
-	module.exports = "<main ng-class=\"$ctrl.styles.landing\">\n  <button class=\"\" style=\"display:block; margin:50px auto;\" ui-sref-active=\"active\" ui-sref=\"show-albums\">Show Albums</button>\n\n  <h5>Welcome! Use the button above to see the list of available albums.</h5>\n\n  <h6><a href=\"http://github.com/katesowles/image-gallery\">See this project on Github</a></h6>\n</main>\n";
+	module.exports = "<h3>Sign In</h3>\n<form name=\"auth\" ng-submit=\"$ctrl.authenticate()\">\n    <input type=\"text\" placeholder=\"Email Address\" ng-model=\"$ctrl.credentials.email\">\n\n    <input type=\"password\" placeholder=\"Password\" ng-model=\"$ctrl.credentials.password\">\n\n    <button type=\"submit\">Sign In</button>\n</form>\n\n<span class=\"error\" ng-if=\"$ctrl.error\">{{$ctrl.error}}</span>\n";
 
 /***/ },
 /* 42 */
@@ -40885,11 +40922,168 @@
 	  value: true
 	});
 	
-	var _addAlbum = __webpack_require__(45);
+	var _signup = __webpack_require__(45);
+	
+	var _signup2 = _interopRequireDefault(_signup);
+	
+	var _signup3 = __webpack_require__(46);
+	
+	var _signup4 = _interopRequireDefault(_signup3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _signup2.default,
+	  bindings: {
+	    success: '&'
+	  },
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['userService'];
+	
+	function controller(userService) {
+	  var _this = this;
+	
+	  this.styles = _signup4.default;
+	  this.credentials = {
+	    email: '',
+	    password: ''
+	  };
+	
+	  this.authenticate = function () {
+	    return userService.signup(_this.credentials).then(function () {
+	      _this.success();
+	      return true;
+	    }).catch(function (error) {
+	      _this.error = error;
+	      return false;
+	    });
+	  };
+	}
+
+/***/ },
+/* 45 */
+/***/ function(module, exports) {
+
+	module.exports = "<h3>Sign Up</h3>\n<form name=\"auth\" ng-submit=\"$ctrl.authenticate()\">\n    <input type=\"text\" placeholder=\"Email Address\" ng-model=\"$ctrl.credentials.email\">\n\n    <input type=\"password\" placeholder=\"Password\" ng-model=\"$ctrl.credentials.password\">\n\n    <button type=\"submit\">Sign Up</button>\n</form>\n\n<span class=\"error\" ng-if=\"$ctrl.error\">{{$ctrl.error}}</span>\n";
+
+/***/ },
+/* 46 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 47 */,
+/* 48 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _userAuth = __webpack_require__(49);
+	
+	var _userAuth2 = _interopRequireDefault(_userAuth);
+	
+	var _userAuth3 = __webpack_require__(50);
+	
+	var _userAuth4 = _interopRequireDefault(_userAuth3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _userAuth2.default,
+	  bindings: {
+	    success: '&'
+	  },
+	  controller: function controller() {
+	    this.styles = _userAuth4.default;
+	    this.action = '';
+	  }
+	};
+
+/***/ },
+/* 49 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"authOptions\">\n  <button ng-click=\"$ctrl.action = 'signin'\">Sign In</button>\n  <button ng-click=\"$ctrl.action = 'signup'\">Sign Up</button>\n\n  <signin ng-if=\"$ctrl.action === 'signin'\" success=\"$ctrl.success()\"></signin>\n\n  <signup ng-if=\"$ctrl.action === 'signup'\" success=\"$ctrl.success()\"></signup>\n\n</div>\n";
+
+/***/ },
+/* 50 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 51 */,
+/* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _landing = __webpack_require__(53);
+	
+	var _landing2 = _interopRequireDefault(_landing);
+	
+	var _landing3 = __webpack_require__(54);
+	
+	var _landing4 = _interopRequireDefault(_landing3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  template: _landing2.default,
+	  controller: controller
+	};
+	
+	
+	controller.$inject = ['$state', 'toState', 'toParams'];
+	
+	function controller() {
+	  this.styles = _landing4.default;
+	
+	  this.success = function ($state, toState, toParams) {
+	    return $state.go(toState.name, toParams);
+	  };
+	}
+
+/***/ },
+/* 53 */
+/***/ function(module, exports) {
+
+	module.exports = "<main ng-class=\"$ctrl.styles.landing\">\n  <div class=\"loggedOut\" ng-if=\"userService.isAuthenticated()\">\n    <h2>Sign In or Create an Account</h2>\n    <user-auth success=\"success()\"></user-auth>\n  </div>\n\n  <div class=\"loggedIn\" ng-if=\"!userService.isAuthenticated()\">\n    <button style=\"display:block; margin:50px auto;\" ui-sref-active=\"active\" ui-sref=\"show-albums\">Show Albums</button>\n\n    <h5>Welcome! Use the button above to see the list of available albums.</h5>\n  </div>\n\n  <h6><a href=\"http://github.com/katesowles/image-gallery\">See this project on Github</a></h6>\n\n</main>\n";
+
+/***/ },
+/* 54 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 55 */,
+/* 56 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _addAlbum = __webpack_require__(57);
 	
 	var _addAlbum2 = _interopRequireDefault(_addAlbum);
 	
-	var _addAlbum3 = __webpack_require__(44);
+	var _addAlbum3 = __webpack_require__(56);
 	
 	var _addAlbum4 = _interopRequireDefault(_addAlbum3);
 	
@@ -40923,13 +41117,13 @@
 	};
 
 /***/ },
-/* 45 */
+/* 57 */
 /***/ function(module, exports) {
 
 	module.exports = "<div ng-class=\"$ctrl.styles.addAlbum\">\n  <form ng-submit=\"$ctrl.submit()\">\n    <input type=\"text\" placeholder=\"Album Title\" ng-model=\"$ctrl.album.title\">\n    <button type=\"submit\">Add Album</button>\n  </form>\n</div>\n";
 
 /***/ },
-/* 46 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40938,11 +41132,11 @@
 	  value: true
 	});
 	
-	var _showAlbums = __webpack_require__(47);
+	var _showAlbums = __webpack_require__(59);
 	
 	var _showAlbums2 = _interopRequireDefault(_showAlbums);
 	
-	var _showAlbums3 = __webpack_require__(48);
+	var _showAlbums3 = __webpack_require__(60);
 	
 	var _showAlbums4 = _interopRequireDefault(_showAlbums3);
 	
@@ -40962,7 +41156,7 @@
 	  this.styles = _showAlbums4.default;
 	
 	  albumService.getAll().then(function (albums) {
-	    _this.albums = albums;
+	    return _this.albums = albums;
 	  }).catch(function (err) {
 	    return console.error('something went wrong', err);
 	  });
@@ -41004,20 +41198,20 @@
 	}
 
 /***/ },
-/* 47 */
+/* 59 */
 /***/ function(module, exports) {
 
 	module.exports = "<main ng-class=$ctrl.styles.showAlbums>\n  <h2>Your Albums</h2>\n  <h5>Select the album to view</h5>\n\n  <section ng-repeat=\"album in $ctrl.albums\">\n    <!-- <div ng-show=\"album\"> -->\n      <!-- TODO FIX THIS SHIT -->\n      <a ui-sref=\"specific-album({albumId: album._id, display: 'text'})\"><h4>{{album.title}}</h4></a>\n\n      <div class=\"buttonHolder\">\n        <button class=\"inline\" ng-click=\"showUpdate=!showUpdate\">Edit Album</button>\n        <button class=\"inline\" ng-click=\"$ctrl.remove(album._id)\">Delete Album</button>\n      </div>\n    <!-- </div> -->\n\n    <!-- <div ng-show=\"!album\">\n      <h5>You don't currently have any albums, add one below</h5>\n    </div> -->\n  </section>\n\n  <section ng-show=\"showUpdate\">\n    <h4>Update an Album</h4>\n    <update-album update=\"$ctrl.update\" collection=\"album\"> <!-- form will go here --> </update-album>\n  </section>\n\n  <section>\n    <h4 class=\"inline\">Add an Album</h4>\n    <add-album add=\"$ctrl.add\"></add-album>\n  </section>\n</main>\n";
 
 /***/ },
-/* 48 */
+/* 60 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 49 */,
-/* 50 */
+/* 61 */,
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41026,7 +41220,7 @@
 	  value: true
 	});
 	
-	var _updateAlbum = __webpack_require__(51);
+	var _updateAlbum = __webpack_require__(63);
 	
 	var _updateAlbum2 = _interopRequireDefault(_updateAlbum);
 	
@@ -41059,13 +41253,13 @@
 	};
 
 /***/ },
-/* 51 */
+/* 63 */
 /***/ function(module, exports) {
 
 	module.exports = "<section ng-class=\"$ctrl.styles.updateAlbum\">\n  <form ng-submit=\"$ctrl.submit()\">\n    <input type=\"text\" placeholer=\"Album Title\" ng-model=\"$ctrl.album.title\">\n    <button type=\"submit\">Update Album</button>\n  </form>\n</section>\n";
 
 /***/ },
-/* 52 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -41089,7 +41283,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// this is a webpack specific require construct
-	var reqContext = __webpack_require__(53);
+	var reqContext = __webpack_require__(65);
 	
 	var services = _angular2.default.module('services', []);
 	
@@ -41101,12 +41295,14 @@
 	exports.default = services.name;
 
 /***/ },
-/* 53 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./albumService.js": 54,
-		"./imageService.js": 55
+		"./albumService.js": 66,
+		"./imageService.js": 67,
+		"./tokenService.js": 68,
+		"./userService.js": 69
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -41119,11 +41315,11 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 53;
+	webpackContext.id = 65;
 
 
 /***/ },
-/* 54 */
+/* 66 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -41132,19 +41328,23 @@
 	  value: true
 	});
 	exports.default = albumService;
-	albumService.$inject = ['$http', 'apiUrl'];
+	albumService.$inject = ['$http', 'apiUrl', '$cacheFactory'];
 	
-	function albumService($http, apiUrl) {
+	function albumService($http, apiUrl, $cacheFactory) {
+	
+	  var cache = $cacheFactory.get('$http');
 	
 	  return {
 	    getAll: function getAll() {
-	      return $http.get(apiUrl + '/albums').then(function (response) {
+	      return $http.get(apiUrl + '/albums', { cache: true }).then(function (response) {
 	        return response.data;
 	      }).catch(function (err) {
 	        return console.error('something went wrong when calling getAll() on the albums: ', err);
 	      });
 	    },
 	    add: function add(album) {
+	      cache.remove(apiUrl + '/albums');
+	
 	      return $http.post(apiUrl + '/albums', album).then(function (response) {
 	        return response.data;
 	      }).catch(function (err) {
@@ -41152,6 +41352,8 @@
 	      });
 	    },
 	    remove: function remove(album) {
+	      cache.remove(apiUrl + '/albums');
+	
 	      var albumId = album._id;
 	      return $http.delete(apiUrl + '/albums/' + albumId).then(function (response) {
 	        return response.data;
@@ -41160,6 +41362,8 @@
 	      });
 	    },
 	    update: function update(album) {
+	      cache.remove(apiUrl + '/albums');
+	
 	      var albumId = album._id;
 	      return $http.put(apiUrl + '/albums/' + albumId, album).then(function (response) {
 	        return response.data;
@@ -41171,7 +41375,7 @@
 	}
 
 /***/ },
-/* 55 */
+/* 67 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -41180,32 +41384,49 @@
 	  value: true
 	});
 	exports.default = imageService;
-	imageService.$inject = ['$http', 'apiUrl'];
+	imageService.$inject = ['$http', 'apiUrl', '$cacheFactory'];
 	
-	function imageService($http, apiUrl) {
+	function imageService($http, apiUrl, $cacheFactory) {
+	
+	  var cache = $cacheFactory.get('$http');
+	
 	  return {
 	    getAlbumContent: function getAlbumContent(albumId) {
-	      return $http.get(apiUrl + '/albums/' + albumId + '/images').then(function (response) {
+	      return $http.get(apiUrl + '/albums/' + albumId + '/images', { cache: true }).then(function (response) {
 	        return response.data;
 	      }).catch(function (err) {
 	        return console.error('something went wrong: ', err);
 	      });
 	    },
 	    add: function add(image) {
+	      cache.remove(apiUrl + '/albums/' + image.album + '/images');
+	
 	      return $http.post(apiUrl + '/albums/' + image.album + '/images', image).then(function (added) {
 	        return added.data;
 	      }).catch(function (err) {
 	        return console.error('something went wrong:', err);
 	      });
 	    },
-	    remove: function remove(imageId) {
-	      return $http.delete(apiUrl + '/images/' + imageId).then(function (removed) {
+	    remove: function remove(image) {
+	      cache.remove(apiUrl + '/albums/' + image.album + '/images');
+	
+	      return $http.delete(apiUrl + '/images/' + image._id).then(function (removed) {
 	        return removed.data;
 	      }).catch(function (err) {
 	        return console.error('something went wrong: ', err);
 	      });
 	    },
+	
+	
+	    // remove(imageId) {
+	    //   return $http.delete(`${apiUrl}/images/${imageId}`)
+	    //     .then(removed => removed.data)
+	    //     .catch(err => console.error('something went wrong: ', err));
+	    // },
+	
 	    update: function update(image, imageId) {
+	      cache.remove(apiUrl + '/albums/' + image.album + '/images');
+	
 	      return $http.put(apiUrl + '/images/' + imageId, image).then(function (updated) {
 	        return updated.data;
 	      }).catch(function (err) {
@@ -41216,7 +41437,388 @@
 	}
 
 /***/ },
-/* 56 */
+/* 68 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = tokenService;
+	tokenService.$inject = ['$window'];
+	
+	var TOKEN_NAME = 'token';
+	
+	function tokenService($window) {
+	  return {
+	    get: function get() {
+	      return $window.localStorage.getItem(TOKEN_NAME);
+	    },
+	    set: function set(token) {
+	      $window.localStorage.setItem(TOKEN_NAME, token);
+	    },
+	    remove: function remove() {
+	      $window.localStorage.removeItem(TOKEN_NAME);
+	    }
+	  };
+	}
+
+/***/ },
+/* 69 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = userService;
+	userService.$inject = ['tokenService', '$http', 'apiUrl'];
+	
+	function userService(token, $http, apiUrl) {
+	  var current = token.get();
+	  if (current) {
+	    $http.get(apiUrl + '/verify').catch(function () {
+	      return token.remove();
+	    });
+	  }
+	
+	  function credential(endpoint) {
+	    return function (credentials) {
+	      return $http.post(apiUrl + '/' + endpoint, credentials).then(function (result) {
+	        return token.set(result.data.token);
+	      }).catch(function (error) {
+	        throw error.data;
+	      });
+	    };
+	  }
+	
+	  return {
+	    isAuthenticated: function isAuthenticated() {
+	      return !!token.get();
+	    },
+	    logout: function logout() {
+	      token.remove();
+	    },
+	
+	    singin: credential('signin'),
+	    signup: credential('signup')
+	  };
+	}
+
+/***/ },
+/* 70 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*!
+	 * State-based routing for AngularJS
+	 * @version v1.0.0-beta.1
+	 * @link https://ui-router.github.io
+	 * @license MIT License, http://www.opensource.org/licenses/MIT
+	 */
+	(function webpackUniversalModuleDefinition(root, factory) {
+		if(true)
+			module.exports = factory();
+		else if(typeof define === 'function' && define.amd)
+			define("angular-ui-router", [], factory);
+		else if(typeof exports === 'object')
+			exports["angular-ui-router"] = factory();
+		else
+			root["angular-ui-router"] = factory();
+	})(this, function() {
+	return /******/ (function(modules) { // webpackBootstrap
+	/******/ 	// The module cache
+	/******/ 	var installedModules = {};
+	/******/
+	/******/ 	// The require function
+	/******/ 	function __webpack_require__(moduleId) {
+	/******/
+	/******/ 		// Check if module is in cache
+	/******/ 		if(installedModules[moduleId])
+	/******/ 			return installedModules[moduleId].exports;
+	/******/
+	/******/ 		// Create a new module (and put it into the cache)
+	/******/ 		var module = installedModules[moduleId] = {
+	/******/ 			exports: {},
+	/******/ 			id: moduleId,
+	/******/ 			loaded: false
+	/******/ 		};
+	/******/
+	/******/ 		// Execute the module function
+	/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+	/******/
+	/******/ 		// Flag the module as loaded
+	/******/ 		module.loaded = true;
+	/******/
+	/******/ 		// Return the exports of the module
+	/******/ 		return module.exports;
+	/******/ 	}
+	/******/
+	/******/
+	/******/ 	// expose the modules object (__webpack_modules__)
+	/******/ 	__webpack_require__.m = modules;
+	/******/
+	/******/ 	// expose the module cache
+	/******/ 	__webpack_require__.c = installedModules;
+	/******/
+	/******/ 	// __webpack_public_path__
+	/******/ 	__webpack_require__.p = "";
+	/******/
+	/******/ 	// Load entry module and return exports
+	/******/ 	return __webpack_require__(0);
+	/******/ })
+	/************************************************************************/
+	/******/ ([
+	/* 0 */
+	/***/ function(module, exports) {
+	
+		"use strict";
+		/**
+		 * An event broadcast on `$rootScope` when the state transition **begins**.
+		 *
+		 * You can use `event.preventDefault()`
+		 * to prevent the transition from happening and then the transition promise will be
+		 * rejected with a `'transition prevented'` value.
+		 *
+		 * Additional arguments to the event handler are provided:
+		 * - `toState`: the Transition Target state
+		 * - `toParams`: the Transition Target Params
+		 * - `fromState`: the state the transition is coming from
+		 * - `fromParams`: the parameters from the state the transition is coming from
+		 * - `options`: any Transition Options
+		 * - `$transition$`: the [[Transition]]
+		 *
+		 * @example
+		 * ```
+		 *
+		 * $rootScope.$on('$stateChangeStart', function(event, transition) {
+		 *   event.preventDefault();
+		 *   // transitionTo() promise will be rejected with
+		 *   // a 'transition prevented' error
+		 * })
+		 * ```
+		 *
+		 * @deprecated use [[TransitionService.onStart]]
+		 * @event $stateChangeStart
+		 */
+		var $stateChangeStart;
+		/**
+		 * An event broadcast on `$rootScope` if a transition is **cancelled**.
+		 *
+		 * Additional arguments to the event handler are provided:
+		 * - `toState`: the Transition Target state
+		 * - `toParams`: the Transition Target Params
+		 * - `fromState`: the state the transition is coming from
+		 * - `fromParams`: the parameters from the state the transition is coming from
+		 * - `options`: any Transition Options
+		 * - `$transition$`: the [[Transition]] that was cancelled
+		 *
+		 * @deprecated
+		 * @event $stateChangeCancel
+		 */
+		var $stateChangeCancel;
+		/**
+		 *
+		 * An event broadcast on `$rootScope` once the state transition is **complete**.
+		 *
+		 * Additional arguments to the event handler are provided:
+		 * - `toState`: the Transition Target state
+		 * - `toParams`: the Transition Target Params
+		 * - `fromState`: the state the transition is coming from
+		 * - `fromParams`: the parameters from the state the transition is coming from
+		 * - `options`: any Transition Options
+		 * - `$transition$`: the [[Transition]] that just succeeded
+		 *
+		 * @deprecated use [[TransitionService.onStart]] and [[Transition.promise]], or [[Transition.onSuccess]]
+		 * @event $stateChangeSuccess
+		 */
+		var $stateChangeSuccess;
+		/**
+		 * An event broadcast on `$rootScope` when an **error occurs** during transition.
+		 *
+		 * It's important to note that if you
+		 * have any errors in your resolve functions (javascript errors, non-existent services, etc)
+		 * they will not throw traditionally. You must listen for this $stateChangeError event to
+		 * catch **ALL** errors.
+		 *
+		 * Additional arguments to the event handler are provided:
+		 * - `toState`: the Transition Target state
+		 * - `toParams`: the Transition Target Params
+		 * - `fromState`: the state the transition is coming from
+		 * - `fromParams`: the parameters from the state the transition is coming from
+		 * - `error`: The reason the transition errored.
+		 * - `options`: any Transition Options
+		 * - `$transition$`: the [[Transition]] that errored
+		 *
+		 * @deprecated use [[TransitionService.onStart]] and [[Transition.promise]], or [[Transition.onError]]
+		 * @event $stateChangeError
+		 */
+		var $stateChangeError;
+		/**
+		 * An event broadcast on `$rootScope` when a requested state **cannot be found** using the provided state name.
+		 *
+		 * The event is broadcast allowing any handlers a single chance to deal with the error (usually by
+		 * lazy-loading the unfound state). A `TargetState` object is passed to the listener handler,
+		 * you can see its properties in the example. You can use `event.preventDefault()` to abort the
+		 * transition and the promise returned from `transitionTo()` will be rejected with a
+		 * `'transition aborted'` error.
+		 *
+		 * Additional arguments to the event handler are provided:
+		 * - `unfoundState` Unfound State information. Contains: `to, toParams, options` properties.
+		 * - `fromState`: the state the transition is coming from
+		 * - `fromParams`: the parameters from the state the transition is coming from
+		 * - `options`: any Transition Options
+		 * @example
+		 *
+		 * <pre>
+		 * // somewhere, assume lazy.state has not been defined
+		 * $state.go("lazy.state", { a: 1, b: 2 }, { inherit: false });
+		 *
+		 * // somewhere else
+		 * $scope.$on('$stateNotFound', function(event, transition) {
+		 * function(event, unfoundState, fromState, fromParams){
+		 *     console.log(unfoundState.to); // "lazy.state"
+		 *     console.log(unfoundState.toParams); // {a:1, b:2}
+		 *     console.log(unfoundState.options); // {inherit:false} + default options
+		 * });
+		 * </pre>
+		 *
+		 * @deprecated use [[StateProvider.onInvalid]] // TODO: Move to [[StateService.onInvalid]]
+		 * @event $stateNotFound
+		 */
+		var $stateNotFound;
+		(function () {
+		    var isFunction = angular.isFunction, isString = angular.isString;
+		    function applyPairs(memo, keyValTuple) {
+		        var key, value;
+		        if (Array.isArray(keyValTuple))
+		            key = keyValTuple[0], value = keyValTuple[1];
+		        if (!isString(key))
+		            throw new Error("invalid parameters to applyPairs");
+		        memo[key] = value;
+		        return memo;
+		    }
+		    function stateChangeStartHandler($transition$) {
+		        if (!$transition$.options().notify || !$transition$.valid() || $transition$.ignored())
+		            return;
+		        var $injector = $transition$.injector().native;
+		        var $stateEvents = $injector.get('$stateEvents');
+		        var $rootScope = $injector.get('$rootScope');
+		        var $state = $injector.get('$state');
+		        var $urlRouter = $injector.get('$urlRouter');
+		        var enabledEvents = $stateEvents.provider.enabled();
+		        var toParams = $transition$.params("to");
+		        var fromParams = $transition$.params("from");
+		        if (enabledEvents.$stateChangeSuccess) {
+		            var startEvent = $rootScope.$broadcast('$stateChangeStart', $transition$.to(), toParams, $transition$.from(), fromParams, $transition$.options(), $transition$);
+		            if (startEvent.defaultPrevented) {
+		                if (enabledEvents.$stateChangeCancel) {
+		                    $rootScope.$broadcast('$stateChangeCancel', $transition$.to(), toParams, $transition$.from(), fromParams, $transition$.options(), $transition$);
+		                }
+		                //Don't update and resync url if there's been a new transition started. see issue #2238, #600
+		                if ($state.transition == null)
+		                    $urlRouter.update();
+		                return false;
+		            }
+		            $transition$.promise.then(function () {
+		                $rootScope.$broadcast('$stateChangeSuccess', $transition$.to(), toParams, $transition$.from(), fromParams, $transition$.options(), $transition$);
+		            });
+		        }
+		        if (enabledEvents.$stateChangeError) {
+		            $transition$.promise["catch"](function (error) {
+		                if (error && (error.type === 2 /* RejectType.SUPERSEDED */ || error.type === 3 /* RejectType.ABORTED */))
+		                    return;
+		                var evt = $rootScope.$broadcast('$stateChangeError', $transition$.to(), toParams, $transition$.from(), fromParams, error, $transition$.options(), $transition$);
+		                if (!evt.defaultPrevented) {
+		                    $urlRouter.update();
+		                }
+		            });
+		        }
+		    }
+		    stateNotFoundHandler.$inject = ['$to$', '$from$', '$state', '$rootScope', '$urlRouter'];
+		    function stateNotFoundHandler($to$, $from$, $state, $rootScope, $urlRouter) {
+		        var redirect = { to: $to$.identifier(), toParams: $to$.params(), options: $to$.options() };
+		        var e = $rootScope.$broadcast('$stateNotFound', redirect, $from$.state(), $from$.params());
+		        if (e.defaultPrevented || e.retry)
+		            $urlRouter.update();
+		        function redirectFn() {
+		            return $state.target(redirect.to, redirect.toParams, redirect.options);
+		        }
+		        if (e.defaultPrevented) {
+		            return false;
+		        }
+		        else if (e.retry || !!$state.get(redirect.to)) {
+		            return e.retry && isFunction(e.retry.then) ? e.retry.then(redirectFn) : redirectFn();
+		        }
+		    }
+		    $StateEventsProvider.$inject = ['$stateProvider'];
+		    function $StateEventsProvider($stateProvider) {
+		        $StateEventsProvider.prototype.instance = this;
+		        var runtime = false;
+		        var allEvents = ['$stateChangeStart', '$stateNotFound', '$stateChangeSuccess', '$stateChangeError'];
+		        var enabledStateEvents = allEvents.map(function (e) { return [e, true]; }).reduce(applyPairs, {});
+		        function assertNotRuntime() {
+		            if (runtime)
+		                throw new Error("Cannot enable events at runtime (use $stateEventsProvider");
+		        }
+		        /**
+		         * Enables the deprecated UI-Router 0.2.x State Events
+		         * [ '$stateChangeStart', '$stateNotFound', '$stateChangeSuccess', '$stateChangeError' ]
+		         */
+		        this.enable = function () {
+		            var events = [];
+		            for (var _i = 0; _i < arguments.length; _i++) {
+		                events[_i - 0] = arguments[_i];
+		            }
+		            assertNotRuntime();
+		            if (!events || !events.length)
+		                events = allEvents;
+		            events.forEach(function (event) { return enabledStateEvents[event] = true; });
+		        };
+		        /**
+		         * Disables the deprecated UI-Router 0.2.x State Events
+		         * [ '$stateChangeStart', '$stateNotFound', '$stateChangeSuccess', '$stateChangeError' ]
+		         */
+		        this.disable = function () {
+		            var events = [];
+		            for (var _i = 0; _i < arguments.length; _i++) {
+		                events[_i - 0] = arguments[_i];
+		            }
+		            assertNotRuntime();
+		            if (!events || !events.length)
+		                events = allEvents;
+		            events.forEach(function (event) { return delete enabledStateEvents[event]; });
+		        };
+		        this.enabled = function () { return enabledStateEvents; };
+		        this.$get = $get;
+		        $get.$inject = ['$transitions'];
+		        function $get($transitions) {
+		            runtime = true;
+		            if (enabledStateEvents["$stateNotFound"])
+		                $stateProvider.onInvalid(stateNotFoundHandler);
+		            if (enabledStateEvents.$stateChangeStart)
+		                $transitions.onBefore({}, stateChangeStartHandler, { priority: 1000 });
+		            return {
+		                provider: $StateEventsProvider.prototype.instance
+		            };
+		        }
+		    }
+		    angular.module('ui.router.state.events', ['ui.router.state'])
+		        .provider("$stateEvents", $StateEventsProvider)
+		        .run(['$stateEvents', function ($stateEvents) {
+		        }]);
+		})();
+	
+	
+	/***/ }
+	/******/ ])
+	});
+	;
+	//# sourceMappingURL=stateEvents.js.map
+
+/***/ },
+/* 71 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -41236,11 +41838,17 @@
 	    }
 	  }).state('show-albums', {
 	    url: '/albums',
+	    data: {
+	      requiresAuth: true
+	    },
 	    views: {
 	      main: { component: 'showAlbums' }
 	    }
 	  }).state('specific-album', {
 	    url: '/albums/:albumId/images?display',
+	    data: {
+	      requiresAuth: true
+	    },
 	    params: { display: { dynamic: true } },
 	    resolve: {
 	      albumId: ['$stateParams', function (params) {
@@ -41260,7 +41868,76 @@
 	}
 
 /***/ },
-/* 57 */
+/* 72 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = configHttp;
+	configHttp.$inject = ['$httpProvider'];
+	
+	function configHttp($httpProvider) {
+	  $httpProvider.interceptors.push(interceptor);
+	}
+	
+	interceptor.$inject = ['$window', 'tokenService', '$state'];
+	
+	function interceptor($window, tokenService, $state) {
+	  return {
+	    request: function request(config) {
+	      config.headers = config.headers || {};
+	      var token = tokenService.get();
+	
+	      if (token) {
+	        config.headers.Authorization = 'Bearer ' + token;
+	      }
+	      return config;
+	    },
+	    responseError: function responseError(response) {
+	      if (response.status >= 400 && response.status < 500) {
+	        tokenService.remove();
+	        $state.go('home');
+	      }
+	      return Promise.reject(response);
+	    }
+	  };
+	}
+
+/***/ },
+/* 73 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = auth;
+	// import angular from 'angular';
+	
+	auth.$inject = ['$rootScope', 'userService', '$state'];
+	
+	function auth($rootScope, userService, $state) {
+	  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+	
+	    function success() {
+	      return $state.go(toState.name, toParams);
+	    }
+	
+	    if (toState.data && toState.data.requiresAuth && !userService.isAuthenticated()) {
+	      event.preventDefault();
+	
+	      console.log('Authentication failed (src/auth.js)');
+	    }
+	    success();
+	  });
+	}
+
+/***/ },
+/* 74 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

@@ -72,11 +72,14 @@ body {
   background: -moz-linear-gradient(#eeeeee, #eeeeee, #eeeeee, #dddddd);
   background: linear-gradient(#eeeeee, #eeeeee, #eeeeee, #dddddd); }
 
-main {
+header, main {
   width: 60%;
   margin: 0 auto;
   min-width: 400px;
   max-width: 1200px; }
+
+header {
+  text-align: right; }
 
 section {
   padding: 20px;
@@ -173,7 +176,7 @@ input[type="radio"] {
   margin-right: 10px;
   background-color: transparent; }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
   width: calc(100%);
   margin-bottom: 10px;
   background-color: transparent;

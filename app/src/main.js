@@ -5,11 +5,9 @@ import http from './http';
 import auth from './auth';
 import './scss/main.scss';
 
-const module = angular.module(app);
+app.config(http);
+app.config(routes);
+app.run(auth);
+app.value('apiUrl', process.env.API_URL || '/api');
 
-module.config(http);
-module.config(routes);
-module.run(auth);
-module.value('apiUrl', process.env.API_URL || '/api');
-
-angular.bootstrap(document, [app]);
+angular.bootstrap(document, [app.name]);
