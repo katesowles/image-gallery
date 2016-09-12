@@ -39,7 +39,7 @@ function controller(albumService) {
     albumService.update(updatedAlbum, albumId)
       .then(updated => {
         console.log('this.album', this.album);
-        const index = this.album.findIndex(updatedAlbum => updatedAlbum._id === updated._id);
+        const index = this.albums.findIndex(updatedAlbum => updatedAlbum._id === updated._id);
         // if no updatedAlbum, stop
         // if(!updatedAlbum) return;
         // if found

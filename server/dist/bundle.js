@@ -41184,7 +41184,7 @@
 	  this.update = function (updatedAlbum, albumId) {
 	    albumService.update(updatedAlbum, albumId).then(function (updated) {
 	      console.log('this.album', _this.album);
-	      var index = _this.album.findIndex(function (updatedAlbum) {
+	      var index = _this.albums.findIndex(function (updatedAlbum) {
 	        return updatedAlbum._id === updated._id;
 	      });
 	      // if no updatedAlbum, stop
