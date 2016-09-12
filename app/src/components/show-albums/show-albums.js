@@ -3,7 +3,10 @@ import styles from './show-albums.scss';
 
 export default {
   template,
-  controller
+  controller,
+  bindings: {
+
+  }
 };
 
 controller.$inject = ['albumService'];
@@ -33,8 +36,10 @@ function controller(albumService) {
   };
 
   this.update = (updatedAlbum, albumId) => {
+    console.log('albumId', albumId);
     albumService.update(updatedAlbum, albumId)
       .then(updated => {
+        console.log('this.album', this.album);
         const index = this.album.findIndex(updatedAlbum => updatedAlbum._id === updated._id);
         // if no updatedAlbum, stop
         // if(!updatedAlbum) return;

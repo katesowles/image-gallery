@@ -40518,6 +40518,7 @@
 	
 	  this.update = function (updatedImage, imageId) {
 	    imageService.update(updatedImage, imageId).then(function (updated) {
+	      console.log('this.image', _this.image);
 	      var index = _this.image.findIndex(function (updatedImage) {
 	        return updatedImage._id === updated._id;
 	      });
@@ -41139,7 +41140,8 @@
 	
 	exports.default = {
 	  template: _showAlbums2.default,
-	  controller: controller
+	  controller: controller,
+	  bindings: {}
 	};
 	
 	
@@ -41178,7 +41180,9 @@
 	  };
 	
 	  this.update = function (updatedAlbum, albumId) {
+	    console.log('albumId', albumId);
 	    albumService.update(updatedAlbum, albumId).then(function (updated) {
+	      console.log('this.album', _this.album);
 	      var index = _this.album.findIndex(function (updatedAlbum) {
 	        return updatedAlbum._id === updated._id;
 	      });
@@ -41248,18 +41252,17 @@
 	      title: ''
 	    };
 	
-	    var reset = function reset() {
+	    this.reset = function () {
 	      _this.updatedAlbum = {};
 	    };
 	
 	    this.submit = function (albumId) {
-	      console.log('albumId', albumId);
+	      if (_this.updatedAlbum.title === '') {
+	        _this.updateAlbum.title = _this.image.title;
+	      }
 	
-	      // const albumId = this.collection._id;
-	      _this.album._id = albumId;
-	
-	      _this.update(_this.album);
-	      reset();
+	      _this.update(_this.album, albumId);
+	      _this.reset();
 	    };
 	  }
 	};
@@ -41374,6 +41377,7 @@
 	      });
 	    },
 	    update: function update(album, albumId) {
+	      console.log('albumId', albumId);
 	      // MAYBE ADD ALBUMID BACK INTO THIS?
 	      cache.remove(apiUrl + '/albums');
 	
@@ -41419,16 +41423,6 @@
 	        return console.error('something went wrong:', err);
 	      });
 	    },
-	
-	
-	    // remove(image) {
-	    //   cache.remove(`${apiUrl}/albums/${image.album}/images`);
-	    //
-	    //   return $http.delete(`${apiUrl}/images/${image._id}`)
-	    //     .then(removed => removed.data)
-	    //     .catch(err => console.error('something went wrong: ', err));
-	    // },
-	
 	    remove: function remove(imageId) {
 	      cache.remove(apiUrl + '/albums');
 	

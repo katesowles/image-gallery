@@ -14,18 +14,17 @@ export default {
       title: '',
     };
 
-    const reset = () => {
+    this.reset = () => {
       this.updatedAlbum = {};
     };
 
     this.submit = (albumId) => {
-      console.log('albumId', albumId);
+      if (this.updatedAlbum.title === '') {
+        this.updateAlbum.title = this.image.title;
+      }
 
-      // const albumId = this.collection._id;
-      this.album._id = albumId;
-
-      this.update(this.album);
-      reset();
+      this.update(this.album, albumId);
+      this.reset();
     };
   }
 };

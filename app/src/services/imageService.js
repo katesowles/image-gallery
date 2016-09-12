@@ -20,14 +20,6 @@ export default function imageService ($http, apiUrl, $cacheFactory) {
         .catch(err => console.error('something went wrong:', err));
     },
 
-    // remove(image) {
-    //   cache.remove(`${apiUrl}/albums/${image.album}/images`);
-    //
-    //   return $http.delete(`${apiUrl}/images/${image._id}`)
-    //     .then(removed => removed.data)
-    //     .catch(err => console.error('something went wrong: ', err));
-    // },
-
     remove(imageId) {
       cache.remove(`${apiUrl}/albums`);
 
