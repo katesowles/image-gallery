@@ -32,15 +32,27 @@ function controller(albumService) {
       .catch(err => console.error('something went wrong', err));
   };
 
-  this.update = albumToUpdate => {
-    albumService.update(albumToUpdate)
-      .then(updatedAlbum => {
-        if (!updatedAlbum) return;
-        const index = this.albums.findIndex(album => album._id === updatedAlbum._id);
-        if (index !== -1) {
-          this.albums.splice(index, 1, updatedAlbum);
-        }
+  this.update = (updatedAlbum, albumId) => {
+    albumService.update(updatedAlbum, albumId)
+      .then(updated => {
+        const index = this.album.findIndex(updatedAlbum => updatedAlbum._id === updated._id);
+        // if no updatedAlbum, stop
+        // if(!updatedAlbum) return;
+        // if found
+        if(index !== -1) this.albums.splice(index, 1, updated);
       })
       .catch(err => console.error('something went wrong', err));
   };
+
+  // this.update = (albumToUpdate, albumId) => {
+  //   albumService.update(albumToUpdate, albumId)
+  //     .then(updatedAlbum => {
+  //       if (!updatedAlbum) return;
+  //       const index = this.albums.findIndex(album => album._id === updatedAlbum._id);
+  //       if (index !== -1) {
+  //         this.albums.splice(index, 1, updatedAlbum);
+  //       }
+  //     })
+  //     .catch(err => console.error('something went wrong', err));
+  // };
 }

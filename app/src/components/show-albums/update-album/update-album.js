@@ -5,17 +5,21 @@ export default {
   template,
   bindings: {
     update: '<',
-    collection: '<'
+    collection: '<',
+    album: '<',
   },
   controller() {
     this.styles = styles;
-    this.album = {};
+    this.updatedAlbum = {
+      title: '',
+    };
 
     const reset = () => {
-      this.album = {};
+      this.updatedAlbum = {};
     };
 
     this.submit = (albumId) => {
+      console.log('albumId', albumId);
 
       // const albumId = this.collection._id;
       this.album._id = albumId;

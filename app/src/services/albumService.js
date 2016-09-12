@@ -29,10 +29,11 @@ export default function albumService ($http, apiUrl, $cacheFactory) {
         .catch(err => console.error('something went wrong when calling remove() on an album: ', err));
     },
 
-    update(album) {
+    update(album, albumId) {
+      // MAYBE ADD ALBUMID BACK INTO THIS?
       cache.remove(`${apiUrl}/albums`);
 
-      return $http.put(`${apiUrl}/albums/${album._id}`, album)
+      return $http.put(`${apiUrl}/albums/${albumId}`, album)
         .then(response => response.data)
         .catch(err => console.error('something went wrong when calling update() on an album: ', err));
     }

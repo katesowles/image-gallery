@@ -41177,19 +41177,31 @@
 	    });
 	  };
 	
-	  this.update = function (albumToUpdate) {
-	    albumService.update(albumToUpdate).then(function (updatedAlbum) {
-	      if (!updatedAlbum) return;
-	      var index = _this.albums.findIndex(function (album) {
-	        return album._id === updatedAlbum._id;
+	  this.update = function (updatedAlbum, albumId) {
+	    albumService.update(updatedAlbum, albumId).then(function (updated) {
+	      var index = _this.album.findIndex(function (updatedAlbum) {
+	        return updatedAlbum._id === updated._id;
 	      });
-	      if (index !== -1) {
-	        _this.albums.splice(index, 1, updatedAlbum);
-	      }
+	      // if no updatedAlbum, stop
+	      // if(!updatedAlbum) return;
+	      // if found
+	      if (index !== -1) _this.albums.splice(index, 1, updated);
 	    }).catch(function (err) {
 	      return console.error('something went wrong', err);
 	    });
 	  };
+	
+	  // this.update = (albumToUpdate, albumId) => {
+	  //   albumService.update(albumToUpdate, albumId)
+	  //     .then(updatedAlbum => {
+	  //       if (!updatedAlbum) return;
+	  //       const index = this.albums.findIndex(album => album._id === updatedAlbum._id);
+	  //       if (index !== -1) {
+	  //         this.albums.splice(index, 1, updatedAlbum);
+	  //       }
+	  //     })
+	  //     .catch(err => console.error('something went wrong', err));
+	  // };
 	}
 
 /***/ },
@@ -41225,19 +41237,23 @@
 	  template: _updateAlbum2.default,
 	  bindings: {
 	    update: '<',
-	    collection: '<'
+	    collection: '<',
+	    album: '<'
 	  },
 	  controller: function controller() {
 	    var _this = this;
 	
 	    this.styles = _updateAlbum2.default;
-	    this.album = {};
+	    this.updatedAlbum = {
+	      title: ''
+	    };
 	
 	    var reset = function reset() {
-	      _this.album = {};
+	      _this.updatedAlbum = {};
 	    };
 	
 	    this.submit = function (albumId) {
+	      console.log('albumId', albumId);
 	
 	      // const albumId = this.collection._id;
 	      _this.album._id = albumId;
@@ -41252,7 +41268,7 @@
 /* 63 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.updateAlbum\">\n  <form ng-submit=\"$ctrl.submit()\">\n    <input type=\"text\" placeholer=\"Album Title\" ng-model=\"$ctrl.album.title\">\n    <button type=\"submit\">Update Album</button>\n  </form>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.updateAlbum\">\n  <form ng-submit=\"$ctrl.submit($ctrl.album._id)\">\n    <input type=\"text\" placeholer=\"New Album Title\" ng-value=\"$ctrl.album.title\" ng-model=\"$ctrl.updatedAlbum.title\">\n    <button type=\"submit\">Update Album</button>\n  </form>\n</section>\n";
 
 /***/ },
 /* 64 */
@@ -41357,10 +41373,11 @@
 	        return console.error('something went wrong when calling remove() on an album: ', err);
 	      });
 	    },
-	    update: function update(album) {
+	    update: function update(album, albumId) {
+	      // MAYBE ADD ALBUMID BACK INTO THIS?
 	      cache.remove(apiUrl + '/albums');
 	
-	      return $http.put(apiUrl + '/albums/' + album._id, album).then(function (response) {
+	      return $http.put(apiUrl + '/albums/' + albumId, album).then(function (response) {
 	        return response.data;
 	      }).catch(function (err) {
 	        return console.error('something went wrong when calling update() on an album: ', err);
