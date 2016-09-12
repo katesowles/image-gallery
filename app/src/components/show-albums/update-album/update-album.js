@@ -4,7 +4,7 @@ import styles from './update-album.html';
 export default {
   template,
   bindings: {
-    update: '&',
+    update: '<',
     collection: '<'
   },
   controller() {
@@ -15,8 +15,9 @@ export default {
       this.album = {};
     };
 
-    this.submit = () => {
-      const albumId = this.collection._id;
+    this.submit = (albumId) => {
+
+      // const albumId = this.collection._id;
       this.album._id = albumId;
 
       this.update(this.album);

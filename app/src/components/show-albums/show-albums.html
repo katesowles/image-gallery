@@ -3,7 +3,7 @@
   <h5>Select the album to view</h5>
 
   <section ng-repeat="album in $ctrl.albums">
-    <!-- <div ng-show="album"> -->
+    <!-- <div ng-show="$ctrl.albums.length"> -->
       <!-- TODO FIX THIS SHIT -->
       <a ui-sref="specific-album({albumId: album._id, display: 'text'})"><h4>{{album.title}}</h4></a>
 
@@ -11,9 +11,10 @@
         <button class="inline" ng-click="showUpdate=!showUpdate">Edit Album</button>
         <button class="inline" ng-click="$ctrl.remove(album._id)">Delete Album</button>
       </div>
+      <update-album ng-show="showUpdate" showUpdate="$ctrl.showUpdate" update="$ctrl.update" album="album"></update-album>
     <!-- </div> -->
 
-    <!-- <div ng-show="!album">
+    <!-- <div ng-show="!$ctrl.albums.length">
       <h5>You don't currently have any albums, add one below</h5>
     </div> -->
   </section>

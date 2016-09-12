@@ -5,7 +5,7 @@ export default {
   template,
   bindings: {
     // needs functional scope so that it can see the add function in the (parent) show-albums controller
-    add: '&'
+    add: '<'
   },
   controller() {
     this.styles = styles;

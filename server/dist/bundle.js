@@ -40728,7 +40728,7 @@
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.text\">\n  <span class=\"display\" ng-repeat=\"image in $ctrl.images\">\n    <a href=\"{{image.link}}\"><h3>{{image.title}}</h3></a>\n    <p>{{image.caption}}</p>\n\n    <button ng-click=\"showUpdate=!showUpdate\">Update Image</button>\n    <update-image ng-show=\"showUpdate\" showUpdate=\"$ctrl.showUpdate\" update=\"$ctrl.update\" image=\"image\"></update-image>\n    <button ng-click=\"$ctrl.remove(image._id)\">Delete Image</button>\n  </span>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.text\">\n  <span class=\"display\" ng-repeat=\"image in $ctrl.images\">\n    <a href=\"{{image.link}}\"><h3>{{image.title}}</h3></a>\n    <p>{{image.caption}}</p>\n\n    <div class=\"buttonHolder\">\n      <button ng-click=\"showUpdate=!showUpdate\">Update Image</button>\n      <button ng-click=\"$ctrl.remove(image._id)\">Delete Image</button>\n    </div>\n    <update-image ng-show=\"showUpdate\" showUpdate=\"$ctrl.showUpdate\" update=\"$ctrl.update\" image=\"image\"></update-image>\n  </span>\n</section>\n";
 
 /***/ },
 /* 30 */
@@ -41088,7 +41088,7 @@
 	  template: _addAlbum2.default,
 	  bindings: {
 	    // needs functional scope so that it can see the add function in the (parent) show-albums controller
-	    add: '&'
+	    add: '<'
 	  },
 	  controller: function controller() {
 	    var _this = this;
@@ -41196,7 +41196,7 @@
 /* 59 */
 /***/ function(module, exports) {
 
-	module.exports = "<main ng-class=$ctrl.styles.showAlbums>\n  <h2>Your Albums</h2>\n  <h5>Select the album to view</h5>\n\n  <section ng-repeat=\"album in $ctrl.albums\">\n    <!-- <div ng-show=\"album\"> -->\n      <!-- TODO FIX THIS SHIT -->\n      <a ui-sref=\"specific-album({albumId: album._id, display: 'text'})\"><h4>{{album.title}}</h4></a>\n\n      <div class=\"buttonHolder\">\n        <button class=\"inline\" ng-click=\"showUpdate=!showUpdate\">Edit Album</button>\n        <button class=\"inline\" ng-click=\"$ctrl.remove(album._id)\">Delete Album</button>\n      </div>\n    <!-- </div> -->\n\n    <!-- <div ng-show=\"!album\">\n      <h5>You don't currently have any albums, add one below</h5>\n    </div> -->\n  </section>\n\n  <section ng-show=\"showUpdate\">\n    <h4>Update an Album</h4>\n    <update-album update=\"$ctrl.update\" collection=\"album\"> <!-- form will go here --> </update-album>\n  </section>\n\n  <section>\n    <h4 class=\"inline\">Add an Album</h4>\n    <add-album add=\"$ctrl.add\"></add-album>\n  </section>\n</main>\n";
+	module.exports = "<main ng-class=$ctrl.styles.showAlbums>\n  <h2>Your Albums</h2>\n  <h5>Select the album to view</h5>\n\n  <section ng-repeat=\"album in $ctrl.albums\">\n    <!-- <div ng-show=\"$ctrl.albums.length\"> -->\n      <!-- TODO FIX THIS SHIT -->\n      <a ui-sref=\"specific-album({albumId: album._id, display: 'text'})\"><h4>{{album.title}}</h4></a>\n\n      <div class=\"buttonHolder\">\n        <button class=\"inline\" ng-click=\"showUpdate=!showUpdate\">Edit Album</button>\n        <button class=\"inline\" ng-click=\"$ctrl.remove(album._id)\">Delete Album</button>\n      </div>\n      <update-album ng-show=\"showUpdate\" showUpdate=\"$ctrl.showUpdate\" update=\"$ctrl.update\" album=\"album\"></update-album>\n    <!-- </div> -->\n\n    <!-- <div ng-show=\"!$ctrl.albums.length\">\n      <h5>You don't currently have any albums, add one below</h5>\n    </div> -->\n  </section>\n\n  <section ng-show=\"showUpdate\">\n    <h4>Update an Album</h4>\n    <update-album update=\"$ctrl.update\" collection=\"album\"> <!-- form will go here --> </update-album>\n  </section>\n\n  <section>\n    <h4 class=\"inline\">Add an Album</h4>\n    <add-album add=\"$ctrl.add\"></add-album>\n  </section>\n</main>\n";
 
 /***/ },
 /* 60 */
@@ -41224,7 +41224,7 @@
 	exports.default = {
 	  template: _updateAlbum2.default,
 	  bindings: {
-	    update: '&',
+	    update: '<',
 	    collection: '<'
 	  },
 	  controller: function controller() {
@@ -41237,8 +41237,9 @@
 	      _this.album = {};
 	    };
 	
-	    this.submit = function () {
-	      var albumId = _this.collection._id;
+	    this.submit = function (albumId) {
+	
+	      // const albumId = this.collection._id;
 	      _this.album._id = albumId;
 	
 	      _this.update(_this.album);
@@ -41338,6 +41339,7 @@
 	      });
 	    },
 	    add: function add(album) {
+	      console.log('album', album);
 	      cache.remove(apiUrl + '/albums');
 	
 	      return $http.post(apiUrl + '/albums', album).then(function (response) {
@@ -41346,10 +41348,9 @@
 	        return console.error('something went wrong when calling add() on an album: ', err);
 	      });
 	    },
-	    remove: function remove(album) {
+	    remove: function remove(albumId) {
 	      cache.remove(apiUrl + '/albums');
 	
-	      var albumId = album._id;
 	      return $http.delete(apiUrl + '/albums/' + albumId).then(function (response) {
 	        return response.data;
 	      }).catch(function (err) {
@@ -41359,8 +41360,7 @@
 	    update: function update(album) {
 	      cache.remove(apiUrl + '/albums');
 	
-	      var albumId = album._id;
-	      return $http.put(apiUrl + '/albums/' + albumId, album).then(function (response) {
+	      return $http.put(apiUrl + '/albums/' + album._id, album).then(function (response) {
 	        return response.data;
 	      }).catch(function (err) {
 	        return console.error('something went wrong when calling update() on an album: ', err);

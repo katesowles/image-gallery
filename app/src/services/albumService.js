@@ -13,6 +13,7 @@ export default function albumService ($http, apiUrl, $cacheFactory) {
     },
 
     add(album) {
+      console.log('album', album);
       cache.remove(`${apiUrl}/albums`);
 
       return $http.post(`${apiUrl}/albums`, album)
@@ -20,10 +21,9 @@ export default function albumService ($http, apiUrl, $cacheFactory) {
         .catch(err => console.error('something went wrong when calling add() on an album: ', err));
     },
 
-    remove(album) {
+    remove(albumId) {
       cache.remove(`${apiUrl}/albums`);
 
-      const albumId = album._id;
       return $http.delete(`${apiUrl}/albums/${albumId}`)
         .then(response => response.data)
         .catch(err => console.error('something went wrong when calling remove() on an album: ', err));
@@ -32,8 +32,7 @@ export default function albumService ($http, apiUrl, $cacheFactory) {
     update(album) {
       cache.remove(`${apiUrl}/albums`);
 
-      const albumId = album._id;
-      return $http.put(`${apiUrl}/albums/${albumId}`, album)
+      return $http.put(`${apiUrl}/albums/${album._id}`, album)
         .then(response => response.data)
         .catch(err => console.error('something went wrong when calling update() on an album: ', err));
     }
