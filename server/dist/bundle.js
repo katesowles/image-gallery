@@ -41011,7 +41011,7 @@
 /* 49 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"authOptions\">\n  <button ng-click=\"$ctrl.action = 'signin'\">Sign In</button>\n  <button ng-click=\"$ctrl.action = 'signup'\">Sign Up</button>\n\n  <signin ng-if=\"$ctrl.action === 'signin'\" success=\"$ctrl.success()\"></signin>\n\n  <signup ng-if=\"$ctrl.action === 'signup'\" success=\"$ctrl.success()\"></signup>\n\n</div>\n";
+	module.exports = "<div class=\"authOptions\">\n  <div class=\"buttonHolder\">\n    <button class=\"inline\" ng-click=\"$ctrl.action = 'signin'\">Sign In</button>\n    <button class=\"inline\" ng-click=\"$ctrl.action = 'signup'\">Sign Up</button>\n  </div>\n\n  <signin ng-if=\"$ctrl.action === 'signin'\" success=\"$ctrl.success()\"></signin>\n\n  <signup ng-if=\"$ctrl.action === 'signup'\" success=\"$ctrl.success()\"></signup>\n\n</div>\n";
 
 /***/ },
 /* 50 */
@@ -41060,7 +41060,7 @@
 /* 53 */
 /***/ function(module, exports) {
 
-	module.exports = "<main ng-class=\"$ctrl.styles.landing\">\n  <div class=\"loggedOut\" ng-if=\"userService.isAuthenticated()\">\n    <h2>Sign In or Create an Account</h2>\n    <user-auth success=\"success()\"></user-auth>\n  </div>\n\n  <div class=\"loggedIn\" ng-if=\"!userService.isAuthenticated()\">\n    <button style=\"display:block; margin:50px auto;\" ui-sref-active=\"active\" ui-sref=\"show-albums\">Show Albums</button>\n\n    <h5>Welcome! Use the button above to see the list of available albums.</h5>\n  </div>\n\n  <h6><a href=\"http://github.com/katesowles/image-gallery\">See this project on Github</a></h6>\n\n</main>\n";
+	module.exports = "<main ng-class=\"$ctrl.styles.landing\">\n  <div class=\"loggedOut\" ng-if=\"userService.isAuthenticated()\">\n    <h2>Sign In or Create an Account</h2>\n    <user-auth success=\"success()\"></user-auth>\n  </div>\n\n  <div class=\"loggedIn\" ng-if=\"!userService.isAuthenticated()\">\n    <button class=\"center\" ui-sref-active=\"active\" ui-sref=\"show-albums\">Show Albums</button>\n\n    <h5>Welcome! Use the button above to see the list of available albums.</h5>\n  </div>\n\n  <h6><a href=\"http://github.com/katesowles/image-gallery\">See this project on Github</a></h6>\n\n</main>\n";
 
 /***/ },
 /* 54 */
@@ -41931,8 +41931,8 @@
 	      event.preventDefault();
 	
 	      console.log('Authentication failed (src/auth.js)');
+	      success();
 	    }
-	    success();
 	  });
 	}
 

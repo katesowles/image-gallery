@@ -19,7 +19,7 @@ app.use((request, response, next) => {
   next();
 });
 
-app.use('/api/'), auth;
+app.use('/api/', auth);
 app.use('/api/images', /*ensureAuth,*/ images);
 app.use('/api/albums', /*ensureAuth,*/ albums);
 
