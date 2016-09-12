@@ -5,7 +5,7 @@ export default {
   template,
   controller,
   bindings: {
-
+    album: '<'
   }
 };
 
@@ -36,7 +36,6 @@ function controller(albumService) {
   };
 
   this.update = (updatedAlbum, albumId) => {
-    console.log('albumId', albumId);
     albumService.update(updatedAlbum, albumId)
       .then(updated => {
         console.log('this.album', this.album);

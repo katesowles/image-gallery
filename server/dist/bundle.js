@@ -41141,7 +41141,9 @@
 	exports.default = {
 	  template: _showAlbums2.default,
 	  controller: controller,
-	  bindings: {}
+	  bindings: {
+	    album: '<'
+	  }
 	};
 	
 	
@@ -41180,7 +41182,6 @@
 	  };
 	
 	  this.update = function (updatedAlbum, albumId) {
-	    console.log('albumId', albumId);
 	    albumService.update(updatedAlbum, albumId).then(function (updated) {
 	      console.log('this.album', _this.album);
 	      var index = _this.album.findIndex(function (updatedAlbum) {
