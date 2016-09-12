@@ -41183,7 +41183,7 @@
 	
 	  this.update = function (updatedAlbum, albumId) {
 	    albumService.update(updatedAlbum, albumId).then(function (updated) {
-	      console.log('this.album', _this.album);
+	      console.log('this.albums', _this.albums);
 	      var index = _this.albums.findIndex(function (updatedAlbum) {
 	        return updatedAlbum._id === updated._id;
 	      });
@@ -41259,7 +41259,7 @@
 	
 	    this.submit = function (albumId) {
 	      if (_this.updatedAlbum.title === '') {
-	        _this.updateAlbum.title = _this.image.title;
+	        _this.updatedAlbum.title = _this.image.title;
 	      }
 	
 	      _this.update(_this.album, albumId);

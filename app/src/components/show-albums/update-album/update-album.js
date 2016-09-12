@@ -20,7 +20,7 @@ export default {
 
     this.submit = (albumId) => {
       if (this.updatedAlbum.title === '') {
-        this.updateAlbum.title = this.image.title;
+        this.updatedAlbum.title = this.image.title;
       }
 
       this.update(this.album, albumId);
