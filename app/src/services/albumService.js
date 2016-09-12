@@ -13,7 +13,6 @@ export default function albumService ($http, apiUrl, $cacheFactory) {
     },
 
     add(album) {
-      console.log('album', album);
       cache.remove(`${apiUrl}/albums`);
 
       return $http.post(`${apiUrl}/albums`, album)
@@ -30,8 +29,6 @@ export default function albumService ($http, apiUrl, $cacheFactory) {
     },
 
     update(album, albumId) {
-      console.log('albumId', albumId);
-      // MAYBE ADD ALBUMID BACK INTO THIS?
       cache.remove(`${apiUrl}/albums`);
 
       return $http.put(`${apiUrl}/albums/${albumId}`, album)

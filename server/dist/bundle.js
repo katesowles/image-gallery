@@ -40518,7 +40518,6 @@
 	
 	  this.update = function (updatedImage, imageId) {
 	    imageService.update(updatedImage, imageId).then(function (updated) {
-	      console.log('this.image', _this.image);
 	      var index = _this.image.findIndex(function (updatedImage) {
 	        return updatedImage._id === updated._id;
 	      });
@@ -41259,11 +41258,12 @@
 	
 	    this.submit = function (albumId) {
 	      if (_this.updatedAlbum.title === '') {
-	        _this.updatedAlbum.title = _this.image.title;
+	        _this.updatedAlbum.title = _this.album.title;
 	      }
 	
-	      _this.update(_this.album, albumId);
+	      _this.update(_this.updatedAlbum, albumId);
 	      _this.reset();
+	      // window.location.reload();
 	    };
 	  }
 	};
@@ -41359,7 +41359,6 @@
 	      });
 	    },
 	    add: function add(album) {
-	      console.log('album', album);
 	      cache.remove(apiUrl + '/albums');
 	
 	      return $http.post(apiUrl + '/albums', album).then(function (response) {
@@ -41378,8 +41377,6 @@
 	      });
 	    },
 	    update: function update(album, albumId) {
-	      console.log('albumId', albumId);
-	      // MAYBE ADD ALBUMID BACK INTO THIS?
 	      cache.remove(apiUrl + '/albums');
 	
 	      return $http.put(apiUrl + '/albums/' + albumId, album).then(function (response) {

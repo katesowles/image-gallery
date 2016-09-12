@@ -20,11 +20,12 @@ export default {
 
     this.submit = (albumId) => {
       if (this.updatedAlbum.title === '') {
-        this.updatedAlbum.title = this.image.title;
+        this.updatedAlbum.title = this.album.title;
       }
 
-      this.update(this.album, albumId);
+      this.update(this.updatedAlbum, albumId);
       this.reset();
+      // window.location.reload();
     };
   }
 };

@@ -57,7 +57,6 @@ function controller (imageService, $state) {
   this.update = (updatedImage, imageId) => {
     imageService.update(updatedImage, imageId)
       .then(updated => {
-        console.log('this.image', this.image);
         const index = this.image.findIndex(updatedImage => updatedImage._id === updated._id);
         if(index !== -1) this.images.splice(index, 1, updated);
       })
